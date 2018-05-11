@@ -1,0 +1,40 @@
+notes for the PMM Day website..
+Layout ---
+Countdown/landing page
+about the event(why?)---read more links ----register for event
+commitee contacts and members in charge--links to social media sites
+schedule of events(is it a weekend or a day?)
+sponsors? if any
+travel info(hotels? and venue for events)
+get tickets(two options so far)
+photo gallery(s3?)
+latest updates(blogs)
+sign up for updates
+footer
+
+tech----
+nodemailer or mailgun?
+aws s3 and/or ec2
+google maps
+heroku
+
+
+info---
+https://desolate-beyond-31665.herokuapp.com/ | https://git.heroku.com/desolate-beyond-31665.git
+
+
+mysql_database---
+create table person(
+id int not null auto_increment primary key,
+firstName varchar(30),
+lastName varchar(30), 
+email varchar(50), 
+phoneNumber int, 
+_created datetime default current_timestamp
+);
+
+create table photos(
+id int not null auto_increment primary key,
+url varchar(75) not null,
+_created datetime default current_timestamp
+);
