@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpa
 
 module.exports = {
     mode: 'development',
-    entry: ['./client/src/index.js'],
+    entry: ['./client/src/index.js', './client/src/index.scss'],
     output: { path: CLIENT_DEST, 
         filename: 'bundle.js' 
             },
@@ -13,13 +13,37 @@ module.exports = {
       rules: [ 
         {
             test: /\.js$/,
-            use: 'babel-loader',
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env']
+                }
+            },
             exclude: [
               /node_modules/
             ]
         },
         {
             test: /\.css$/,
+            loader: [ 'style-loader', 'css-loader',
+                ]
+        
+        },
+        {
+            test: /\.ttf$/,
+            loaders: [
+              'url-loader'
+            ]
+          },
+          {
+            test: /\.(svg|gif|png|eot|woff|ttf)$/,
+            loaders: [
+              'url-loader'
+            ]
+          },
+        {
+            test: /\.scss$/,
+            exclude:/node_modules/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [
@@ -27,26 +51,37 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: true,
+                            sourceMap: true,
+                            importLoaders: 2,
                             localIdentName: '[name]__[local]__[hash:base64:5]'
                         }
-                    },
-                    'postcss-loader',
-                    'sass-loader'
+                    },{
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
                 ]
             })
         },
-        {
-            test: /\.(sass|scss)$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "sass-loader" // compiles Sass to CSS
-            }]
-          }
+        // {
+        //     test: /\.(sass|scss)$/,
+        //     use: [{
+        //         loader: "style-loader" // creates style nodes from JS strings
+        //     }, {
+        //         loader: "css-loader" // translates CSS into CommonJS
+        //     }, {
+        //         loader: "sass-loader" // compiles Sass to CSS
+        //     }]
+        //   }
       ]
   },
+  node: {
+    __dirname: true,
+    },
+    resolve: {
+        extensions: ['.js']
+    },
   plugins: [  // Array of plugins to apply to build chunk
     //   new HtmlWebpackPlugin({
     //       template: __dirname + "/src/public/index.html",
@@ -54,8 +89,8 @@ module.exports = {
     //   }),
       new ExtractTextPlugin({ filename: 'index.css', allChunks: true })
   ],
-  devServer: {  // configuration for webpack-dev-server
-      contentBase: './src/public',  //source of static assets
-      port: 7700, // port to run dev-server
-  } 
+//   devServer: {  // configuration for webpack-dev-server
+//       contentBase: './src/public',  //source of static assets
+//       port: 7700, // port to run dev-server
+//   } 
 };

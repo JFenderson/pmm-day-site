@@ -79,18 +79,29 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n//# sourceURL=webpack:///./client/src/index.js?");
+eval("\n\n$(function () {\n    console.log('ready!');\n});\n\n//# sourceURL=webpack:///./client/src/index.js?");
+
+/***/ }),
+
+/***/ "./client/src/index.scss":
+/*!*******************************!*\
+  !*** ./client/src/index.scss ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin\nmodule.exports = {\"landing\":\"_2gXsfZa8eKIoeSxkpzYPmj\"};\n\n//# sourceURL=webpack:///./client/src/index.scss?");
 
 /***/ }),
 
 /***/ 0:
-/*!***********************************!*\
-  !*** multi ./client/src/index.js ***!
-  \***********************************/
+/*!***********************************************************!*\
+  !*** multi ./client/src/index.js ./client/src/index.scss ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! ./client/src/index.js */\"./client/src/index.js\");\n\n\n//# sourceURL=webpack:///multi_./client/src/index.js?");
+eval("__webpack_require__(/*! ./client/src/index.js */\"./client/src/index.js\");\nmodule.exports = __webpack_require__(/*! ./client/src/index.scss */\"./client/src/index.scss\");\n\n\n//# sourceURL=webpack:///multi_./client/src/index.js_./client/src/index.scss?");
 
 /***/ })
 

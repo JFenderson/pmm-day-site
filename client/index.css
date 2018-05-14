@@ -1,0 +1,23 @@
+.landing{
+    background-color: gray;
+    height: 50vh;
+    text-align: center;
+}
+.hero-nav{
+    position: relative;
+}
+.about{
+    height: 75vh;
+    position: grid;
+    background-color: lightblue;
+    padding: 4em;
+}
+.text{
+    text-align: left;
+    width: 50%;
+} 
+
+.other{
+    width: 50%;
+    float: right;
+}
