@@ -1,6 +1,52 @@
+/* borrowed styling */
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+
+  ul#countdown {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 0 20px 0;
+    color: #fff;
+    border: 1px solid #adafb2;
+    border-width: 1px 0;
+    overflow: hidden;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    
+}
+        li {
+          margin: 0 -3px 0 0;
+          padding: 0;
+          display: inline-block;
+          width: 25%;
+          font-size: 72px;
+          font-size: 6vw;
+          text-align: center;
+          
+        }
+              .label {
+                color: #adafb2;
+                font-size: 18px;
+                font-size: 1.5vw;
+                text-transform: uppercase;
+              }
+/* end borrowed styling */
+
+#home{
+    position: fixed;
+}
 .landing{
     background-color: gray;
-    height: 50vh;
+    height: 95vh;
     text-align: center;
 }
 .hero-nav{
@@ -21,3 +67,17 @@
     width: 50%;
     float: right;
 }
+.photo-gallery{
+    width: 20em;
+    height: 20em;
+    margin: 0.3em;
+    border: 2px solid black;
+}
+.sticky {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    border-top: 0;
+  }
