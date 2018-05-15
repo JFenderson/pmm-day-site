@@ -12,9 +12,9 @@ $(function(){
            // if we've scrolled more than the navigation, change its position to fixed to stick to top,
            // otherwise change it back to relative
            if (scrollTop > stickyNavTop) { 
-               $('.nav').addClass('sticky');
+               $('.hero-nav').addClass('sticky');
            } else {
-               $('.nav').removeClass('sticky'); 
+               $('.hero-nav').removeClass('sticky'); 
            }
        };
  

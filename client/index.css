@@ -23,35 +23,78 @@ html {
     font-weight: bold;
     
 }
-        li {
-          margin: 0 -3px 0 0;
-          padding: 0;
-          display: inline-block;
-          width: 25%;
-          font-size: 72px;
-          font-size: 6vw;
-          text-align: center;
-          
-        }
-              .label {
-                color: #adafb2;
-                font-size: 18px;
-                font-size: 1.5vw;
-                text-transform: uppercase;
-              }
+li {
+    margin: 0 -3px 0 0;
+    padding: 0;
+    display: inline-block;
+    width: 25%;
+    font-size: 72px;
+    font-size: 6vw;
+    text-align: center;
+    
+}
+.label {
+color: #adafb2;
+font-size: 18px;
+font-size: 1.5vw;
+text-transform: uppercase;
+}
 /* end borrowed styling */
 
 #home{
     position: fixed;
 }
 .landing{
-    background-color: gray;
+    color: gold;
+    background: url('./images/pmm_frontline.jpeg'),linear-gradient(rgba(128, 128, 128, 0.26),rgba(128, 128, 128, 0.26));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center center;
+    -webkit-background-size: cover!important;
+    -moz-background-size: cover!important;
+    -o-background-size: cover!important;
+    image-rendering: optimizeQuality;
     height: 95vh;
     text-align: center;
+    background-attachment: fixed;
+    overflow: scroll;
+}
+.landing h1{
+    font-size: 5em;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+
 }
 .hero-nav{
     position: relative;
+    height: 6em;
+    transition: 0.5s ease;
 }
+.hero-nav a{
+    color: white;
+    border: 1px solid white;
+    width: 9em;
+    height: 3em;
+}
+.hero-nav a:hover{
+    text-decoration: none !important;
+}
+/* .link-1 {
+    transition: 0.3s ease;
+    background: #3fa46a;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    border-top: 4px solid #3fa46a;
+    border-bottom: 4px solid #3fa46a;
+    padding: 20px 0;
+    margin: 0 20px;
+  }
+  .link-1:hover {
+    border-top: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    padding: 6px 0; 
+  } */
 .about{
     height: 75vh;
     position: grid;
@@ -75,9 +118,57 @@ html {
 }
 .sticky {
     position: fixed;
+    height: 5em;
+    background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
     left: 0;
     top: 0;
     z-index: 100;
     border-top: 0;
+    transition: 0.5s ease;
+}
+.sticky a:hover{
+    width: 9em;
+    height: 3em;
+    text-decoration: none !important;
   }
+.price-box-hover:hover{
+    transition: 0.3s ease;
+    box-shadow: -5px -5px 10px 0px rgba(43, 42, 42, 0.877);
+}
+.price-box1{
+    text-align: center;
+    padding: 40px 0 50px;
+    border-radius: 7px;
+    margin: 0 auto;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    background-color: white;
+}
+.price-box2{
+    text-align: center;
+    padding: 40px 0 50px;
+    border-radius: 7px;
+    margin: 0 auto;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    background-color: purple;
+}
+.price-box3{
+    text-align: center;
+    padding: 40px 0 50px;
+    border-radius: 7px;
+    margin: 0 auto;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    background-color: goldenrod;
+}
