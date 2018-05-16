@@ -118,21 +118,68 @@ function numberTransition(id, endPoint, transitionDuration, transitionEase){
 };
 
 // END COUNTDOWN
-// function init_map(){
-//     var myOptions = 
-//     {
-//         zoom:12,center:new google.maps.LatLng(33.480831,-86.90826800000002),
-//         mapTypeId: google.maps.MapTypeId.ROADMAP
-//     };
-//     map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
-//     marker = new google.maps.Marker({
-//         map: map,position: new google.maps.LatLng(33.480831,-86.90826800000002)
-//     });
-//     infowindow = new google.maps.InfoWindow({
-//         content:'<strong>Miles College</strong><br>5500 Myron Massey Blvd<br>35064 Fairfield<br>'
-//     });
-//     google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);
-//     });
-//     infowindow.open(map,marker);
+
+
+
+//slideshow
+// var myIndex = 0;
+// carousel();
+
+// function carousel() {
+//     var i;
+//     var x = document.getElementsByClassName("photo-gallery");
+//     for (i = 0; i < x.length; i++) {
+//        x[i].style.display = "none";  
+//     }
+//     myIndex++;
+//     if (myIndex > x.length) {myIndex = 1}    
+//     x[myIndex-1].style.display = "block";  
+//     setTimeout(carousel, 2000); // Change image every 2 seconds
 // }
-// google.maps.event.addDomListener(window, 'load', init_map);
+
+// var slides = document.querySelectorAll('#slides .slide');
+// var currentSlide = 0;
+// var slideInterval = setInterval(nextSlide,2000);
+
+// function nextSlide() {
+//     slides[currentSlide].className = 'slide';
+//     currentSlide = (currentSlide+1)%slides.length;
+//     slides[currentSlide].className = 'slide showing';
+// }
+
+
+$("nav").find("a").click(function(e) {
+  e.preventDefault();
+  var section = $(this).attr("href");
+  $("html, body").animate({
+      scrollTop: $(section).offset().top
+  });
+});
+
+//nodemailer
+
+$('#contact-submit').click(()=>{
+  console.log('button clicked..now you can send')
+})
+
+$('#contact-submit').click( () => {
+  $.post( '/api/contact', $('#contact-form').serialize(), (data) => {
+      console.log(data)
+     },
+     'json', // I expect a JSON response
+  );
+});
+
+// $('#contact-submit').click( () => {
+//   $.ajax({
+//       url: 'http://localhost/api/contact',
+//       type: 'post',
+//       contentType: 'application/json',
+//       dataType: 'json',
+//       data: $('#contact-form').serialize(),
+//       success: function(data) {
+//                  console.log(data)
+//                }
+//   });
+// });
+

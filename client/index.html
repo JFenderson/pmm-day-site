@@ -14,20 +14,25 @@
     <title>Document</title>
 </head>
 <body>
+  <div class="wrapper">
   <!-- landing page with countdown timer to the event -->
         <div id="landing" class="landing">
           <!-- navbar -->
-          <nav class="nav navbar hero-nav sticky-nav">
+          <nav class="nav navbar hero-nav">
             <!-- need logo in nav -->
-            <a  class="link-1" href="#">Home</a>
-            <a  class="link-1" href="#">About Us</a>
-            <a  class="link-1" href="#">Schedule/Venue</a>
-            <a  class="link-1" href="#">Committee</a>
-            <a  class="link-1" href="#">Register</a>
-            <a  class="link-1" href="#">Photo Gallery</a>
-            <a  class="link-1" href="#">Contact</a>
+            <a class="link-1" href="#landing">Home</a>
+            <a class="link-1" href="#about">About Us</a>
+            <a class="link-1" href="#schedule">Schedule/Venue</a>
+            <a class="link-1" href="#comittee">Committee</a>
+            <a class="link-1" href="#registration">Register</a>
+            <a class="link-1" href="#photo-gallery">Photo Gallery</a>
+            <a class="link-1" href="#contact">Contact</a>
             <a href="#"><span> <button>Buy Tickets</button></span></a>
           </nav>
+          <div class="title-content">
+            <span>April 17-19 2019, Birmingham, Al</span>
+            <h1 class="title1">PMM Weekend</h1>
+          </div>
           <!-- countdown to event -->
           <h1 class="text-center">Countdown to 2019 PMM Day...</h1>
           <ul id="countdown">
@@ -109,12 +114,9 @@
             </div>
             <!-- schedule of events page -->
             <div class="schedule" id="schedule">
-              <nav class="nav navbar">
-                <a href="#">All</a>
-                <a href="#">Friday</a>
-                <a href="#">Saturday</a>
-                <a href="#">Sunday</a>
-              </nav>
+              <div class="schedule-title text-center">
+                <h1>Schedule of Events</h1>
+              </div>
               <div class="container">
                 <div class="row align-items-center">
                   <!-- friday events -->
@@ -123,7 +125,7 @@
                       <span>FRI</span>
                       <ul>
                         <li>4:16:19</li>
-                        <li>07 pm</li>
+                        <li>07pm</li>
                       </ul>
                       <h3>Meet & Greet</h3>
                     </div>
@@ -137,7 +139,7 @@
                         <span>SAT</span>
                         <ul>
                           <li>4:17:19</li>
-                          <li>11 am</li>
+                          <li>11am</li>
                         </ul>
                         <h3>PMM Picnic</h3>
                       </div>
@@ -151,7 +153,7 @@
                         <span>SUN</span>
                         <ul>
                           <li>4:18:19</li>
-                          <li>11 am</li>
+                          <li>11am</li>
                         </ul>
                         <h3>Church & Farwell</h3>
                       </div>
@@ -167,28 +169,17 @@
 
             <!-- comittee members and people that helped make it possible -->
             <div class="container-fluid comittee-area" id="comittee">
-              <div class="comittee-banner">
+              <div class="container">
                 <h1>Comittee Members</h1>
                 <h2>A Thanks to the commitee and the Organizers of this event</h2>
               </div>
-              <div class="row">
-                <!-- person 1 -->
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                  <div class="comittee-person">
-                    <a href="#">
-                      <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
-                    </a>
-                    <div class="comittee-content">
-                      <h3><a href="#">First Last Name</a></h3>
-                      <span>Occupation</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- person 2 -->
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+              <div class="container">
+                <div class="row comittee-wrapper">
+                  <!-- person 1 -->
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                     <div class="comittee-person">
                       <a href="#">
-                        <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                        <img class="img-responsive" src="./images/chick.jpeg" alt="Card image cap">
                       </a>
                       <div class="comittee-content">
                         <h3><a href="#">First Last Name</a></h3>
@@ -196,11 +187,11 @@
                       </div>
                     </div>
                   </div>
-                  <!-- person 3 -->
+                  <!-- person 2 -->
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                       <div class="comittee-person">
                         <a href="#">
-                          <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                          <img class="img-responsive" src="./images/girl2.jpeg" alt="Card image cap">
                         </a>
                         <div class="comittee-content">
                           <h3><a href="#">First Last Name</a></h3>
@@ -208,35 +199,11 @@
                         </div>
                       </div>
                     </div>
-                  <!-- person 4 -->
-                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                      <div class="comittee-person">
-                        <a href="#">
-                          <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
-                        </a>
-                        <div class="comittee-content">
-                          <h3><a href="#">First Last Name</a></h3>
-                          <span>Occupation</span>
-                        </div>
-                      </div>
-                    </div>
-                  <!-- person 5 -->
-                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                      <div class="comittee-person">
-                        <a href="#">
-                          <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
-                        </a>
-                        <div class="comittee-content">
-                          <h3><a href="#">First Last Name</a></h3>
-                          <span>Occupation</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- person 6 -->
+                    <!-- person 3 -->
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                         <div class="comittee-person">
                           <a href="#">
-                            <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                            <img class="img-responsive" src="./images/girl3.jpeg" alt="Card image cap">
                           </a>
                           <div class="comittee-content">
                             <h3><a href="#">First Last Name</a></h3>
@@ -244,23 +211,11 @@
                           </div>
                         </div>
                       </div>
-                  <!-- person 7 -->
-                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                      <div class="comittee-person">
-                        <a href="#">
-                          <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
-                        </a>
-                        <div class="comittee-content">
-                          <h3><a href="#">First Last Name</a></h3>
-                          <span>Occupation</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- person 8 -->
+                    <!-- person 4 -->
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                         <div class="comittee-person">
                           <a href="#">
-                            <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                            <img class="img-responsive" src="./images/girl_otnb.jpeg" alt="Card image cap">
                           </a>
                           <div class="comittee-content">
                             <h3><a href="#">First Last Name</a></h3>
@@ -268,14 +223,63 @@
                           </div>
                         </div>
                       </div>
-              <!-- end people -->
+                    <!-- person 5 -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <div class="comittee-person">
+                          <a href="#">
+                            <img class="img-responsive" src="./images/guy.jpeg" alt="Card image cap">
+                          </a>
+                          <div class="comittee-content">
+                            <h3><a href="#">First Last Name</a></h3>
+                            <span>Occupation</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- person 6 -->
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                          <div class="comittee-person">
+                            <a href="#">
+                              <img class="img-responsive" src="./images/levarburton_headshot.jpg" alt="Card image cap">
+                            </a>
+                            <div class="comittee-content">
+                              <h3><a href="#">First Last Name</a></h3>
+                              <span>Occupation</span>
+                            </div>
+                          </div>
+                        </div>
+                    <!-- person 7 -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <div class="comittee-person">
+                          <a href="#">
+                            <img class="img-responsive" src="./images/mario.jpeg" alt="Card image cap">
+                          </a>
+                          <div class="comittee-content">
+                            <h3><a href="#">First Last Name</a></h3>
+                            <span>Occupation</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- person 8 -->
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                          <div class="comittee-person">
+                            <a href="#">
+                              <img class="img-responsive" src="./images/insecure.jpeg" alt="Card image cap">
+                            </a>
+                            <div class="comittee-content">
+                              <h3><a href="#">First Last Name</a></h3>
+                              <span>Occupation</span>
+                            </div>
+                          </div>
+                        </div>
+                <!-- end people -->
+                </div>
               </div>
             </div>
             <!-- registration for the events currently 3 options payment may be set up through strip or find a way to send to cashapp account -->
-            <div class="container-fluid" id="registration">
-              <div class="register">
-              <h1>Ticket Price & Plan</h1>
-              <p>Here you can purchase your ticket and wristbands for the event and skip the lines</p>
+            <div class="price-area" id="registration">
+              <div class="container">
+              <h1 class="title-default">Ticket Price & Plan</h1>
+              <p class="sub-title-default">Here you can purchase your ticket and wristbands for the event and skip the lines</p>
               </div>
               <div class=" container plan">
                 <div class="row">
@@ -315,7 +319,7 @@
                 </div>
               </div>
               <!-- registration form to hold user in database -->
-              <form>
+              <!-- <form>
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">Email</label>
@@ -360,46 +364,53 @@
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
+                </form> -->
             </div>
             <!-- Photo Gallery -->
-            <div class="container-fluid gallery-text" id="photo-gallery">
-              <h1>Photo Gallery</h1>
-              <h3>Images of the PMM</h3>
-              <div class="row">
-                <div class="col"><img class="photo-gallery" src="./images/dancers.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/falcons.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/hbotb_miles.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/nalls_cut_off.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/old_school.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/percussion.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/pmm_frontline.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/snipes.jpeg"></div>  
-                <div class="col"><img class="photo-gallery" src="./images/stands_LDC.jpeg"></div>  
+            <div class="photo-gallery-area" id="photo-gallery">
+              <div class="container">
+                <h1>Photo Gallery</h1>
+                <h3>Images of the PMM</h3>
+              </div>
+              <div class="container">
+                <div class="row" id="slideshow">
+                  <div class="col"><img class="photo-gallery" src="./images/dancers.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/falcons.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/hbotb_miles.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/nalls_cut_off.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/old_school.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/percussion.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/pmm_frontline.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/snipes.jpeg"></div>  
+                  <div class="col"><img class="photo-gallery" src="./images/stands_LDC.jpeg"></div>  
+                </div>
               </div>
             </div>
             <!-- contact form..will send information through nodemailer and possibly set up piush notifications or text updates -->
-            <div class="container" id="contact">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                  <h1>Feel free to leave your information if you have any questions or comments! We thank you for your feedback</h1>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 form-content">
-                  <div class="contact-form">
-                    <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                      <input type="text" name="name" placeholder="Your Name" class="form" required>
-                      <input type="email" name="email" placeholder="Your Email Address" class="form" required>
-                      <input type="number" name="phonenumber" placeholder="Your Phone Number (optional)" class="form">
-                    </div>
-                    <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-                      <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message Here..." class="form"></textarea>
-                    </div>
+            <div class="contact-form-area" id="contact">
+              <div class="container" id="contact">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <h1>Feel free to leave your information if you have any questions or comments! We thank you for your feedback</h1>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 form-content">
+                    <div class="contact-form" id="contact-form">
+                      <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                        <input type="text" name="name" placeholder="Your Name" class="form" required>
+                        <input type="email" name="email" placeholder="Your Email Address" class="form" required>
+                        <input type="number" name="number" placeholder="Your Phone Number (optional)" class="form">
+                      </div>
+                      <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                        <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message Here..." class="form" required></textarea>
+                      </div>
 
-                    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" class="form-btn">Send Message</button>
+                      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" class="btn-form">Send Message</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <!-- showing location of the event here through google maps..for now will give the location of miles college -->
   
             <!-- Footer Area Starts -->
@@ -410,13 +421,15 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                       <div class="footer-box">
                         <h3>Useful Links</h3>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">COntact</a></li>
+                        <ul class="featured-links">
+                          <li><a href="#">About</a></li>
+                          <li><a href="#">Our Story</a></li>
+                          <li><a href="#">Services</a></li>
+                          <li><a href="#">Support</a></li>
+                          <li><a href="#">Privacy</a></li>
+                          <li><a href="#">Terms</a></li>
+                          <li><a href="#">COntact</a></li>
+                        </ul>
                       </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -424,12 +437,12 @@
                         <h3>Newsletter</h3>
                         <div class="newsletter-area">
                           <p>please infomation here about the newsletter</p>
-                          <div class="input-group">
-                            <input type="email" placeholder="Email Address">
-                            <span><button type="submit"><i class="fa fa-angle-right" aria-hidden="true"></i></button></span>
+                          <div class="input-group stylish-input-group">
+                            <input type="email" placeholder="Email Address" class="form-control">
+                            <span class="input-group-addon"><button type="submit"><i class="fa fa-angle-right" aria-hidden="true"></i></button></span>
                           </div>
                         </div>
-                        <ul>
+                        <ul class="footer-social">
                           <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                           <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                           <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
@@ -448,8 +461,9 @@
                   </div>
                 </div>
               </div>
-              <div></div>
+      
             </footer>
+            </div>
 
 
 
