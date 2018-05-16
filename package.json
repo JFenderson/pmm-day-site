@@ -12,7 +12,9 @@
     "start": "npm run build:client && npm run build:server && npm run start:server",
     "start:server": "node server/lib/index.js",
     "watch:client": "webpack --watch",
-    "watch:server": "nodemon --watch server/lib --delay 1s"
+    "watch:server": "nodemon --watch server/lib --delay 1s",
+    "sass:build": "node-sass -r client/index.scss client/dist/index.css",
+    "sass:watch": "node-sass --w client/index.scss -o client/dist/index.css"
   },
   "author": "",
   "license": "ISC",

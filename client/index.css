@@ -46,7 +46,8 @@ text-transform: uppercase;
 }
 .landing{
     color: gold;
-    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url('./images/pmm_frontline.jpeg');
+    /* background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url('./images/pmm_frontline.jpeg'); */
+    background-color: rgba(66, 14, 66, 0.699);
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center center;
@@ -137,8 +138,9 @@ text-transform: uppercase;
     padding: 45px 20px 40px 39px;
     overflow: hidden;
     background: #3f51b5;
+    margin-right: 1em;
 }
-.schedule-box-top{
+.schedule-box .schedule-box-top{
     margin-bottom: 10px;
     display: flex;
 }
@@ -153,6 +155,7 @@ text-transform: uppercase;
     border-right: 1px solid #050505;
 }
 .schedule-box .schedule-box-top ul{
+    flex: 5;
     list-style: outside none none;
     margin: 0;
     padding: 0;
@@ -358,4 +361,12 @@ input {
 .footer-area-top {
     position: relative;
     padding: 120px 0 100px;
+}
+.register{
+    text-align: center
+}
+.comittee-area{
+    background: #f8f8f8;
+    padding: 118px 0 120px;
+    height: 100vh;
 }

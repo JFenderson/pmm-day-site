@@ -41,6 +41,17 @@ module.exports = {
               'url-loader'
             ]
           },
+    //       {
+    //         test: /\.scss$/,
+    //         use: ExtractTextPlugin.extract({
+    //   fallback: 'style-loader',
+    //   use:[
+    // {loader: 'css-loader',options:{sourceMap: true}},
+    // {loader: 'postcss-loader',options:{sourceMap: true}},
+    // {loader: 'sass-loader',options:{sourceMap: true}}
+    // ]
+    // })
+    //       },
         {
             test: /\.scss$/,
             exclude:/node_modules/,
@@ -90,7 +101,7 @@ module.exports = {
     __dirname: true,
     },
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js','.scss']
     },
   plugins: [  // Array of plugins to apply to build chunk
     //   new HtmlWebpackPlugin({
