@@ -3,13 +3,13 @@ import contactRouter from './gmail';
 // import blogsRouter from './blogs';
 // import authRouter from './auth';
 // import usersRouter from './users';
-// import stripeDonationsRouter from './stripeDonate';
+import stripeDonationsRouter from './stripePay';
 // import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
 
 // router.use('/auth', authRouter); //this section does not require login
-// router.use('/donate', stripeDonationsRouter);
+router.use('/charge', stripeDonationsRouter);
 router.use('/contact', contactRouter);
 
 // router.use(tokenMiddleware);//checking for tokens inorder to login

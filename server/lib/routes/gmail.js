@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
     res.send('Server working. Please post at "/contact" to submit a message.');
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
     var transporter = _nodemailer2.default.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -38,28 +38,22 @@ router.post('/', function (req, res, next) {
     var number = req.body.number;
     var message = req.body.message;
     var mailOption = {
-        from: name + ' <' + email + '>',
-        to: '' + email,
-        subject: 'New Message from ' + email + ' at pmm_day-site',
+        from: name + ' <' + email + '>', // who the email is coming from..in the contact form
+        to: 'purplemarchingmachinepicnic96@gmail.com', //who the email is going to
+        subject: 'New Message from ' + email + ' from the PMM Weekend Site', //subject line
         text: message,
         html: '<p>' + message + ', Sender\'s Number is ' + number + '</p>'
     };
 
     transporter.sendMail(mailOption, function (error, res) {
-        // console.log(info)
         if (error) {
-            console.log('this is the error', error);
-            console.log('these are the req.body.name: ' + name);
-            console.log('req.body.email:  ' + email);
-            console.log('req.body.number:  ' + number);
-            console.log('req.body.message:  ' + message);
+            res.send(error);
         } else {
+            console.log('email sent!');
             res.sendStatus(201);
         }
         transporter.close();
     });
-    next();
-    console.log(req.body);
 });
 
 exports.default = router;

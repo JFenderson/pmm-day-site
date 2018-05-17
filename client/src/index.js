@@ -206,10 +206,9 @@ $('#contactSubmit').click( () => {
   let number = $('#number').val();
   let message = $('#message').val();
   $.ajax({
-      type: 'POST',
-      url: 'http://localhost/api/contact',
+      method: 'POST',
+      url: 'http://localhost:3000/api/contact',
       contentType: 'application/json',
-      dataType: 'json',
       data: JSON.stringify({
         name:name, email:email, number:number, message:message
       }),
@@ -222,4 +221,65 @@ $('#contactSubmit').click( () => {
       }
   });
 });
+// functions for stripe
+function addStripeInformation(data) {
+  var handler = StripeCheckout.configure({
+    key: 'KEY_EDITED_OUT',
+    token: function(token) {
+      $.ajax({
+        url: 'http://localhost:3000/api/charge',
+        type: "POST",
+        data: {
+          "token" : token.id,
+          "email" : data.email
+        }
+      });
+    }
+  });
 
+  // Open Checkout with further options
+  // handler.open({
+    //   email: data.email,
+    //   name: data.name,
+    //   description: 'Adding payment information',
+    //   zipCode: false,
+    //   panelLabel: "Add Information"
+    // });
+    
+    
+    
+    // Close Checkout on page navigation
+    $(window).on('popstate', function() {
+      handler.close();
+    }); 
+  }
+  
+  $('#customButton').click( (e) => {
+    console.log('button click to start stripe');
+    
+  })
+
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    token: function(token) {
+      // You can access the token ID with `token.id`.
+      // Get the token ID to your server-side code for use.
+    }
+  });
+  
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    // Open Checkout with further options:
+    handler.open({
+      name: 'PMM Picnic',
+      description: '2 widgets',
+      amount: 2000
+    });
+    e.preventDefault();
+  });
+  
+  // Close Checkout on page navigation:
+  window.addEventListener('popstate', function() {
+    handler.close();
+  });

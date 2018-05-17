@@ -4,13 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+        <!-- Css Files -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
     <link rel="stylesheet" href="../../index.css">
     <title>Document</title>
 </head>
 <body>
-    
-
-    <script src="../../dist/bundle.js"></script>
+    <div>
+        <div id="landing" class="landing">
+            <!-- navbar -->
+          <nav class="nav navbar hero-nav">
+            <!-- need logo in nav -->
+            <a class="link-1" href="#landing">Home</a>
+            <a class="link-1" href="#about">About Us</a>
+            <a class="link-1" href="#schedule">Schedule/Venue</a>
+            <a class="link-1" href="#comittee">Committee</a>
+            <a class="link-1" href="#registration">Register</a>
+            <a class="link-1" href="#photo-gallery">Photo Gallery</a>
+            <a class="link-1" href="#contact">Contact</a>
+          </nav>
+        </div>
+        <div id="register" class="registration">
+            <!-- registration for the events currently 3 options payment may be set up through strip or find a way to send to cashapp account -->
+            <div class="price-area" id="registration">
+                <div class="container">
+                <h1 class="title-default">Ticket Price & Plan</h1>
+                <p class="sub-title-default">Here you can purchase your ticket and wristbands for the event and skip the lines</p>
+                </div>
+                <div class=" container plan">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                      <div class="price-box1 price-box-hover">
+                        <span>White Package</span>
+                        <h2>$7</h2>
+                        <h3>per current band member & staff</h3>
+                        <p>Free Food</p>
+                        <p>Free Drinks(Regular)</p>
+                        <p>Unlimited Prizes</p>
+                        <a href="./src/views/register.html">Order Now</a>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                      <div class="price-box2 price-box-hover">
+                        <span>Purple Package</span>
+                        <h2>$10</h2>
+                        <h3>per person</h3>
+                        <p>Free Food</p>
+                        <p>Free Drinks(Regular)</p>
+                        <p>Unlimited Prizes</p>
+                        <a href="#">Order Now</a>                      
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="price-box3 price-box-hover">
+                          <span>Gold Package</span>
+                          <h2>$20</h2>
+                          <h3>per person</h3>
+                          <p>Free Food</p>
+                          <p>Free Drinks(Any)</p>
+                          <p>Unlimited Prizes</p>
+                          <a href="#">Order Now</a>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+        </div>
+    </div>
+    <!-- JS Files -->
+    <script src="../services/card/card.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="../../src/index.js"></script>
 </body>
 </html>

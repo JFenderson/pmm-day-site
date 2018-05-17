@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     res.send('Server working. Please post at "/contact" to submit a message.');
   });
   
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     var transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -27,28 +27,22 @@ router.post('/', (req, res, next) => {
     const number = req.body.number;
     const message = req.body.message;
     const mailOption = {
-        from: `${name} <${email}>`,
-        to: `${email}`,
-        subject: `New Message from ${email} at pmm_day-site`,
+        from: `${name} <${email}>`,// who the email is coming from..in the contact form
+        to: 'purplemarchingmachinepicnic96@gmail.com',//who the email is going to
+        subject: `New Message from ${email} from the PMM Weekend Site`,//subject line
         text: message,
         html: `<p>${message}, Sender's Number is ${number}</p>`,
     };
 
     transporter.sendMail(mailOption,(error, res)=> {
-        // console.log(info)
         if (error) {
-            console.log('this is the error', error);
-            console.log(`these are the req.body.name: ${name}`);
-            console.log(`req.body.email:  ${email}`);
-            console.log(`req.body.number:  ${number}`);
-            console.log(`req.body.message:  ${message}`);
+            res.send(error)
         } else {
+            console.log('email sent!')
             res.sendStatus(201);
         }
         transporter.close();
     });
-    next();
-    console.log(req.body);
  });
 
 export default router;
