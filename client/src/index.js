@@ -158,28 +158,68 @@ $("nav").find("a").click(function(e) {
 
 //nodemailer
 
-$('#contact-submit').click(()=>{
-  console.log('button clicked..now you can send')
-})
-
-$('#contact-submit').click( () => {
-  $.post( '/api/contact', $('#contact-form').serialize(), (data) => {
-      console.log(data)
-     },
-     'json', // I expect a JSON response
-  );
+$('#contactSubmit').click(()=>{
+  console.log('button clicked..now you can send');
 });
 
 // $('#contact-submit').click( () => {
-//   $.ajax({
-//       url: 'http://localhost/api/contact',
-//       type: 'post',
-//       contentType: 'application/json',
-//       dataType: 'json',
-//       data: $('#contact-form').serialize(),
-//       success: function(data) {
-//                  console.log(data)
-//                }
-//   });
+//   $.post('http://localhost:3000/api/contact', $('#contact-form').serialize(), (data) => {
+//       console.log('this is the form data:', data);
+//      } // I expect a JSON response
+//   );
 // });
+
+
+// const getData = (e) => {
+//   e.preventDefault();
+//   let name = document.getElementById('name').value;
+//   let email = document.getElementById('email').value;
+//   let number = document.getElementById('number').value;
+//   let message = document.getElementById('message').value;
+
+//   fetch('/api/contact', {
+//     method: 'POST',
+//     headers: new Headers({
+//       'Content-Type': 'application/json',
+
+//     }),
+//     mode: 'cors',
+//     body:JSON.stringify({name:name, email:email, number:number, message:message})
+// })
+// .then((res)=> {
+//   return res.json();
+// })
+// .then((data)=> {
+//   console.log('this is the data', data);
+// })
+// .catch((err)=>{
+//   console.log(err);
+// });
+// };
+
+// document.getElementById('contactForm').addEventListener('submit',getData);
+
+
+$('#contactSubmit').click( () => {
+  let name = $('#name').val();
+  let email = $('#email').val();
+  let number = $('#number').val();
+  let message = $('#message').val();
+  $.ajax({
+      type: 'POST',
+      url: 'http://localhost/api/contact',
+      contentType: 'application/json',
+      dataType: 'json',
+      data: JSON.stringify({
+        name:name, email:email, number:number, message:message
+      }),
+      // data: $('#contactForm').serialize(),
+      success: function(data) {
+                 console.log(data);
+               },
+      error: function(err){
+        console.log('error handling message',err);
+      }
+  });
+});
 

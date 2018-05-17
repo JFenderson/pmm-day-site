@@ -48,13 +48,18 @@ router.post('/', function (req, res, next) {
     transporter.sendMail(mailOption, function (error, res) {
         // console.log(info)
         if (error) {
-            console.log(error);
+            console.log('this is the error', error);
+            console.log('these are the req.body.name: ' + name);
+            console.log('req.body.email:  ' + email);
+            console.log('req.body.number:  ' + number);
+            console.log('req.body.message:  ' + message);
         } else {
             res.sendStatus(201);
         }
         transporter.close();
     });
     next();
+    console.log(req.body);
 });
 
 exports.default = router;

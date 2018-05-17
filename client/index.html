@@ -394,19 +394,19 @@
                     <h1>Feel free to leave your information if you have any questions or comments! We thank you for your feedback</h1>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 form-content">
-                    <div class="contact-form" id="contact-form">
+                    <form method="POST" action="/contact" class="contact-form" enctype="application/json" id="contactForm">
                       <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                        <input type="text" name="name" placeholder="Your Name" class="form" required>
-                        <input type="email" name="email" placeholder="Your Email Address" class="form" required>
-                        <input type="number" name="number" placeholder="Your Phone Number (optional)" class="form">
+                        <input type="text" name="name" placeholder="Your Name" class="form" id="name" required>
+                        <input type="text" name="email" placeholder="Your Email Address" class="form" id="email" required>
+                        <input type="number" name="number" placeholder="Your Phone Number (optional)" class="form" id="number">
                       </div>
                       <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-                        <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message Here..." class="form" required></textarea>
+                        <textarea name="message" cols="30" rows="10" placeholder="Your Message Here..." class="form" type="text" id="message" required></textarea>
                       </div>
 
-                      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" class="btn-form">Send Message</button>
+                      <input name="submit" type="submit" id="contactSubmit" data-submit="...Sending" class="btn-form">Send Message</input>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>

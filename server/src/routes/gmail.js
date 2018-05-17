@@ -4,8 +4,8 @@ import { Router } from 'express';
 let router = Router();
 
 router.get('/', (req, res) => {
-    res.send('Server working. Please post at "/contact" to submit a message.')
-  })
+    res.send('Server working. Please post at "/contact" to submit a message.');
+  });
   
 router.post('/', (req, res, next) => {
     var transporter = nodemailer.createTransport({
@@ -37,14 +37,19 @@ router.post('/', (req, res, next) => {
     transporter.sendMail(mailOption,(error, res)=> {
         // console.log(info)
         if (error) {
-            console.log(error);
+            console.log('this is the error', error);
+            console.log(`these are the req.body.name: ${name}`);
+            console.log(`req.body.email:  ${email}`);
+            console.log(`req.body.number:  ${number}`);
+            console.log(`req.body.message:  ${message}`);
         } else {
             res.sendStatus(201);
         }
-        transporter.close()
+        transporter.close();
     });
-    next()
- })
+    next();
+    console.log(req.body);
+ });
 
 export default router;
 
