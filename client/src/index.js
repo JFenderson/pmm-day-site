@@ -162,43 +162,6 @@ $('#contactSubmit').click(()=>{
   console.log('button clicked..now you can send');
 });
 
-// $('#contact-submit').click( () => {
-//   $.post('http://localhost:3000/api/contact', $('#contact-form').serialize(), (data) => {
-//       console.log('this is the form data:', data);
-//      } // I expect a JSON response
-//   );
-// });
-
-
-// const getData = (e) => {
-//   e.preventDefault();
-//   let name = document.getElementById('name').value;
-//   let email = document.getElementById('email').value;
-//   let number = document.getElementById('number').value;
-//   let message = document.getElementById('message').value;
-
-//   fetch('/api/contact', {
-//     method: 'POST',
-//     headers: new Headers({
-//       'Content-Type': 'application/json',
-
-//     }),
-//     mode: 'cors',
-//     body:JSON.stringify({name:name, email:email, number:number, message:message})
-// })
-// .then((res)=> {
-//   return res.json();
-// })
-// .then((data)=> {
-//   console.log('this is the data', data);
-// })
-// .catch((err)=>{
-//   console.log(err);
-// });
-// };
-
-// document.getElementById('contactForm').addEventListener('submit',getData);
-
 
 $('#contactSubmit').click( () => {
   let name = $('#name').val();
@@ -221,21 +184,26 @@ $('#contactSubmit').click( () => {
       }
   });
 });
+
+//stripe payment
+
+
+
 // functions for stripe
-function addStripeInformation(data) {
-  var handler = StripeCheckout.configure({
-    key: 'KEY_EDITED_OUT',
-    token: function(token) {
-      $.ajax({
-        url: 'http://localhost:3000/api/charge',
-        type: "POST",
-        data: {
-          "token" : token.id,
-          "email" : data.email
-        }
-      });
-    }
-  });
+// function addStripeInformation(data) {
+//   var handler = StripeCheckout.configure({
+//     key: 'KEY_EDITED_OUT',
+//     token: function(token) {
+//       $.ajax({
+//         url: 'http://localhost:3000/api/charge',
+//         method: "POST",
+//         data: {
+//           "token" : token.id,
+//           "email" : data.email
+//         }
+//       });
+//     }
+//   });
 
   // Open Checkout with further options
   // handler.open({
@@ -249,37 +217,120 @@ function addStripeInformation(data) {
     
     
     // Close Checkout on page navigation
-    $(window).on('popstate', function() {
-      handler.close();
-    }); 
-  }
+  //   $(window).on('popstate', function() {
+  //     handler.close();
+  //   }); 
+  // }
   
   $('#customButton').click( (e) => {
     console.log('button click to start stripe');
-    
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/charge',
+      contentType: 'application/json',
+      // data: JSON.stringify({
+      //   name:name, email:email, number:number, message:message
+      // }),
+      // data: $('#contactForm').serialize(),
+      success: function(data) {
+                 console.log(data);
+               },
+      error: function(err){
+        console.log('error handling message',err);
+      }
+    }); 
   })
 
-  var handler = StripeCheckout.configure({
-    key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
-    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-    locale: 'auto',
-    token: function(token) {
-      // You can access the token ID with `token.id`.
-      // Get the token ID to your server-side code for use.
-    }
-  });
+  const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
+  const elements = stripe.elements();
+  // var card = elements.create('card');
+
+  // Custom styling can be passed to options when creating an Element.
+const style = {
+  base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    color: "#32325d",
+  },
+};
+
+// Create an instance of the card Element.
+const card = elements.create('card', {style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+card.addEventListener('change', ({error}) => {
+  const displayError = document.getElementById('card-errors');
+  if (error) {
+    displayError.textContent = error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+// Create a token or display an error when the form is submitted.
+const form = document.getElementById('payment-form');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const {token, error} = await stripe.createToken(card);
+
+  if (error) {
+    // Inform the customer that there was an error.
+    const errorElement = document.getElementById('card-errors');
+    errorElement.textContent = error.message;
+  } else {
+    // Send the token to your server.
+    stripeTokenHandler(token);
+  }
+});
+
+const stripeTokenHandler = (token) => {
+  // Insert the token ID into the form so it gets submitted to the server
+  const form = document.getElementById('payment-form');
+  const hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
+
+
+  // var handler = StripeCheckout.configure({
+  //   key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+  //   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  //   locale: 'auto',
+  //   token: function(token) {
+  //     // You can access the token ID with `token.id`.
+  //     // Get the token ID to your server-side code for use.
+  //     $.ajax({
+  //       url: 'http://localhost:3000/charge',
+  //       method: "POST",
+  //       contentType: 'application/json',
+  //       data: {
+  //         stripeToken : token.id,
+  //         email: token.email,
+  //         token:token
+  //       }
+  //     });
+  //   }
+  // });
   
-  document.getElementById('customButton').addEventListener('click', function(e) {
-    // Open Checkout with further options:
-    handler.open({
-      name: 'PMM Picnic',
-      description: '2 widgets',
-      amount: 2000
-    });
-    e.preventDefault();
-  });
+  // document.getElementById('customButton').addEventListener('click', function(e) {
+  //   // Open Checkout with further options:
+  //   handler.open({
+  //     name: 'PMM Picnic',
+  //     description: '2 widgets',
+  //     amount: 2000
+  //   });
+  //   e.preventDefault();
+  // });
   
-  // Close Checkout on page navigation:
-  window.addEventListener('popstate', function() {
-    handler.close();
-  });
+  // // Close Checkout on page navigation:
+  // window.addEventListener('popstate', function() {
+  //   handler.close();
+  // });

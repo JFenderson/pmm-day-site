@@ -6,6 +6,10 @@ import routes from './routes';
 import cors from 'cors';
 import path from 'path';
 import nodemailer from 'nodemailer';
+import Stripe from 'stripe';
+
+const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
+const elements = stripe.elements();
 
 const port = 3000;
 
@@ -31,6 +35,11 @@ app.use('/api', routes);
 app.get('/', function(req, res){
     res.sendFile(path.join(CLIENT_PATH + '/index.html')); 
   });
+
+app.post('/charge', (req, res)=> {
+    console.log(req.body)
+    res.send('TEST')
+})
 
 connection.connect(function(err){
     if(!err) {

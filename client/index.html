@@ -291,7 +291,21 @@
                       <p>Free Food</p>
                       <p>Free Drinks(Regular)</p>
                       <p>Unlimited Prizes</p>
-                      <a href="./src/views/register.html">Order Now</a>
+                      <form action="/charge" method="post" id="payment-form">
+                        <div class="form-row">
+                          <label for="card-element">
+                            Credit or debit card
+                          </label>
+                          <div id="card-element">
+                            <!-- A Stripe Element will be inserted here. -->
+                          </div>
+                      
+                          <!-- Used to display Element errors. -->
+                          <div id="card-errors" role="alert"></div>
+                        </div>
+                      
+                        <button>Submit Payment</button>
+                      </form>
                     </div>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -313,7 +327,8 @@
                         <p>Free Food</p>
                         <p>Free Drinks(Any)</p>
                         <p>Unlimited Prizes</p>
-                        <form action="/" method="POST">
+                        <a href="#">Order Now</a>
+                        <form action="/api/charge" method="POST">
                             <script
                               src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                               data-key="pk_test_H70vmlNTo3eiFAtoKB2AJAoh"
@@ -321,7 +336,9 @@
                               data-name="PMM Picnic"
                               data-description="Widget"
                               data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                              data-locale="auto">
+                              data-locale="auto"
+                              data-billing-address="true"
+                              data-shipping-address="true">
                             </script>
                           </form>
                       </div>
@@ -492,6 +509,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvlQcxOZIDjgq7a24dd1G5Fv3AnHrMfi8&callback=initMap">
     </script> -->
     <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="./src/index.js"></script>
 </body>
 </html>

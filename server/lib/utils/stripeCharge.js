@@ -13,13 +13,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var stripe = (0, _stripe2.default)('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); // define secret key in ENV_VAR
 
-function charge(token, amt) {
+
+function charge(token, email) {
     // returning a promise, so when we call .charge, we can use .then(...)
     return stripe.charge.create({
-        amount: amt * 2000, //amount in cents
+        amount: 2000, //amount in cents
         currency: 'usd',
         source: token,
-        description: 'PMM Weekend'
+        description: 'PMM Weekend',
+        receipt_email: email
     });
 };
 
