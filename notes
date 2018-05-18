@@ -32,20 +32,7 @@ email varchar(50),
 phoneNumber int, 
 _created datetime default current_timestamp
 );
-export STRIPE_SK="sk_test_YV5UGpBi1SJ0teMkYeG25keW"
-export STRIPE_PK="pk_test_H70vmlNTo3eiFAtoKB2AJAoh"
-export GMAIL_CLIENT_ID="15915734946-cuije3mk1f0h6bh390rb31fdhos0gjpa.apps.googleusercontent.com"
-export GMAIL_CLIENT_SECRET="fJxFiZJLgqsAqtIfQU6w1xbG"
-export GMAIL_REFRESH_TOKEN="1/eVMu8IMRe-tW7e7Z_itySgfclv2TJlMWDPHa4Lja5es"
-export AWS_ACCESS_KEY="AKIAIQ5DZRXVQCJDU7RQ"
-export AWS_SECRET_ACCESS_KEY="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"
-export AWS_REGION="s3.us-east-1.amazonaws.com"
-export AWS_S3_BUCKET="pmmpicnic96"
-export RDS_DB_NAME="pmm_picnic"
-export AWS_RDS_USERNAME="JFenderson"
-export AWS_RDS_HOSTNAME="pmmpicnic.ckrnv82mga0r.us-east-1.rds.amazonaws.com"
-export AWS_RDS_PASSWORD="Tori7784"
-export AWS_RDS_PORT=3306
+
 create table photos(
 id int not null auto_increment primary key,
 url varchar(75) not null,
