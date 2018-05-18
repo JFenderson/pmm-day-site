@@ -70,9 +70,6 @@ app.use('/api', _routes2.default);
 app.get('/', function (req, res) {
     res.sendFile(_path2.default.join(CLIENT_PATH + '/index.html'));
 });
-app.post('/', function (req, res) {
-    console.log(req.body);
-});
 
 // app.post('/', (req,res, next) => {
 //     // res.sendFile(CLIENT_PATH + '/index.html');
