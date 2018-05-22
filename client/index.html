@@ -291,21 +291,20 @@
                       <p>Free Food</p>
                       <p>Free Drinks(Regular)</p>
                       <p>Unlimited Prizes</p>
-                      <form action="/charge" method="post" id="payment-form">
+                      <!-- <form action="/charge" method="post" id="payment-form">
                         <div class="form-row">
                           <label for="card-element">
                             Credit or debit card
                           </label>
                           <div id="card-element">
-                            <!-- A Stripe Element will be inserted here. -->
                           </div>
                       
-                          <!-- Used to display Element errors. -->
+                         
                           <div id="card-errors" role="alert"></div>
                         </div>
                       
                         <button>Submit Payment</button>
-                      </form>
+                      </form> -->
                     </div>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -316,7 +315,88 @@
                       <p>Free Food</p>
                       <p>Free Drinks(Regular)</p>
                       <p>Unlimited Prizes</p>
-                      <button id="customButton">Order Now</button>                     
+                      <button id="customButton" type="button" data-toggle="modal" data-target="#exampleModalCenter" >Order Now</button>
+                         
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form id="cardForm" class="formPay">
+          <label>
+            <span>Name</span>
+            <input name="cardholder-name" class="field" placeholder="Jane Doe" required />
+          </label>
+          <label>
+            <span>Address</span>
+            <input name="address-street" class="field" placeholder="123 main st" required >
+          </label>
+          <label>
+            <span>City</span>
+            <input name="address-city" class="field" placeholder="123 main st" required>
+          </label>
+          <label>
+            <span>State</span>
+            <input name="address-state" class="field" placeholder="123 main st" required>
+          </label>
+          <label>
+            <span>Phone</span>
+            <input name="phone-number" class="field" placeholder="(123) 456-7890" type="tel" required/>
+          </label>
+          <label>
+            <span>ZIP code</span>
+            <input name="address-zip" class="field" placeholder="94110" type="text" pattern="[0-9]*" maxlength="5" required />
+          </label>
+          <label>
+            <span>Card</span>
+            <div id="card-element" class="field"></div>
+          </label>
+          <button type="submit" class="FormButton" id="formPayment">Pay $25</button>
+          <div class="outcome">
+            <div id="card-errors" class="error"></div>
+            <div class="success">
+              Success! Your Stripe token is <span class="token"></span>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="formPay">
+          <label>
+            <span>Name</span>
+            <input id="cardholder-name" class="field" placeholder="Jane Doe" required />
+          </label>
+          <label>
+            <span>Address</span>
+            <input id="address-street" class="field" placeholder="123 main st" required >
+          </label>
+          <label>
+            <span>City</span>
+            <input id="address-city" class="field" placeholder="123 main st" required>
+          </label>
+          <label>
+            <span>State</span>
+            <input id="address-state" class="field" placeholder="123 main st" required>
+          </label>
+          <label>
+            <span>Phone</span>
+            <input id="phone-number" class="field" placeholder="(123) 456-7890" type="tel" required/>
+          </label>
+          <label>
+            <span>ZIP code</span>
+            <input id="address-zip" class="field" placeholder="94110" type="text" pattern="[0-9]*" maxlength="5" required />
+          </label>
+          <label>
+            <span>Card</span>
+            <div id="card-element" class="field"></div>
+          </label>
+          <button type="submit" class="FormButton" id="formPayment">Pay $25</button>
+          <div class="outcome">
+            <div class="error"></div>
+            <div class="success">
+              Success! Your Stripe token is <span class="token"></span>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>     
                     </div>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -327,18 +407,17 @@
                         <p>Free Food</p>
                         <p>Free Drinks(Any)</p>
                         <p>Unlimited Prizes</p>
-                        <a href="#">Order Now</a>
                         <form action="/api/charge" method="POST">
                             <script
                               src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                               data-key="pk_test_H70vmlNTo3eiFAtoKB2AJAoh"
-                              data-amount="999"
+                              data-amount="2000"
                               data-name="PMM Picnic"
-                              data-description="Widget"
+                              data-description="Gold Package"
                               data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                               data-locale="auto"
-                              data-billing-address="true"
-                              data-shipping-address="true">
+                              data-billing-address="true">
+                              </script>
                             </script>
                           </form>
                       </div>

@@ -35,7 +35,7 @@ var _stripe2 = _interopRequireDefault(_stripe);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var stripe = (0, _stripe2.default)('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
-var elements = stripe.elements();
+var stripeSK = (0, _stripe2.default)('sk_test_YV5UGpBi1SJ0teMkYeG25keW');
 
 var port = 3000;
 
@@ -61,8 +61,24 @@ app.get('/', function (req, res) {
 });
 
 app.post('/charge', function (req, res) {
+
     console.log(req.body);
-    res.send('TEST');
+    console.log('this is the token:', token);
+    var token = req.body.stripeToken;
+    var email = req.body.stripeEmail;
+
+    var charge = stripeSK.charges.create({
+        amount: 999,
+        currency: 'usd',
+        description: 'Example charge',
+        source: token
+    });
+
+    if (function (success) {
+        res.status(200).json({ message: 'success' });
+    }) ;else {
+        res.sendStatus(500);
+    }
 });
 
 connection.connect(function (err) {

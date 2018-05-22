@@ -9,7 +9,7 @@ import nodemailer from 'nodemailer';
 import Stripe from 'stripe';
 
 const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
-const elements = stripe.elements();
+const stripeSK = Stripe('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); 
 
 const port = 3000;
 
@@ -37,8 +37,24 @@ app.get('/', function(req, res){
   });
 
 app.post('/charge', (req, res)=> {
-    console.log(req.body)
-    res.send('TEST')
+
+    console.log(req.body);
+    let token = req.body.stripeToken;
+    let email = req.body.stripeEmail;
+
+    const charge = stripeSK.charges.create({
+        amount: 999,
+        currency: 'usd',
+        description: 'Example charge',
+        source: token,
+      });
+
+      if((sucess) => {
+          res.status(200).json({message: 'success'});
+      });else{
+          res.sendStatus(500)
+      }
+    
 })
 
 connection.connect(function(err){
