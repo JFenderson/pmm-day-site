@@ -8,8 +8,8 @@ import path from 'path';
 import nodemailer from 'nodemailer';
 import Stripe from 'stripe';
 
-const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
-const stripeSK = Stripe('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); 
+const stripePK = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
+const stripe = Stripe('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); 
 
 const port = 3000;
 
@@ -37,23 +37,32 @@ app.get('/', function(req, res){
   });
 
 app.post('/charge', (req, res)=> {
+    stripePK;
 
-    console.log(req.body);
-    let token = req.body.stripeToken;
-    let email = req.body.stripeEmail;
-
-    const charge = stripeSK.charges.create({
-        amount: 999,
-        currency: 'usd',
-        description: 'Example charge',
-        source: token,
-      });
-
-      if((sucess) => {
-          res.status(200).json({message: 'success'});
-      });else{
-          res.sendStatus(500)
-      }
+    console.log('this is the req from main index js', req.body);
+    console.log('stripe token', req.body.token)
+    
+    let token = req.body.token.id;
+    let email = req.body.token.email;
+    let card = req.body.token.card.id;
+    
+    stripe.customers.create({
+      email: email,
+      source: token,
+    })
+    .then(customer => {
+        stripe.charges.create({
+            amount: 999,
+            currency: 'usd',
+            description: 'Example charge',
+            source: customer.id
+        }); 
+    })
+    .then(charge => res.send(charge))
+    .catch(err => {
+        console.log("Error:", err);
+        res.status(500).send({error: "Purchase Failed"});
+      })
     
 })
 

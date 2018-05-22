@@ -18,7 +18,7 @@ var router = (0, _express.Router)();
 var stripe = (0, _stripe2.default)('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); // define secret key in ENV_VAR
 
 router.post('/', function (req, res) {
-    console.log(req.body);
+    console.log('this is the req from stripePay', req.body);
 
     var token = req.body.stripeToken;
     var email = req.body.stripeEmail;
@@ -27,7 +27,8 @@ router.post('/', function (req, res) {
         amount: 999,
         currency: 'usd',
         description: 'Example charge',
-        source: token
+        source: token,
+        receipt_email: 'purplemarchingmachine96@gmail.com'
     });
 
     if (function (sucess) {

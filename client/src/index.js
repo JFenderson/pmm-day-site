@@ -190,141 +190,89 @@ $('#contactSubmit').click( () => {
   const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
   const elements = stripe.elements();
 
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    zipCode: true,
+    billingAddress: true,
+    token: function(token, args) {
+      // You can access the token ID with `token.id`.
+      // Get the token ID to your server-side code for use.
+      fetch('/charge', {
+                method: "POST",
+                headers:{'Content-Type':'application/json'} ,
+                body: JSON.stringify(token)
+              })
+                .then(output => {
+                  if (output.status === "succeeded")
+                    document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+                })
+              
+      // $.ajax({
+      //   url: 'http://localhost:3000/charge',
+      //   method: "POST",
+      //   contentType: 'application/json',
+      //   data: JSON.stringify(card,{
+      //     token,
+      //     email: token.email,
+      //     token: token.id,
+      //     args
 
-// Create an instance of the card Element.
-const card = elements.create('card', {
-  iconStyle: 'solid',
-  style: {
-    base: {
-      iconColor: '#8898AA',
-      color: 'white',
-      lineHeight: '36px',
-      fontWeight: 300,
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSize: '19px',
-
-      '::placeholder': {
-        color: '#8898AA',
-      },
-    },
-    invalid: {
-      iconColor: '#e85746',
-      color: '#e85746',
-    }
-  },
-  classes: {
-    focus: 'is-focused',
-    empty: 'is-empty',
-  },
-});
-
-// Add an instance of the card Element into the `card-element` <div>.
-card.mount('#card-element');
-
-// Create a token or display an error when the form is submitted.
-const form = document.getElementById('payment-form');
-var inputs = document.querySelectorAll('input.field');
-Array.prototype.forEach.call(inputs, function(input) {
-  input.addEventListener('focus', function() {
-    input.classList.add('is-focused');
-  });
-  input.addEventListener('blur', function() {
-    input.classList.remove('is-focused');
-  });
-  input.addEventListener('keyup', function() {
-    if (input.value.length === 0) {
-      input.classList.add('is-empty');
-    } else {
-      input.classList.remove('is-empty');
+      //   }),
+      //   success: function(data) {
+      //     console.log(data);
+      //   },
+      //   error: function(err){
+      //   console.log('error handling message',err);
+      //   }
+      // });
     }
   });
-});
-// //handle errors and success
-// function setOutcome(result) {
-//   var successElement = document.querySelector('.success');
-//   var errorElement = document.querySelector('.error');
-//   successElement.classList.remove('visible');
-//   errorElement.classList.remove('visible');
+  
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    // Open Checkout with further options:
+    handler.open({
+      name: 'PMM Picnic',
+      description: '2 widgets',
+      amount: 2000
+    });
+    e.preventDefault();
+  });
+  
+  // Close Checkout on page navigation:
+  window.addEventListener('popstate', function() {
+    handler.close();
+  });
 
-//   if (result.token) {
-//     // Use the token to create a charge or a customer
-//     // https://stripe.com/docs/charges
-//     successElement.querySelector('.token').textContent = result.token.id;
-//     successElement.classList.add('visible');
-//   } else if (result.error) {
-//     errorElement.textContent = result.error.message;
-//     errorElement.classList.add('visible');
-//   }
-// }
-// Handle real-time validation errors from the card Element.
-card.addEventListener('change', function(event) {
-  var displayError = document.getElementById('card-errors');
-  if (event.error) {
-    displayError.textContent = event.error.message;
-  } else {
-    displayError.textContent = '';
-  }
-});
 
-// // Handle form submission.
-// var form = document.getElementById('payment-form');
-// form.addEventListener('submit', function(event) {
-//   event.preventDefault();
+//   stripe.createToken(card,extraDetails).then(function(result) {
+//     $.ajax({
+//       url: 'http://localhost:3000/charge',
+//       method: "POST",
+//       contentType: 'application/json',
+//       data: JSON.stringify(card,{
+//         extraDetails,
+//         phone_number: form.querySelector('input[name=phone-number').value,
+//       }),
+//       success: function(data) {
+//         console.log(data);
+//       },
+//       error: function(err){
+//       console.log('error handling message',err);
+//       }
+//     });
 
-//   stripe.createToken(card).then(function(result) {
 //     if (result.error) {
 //       // Inform the user if there was an error.
 //       var errorElement = document.getElementById('card-errors');
-//       errorElement.textContent = result.error.message;
+//       errorElement.innerText = result.error.message;
 //     } else {
 //       // Send the token to your server.
 //       stripeTokenHandler(result.token);
 //     }
 //   });
 // });
-
-card.on('change', function(event) {
-  setOutcome(event);
-});
-
-document.querySelector('form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var form = document.querySelector('form');
-  var extraDetails = {
-    name: form.querySelector('input[name=cardholder-name]').value,
-    address_line1: form.querySelector('input[name=address-street]').value,
-    address_city: form.querySelector('input[name=address-city]').value ,
-    address_state: form.querySelector('input[name=address-state]').value,
-    address_zip: form.querySelector('input[name=address-zip]').value
-  };
-
-  stripe.createToken(card,extraDetails).then(function(result) {
-    $.ajax({
-      url: 'http://localhost:3000/charge',
-      method: "POST",
-      contentType: 'application/json',
-      data: JSON.stringify(card,{
-        extraDetails,
-        phone_number: form.querySelector('input[name=phone-number').value,
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      error: function(err){
-      console.log('error handling message',err);
-      }
-    });
-
-    if (result.error) {
-      // Inform the user if there was an error.
-      var errorElement = document.getElementById('card-errors');
-      errorElement.innerText = result.error.message;
-    } else {
-      // Send the token to your server.
-      stripeTokenHandler(result.token);
-    }
-  });
-});
 //   stripe.createToken(card, extraDetails).then(setOutcome);
 //   $.ajax({
 //     url: 'http://localhost:3000/charge',

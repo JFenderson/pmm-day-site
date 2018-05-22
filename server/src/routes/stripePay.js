@@ -7,7 +7,7 @@ let router = Router();
 const stripe = stripeLoader('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); // define secret key in ENV_VAR
 
 router.post('/', (req, res) => {
-    console.log(req.body);
+    console.log('this is the req from stripePay', req.body);
 
     let token = req.body.stripeToken;
     let email = req.body.stripeEmail;
@@ -17,6 +17,7 @@ router.post('/', (req, res) => {
         currency: 'usd',
         description: 'Example charge',
         source: token,
+        receipt_email: 'purplemarchingmachine96@gmail.com',
       });
 
       if((sucess) => {
