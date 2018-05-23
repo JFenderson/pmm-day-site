@@ -34,7 +34,7 @@ var _stripe2 = _interopRequireDefault(_stripe);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
+var stripePK = (0, _stripe2.default)('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
 var stripe = (0, _stripe2.default)('sk_test_YV5UGpBi1SJ0teMkYeG25keW');
 
 var port = 3000;
@@ -58,33 +58,6 @@ app.use(_bodyParser2.default.json());
 app.use('/api', _routes2.default);
 app.get('/', function (req, res) {
     res.sendFile(_path2.default.join(CLIENT_PATH + '/index.html'));
-});
-
-app.post('/charge', function (req, res) {
-
-    console.log('this is the req from main index js', req.body);
-    console.log('stripe token', req.body.token);
-
-    var token = req.body.token.id;
-    var email = req.body.token.email;
-    var card = req.body.token.card.id;
-
-    stripe.customers.create({
-        email: email,
-        source: req.body.id
-    }).then(function (customer) {
-        stripe.charges.create({
-            amount: 999,
-            currency: 'usd',
-            description: 'Example charge',
-            source: customer.id
-        });
-    }).then(function (charge) {
-        return res.send(charge);
-    }).catch(function (err) {
-        console.log("Error:", err);
-        res.status(500).send({ error: "Purchase Failed" });
-    });
 });
 
 connection.connect(function (err) {

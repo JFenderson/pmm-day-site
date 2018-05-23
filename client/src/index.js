@@ -190,7 +190,7 @@ $('#contactSubmit').click( () => {
   const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
   const elements = stripe.elements();
 
-  var handler = StripeCheckout.configure({
+  var handlerGold = StripeCheckout.configure({
     key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
@@ -199,7 +199,7 @@ $('#contactSubmit').click( () => {
     token: function(token, args) {
       // You can access the token ID with `token.id`.
       // Get the token ID to your server-side code for use.
-      fetch('/charge', {
+      fetch('http://localhost:3000/api/charge/gold', {
                 method: "POST",
                 headers:{'Content-Type':'application/json'} ,
                 body: JSON.stringify(token)
@@ -209,37 +209,87 @@ $('#contactSubmit').click( () => {
                     document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
                 })
               
-      // $.ajax({
-      //   url: 'http://localhost:3000/charge',
-      //   method: "POST",
-      //   contentType: 'application/json',
-      //   data: JSON.stringify(card,{
-      //     token,
-      //     email: token.email,
-      //     token: token.id,
-      //     args
+    }
+  });
 
-      //   }),
-      //   success: function(data) {
-      //     console.log(data);
-      //   },
-      //   error: function(err){
-      //   console.log('error handling message',err);
-      //   }
-      // });
+  var handlerPurple = StripeCheckout.configure({
+    key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    zipCode: true,
+    billingAddress: true,
+    token: function(token, args) {
+      // You can access the token ID with `token.id`.
+      // Get the token ID to your server-side code for use.
+      fetch('http://localhost:3000/api/charge/purple', {
+                method: "POST",
+                headers:{'Content-Type':'application/json'} ,
+                body: JSON.stringify(token)
+              })
+                .then(output => {
+                  if (output.status === "succeeded")
+                    document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+                })
+              
+    }
+  });
+
+  var handlerWhite = StripeCheckout.configure({
+    key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    zipCode: true,
+    billingAddress: true,
+    token: function(token, args) {
+      // You can access the token ID with `token.id`.
+      // Get the token ID to your server-side code for use.
+      fetch('http://localhost:3000/api/charge/white', {
+                method: "POST",
+                headers:{'Content-Type':'application/json'} ,
+                body: JSON.stringify(token)
+              })
+                .then(output => {
+                  if (output.status === "succeeded")
+                    document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+                })
+              
     }
   });
   
-  document.getElementById('customButton').addEventListener('click', function(e) {
+  //GOLD PACKAGE BUTTON
+  document.getElementById('goldButton').addEventListener('click', function(e) {
     // Open Checkout with further options:
-    handler.open({
+    handlerGold.open({
       name: 'PMM Picnic',
-      description: '2 widgets',
+      description: 'Gold Package',
       amount: 2000
     });
     e.preventDefault();
   });
-  
+
+  //PURPLE PACKAGE BUTTON
+  document.getElementById('purpleButton').addEventListener('click', function(e) {
+    // Open Checkout with further options:
+    handlerPurple.open({
+      name: 'PMM Picnic',
+      description: 'Purple Package',
+      amount: 1000
+    });
+    e.preventDefault();
+  });
+
+  //WHITE PACKAGE BUTTON
+  document.getElementById('whiteButton').addEventListener('click', function(e) {
+    // Open Checkout with further options:
+    handlerWhite.open({
+      name: 'PMM Picnic',
+      description: 'White Package(Student & Staff Only)',
+      amount: 700
+    });
+    e.preventDefault();
+  });
+
+
   // Close Checkout on page navigation:
   window.addEventListener('popstate', function() {
     handler.close();

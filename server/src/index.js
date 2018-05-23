@@ -36,35 +36,6 @@ app.get('/', function(req, res){
     res.sendFile(path.join(CLIENT_PATH + '/index.html')); 
   });
 
-app.post('/charge', (req, res)=> {
-    stripePK;
-
-    console.log('this is the req from main index js', req.body);
-    console.log('stripe token', req.body.token)
-    
-    let token = req.body.token.id;
-    let email = req.body.token.email;
-    let card = req.body.token.card.id;
-    
-    stripe.customers.create({
-      email: email,
-      source: token,
-    })
-    .then(customer => {
-        stripe.charges.create({
-            amount: 999,
-            currency: 'usd',
-            description: 'Example charge',
-            source: customer.id
-        }); 
-    })
-    .then(charge => res.send(charge))
-    .catch(err => {
-        console.log("Error:", err);
-        res.status(500).send({error: "Purchase Failed"});
-      })
-    
-})
 
 connection.connect(function(err){
     if(!err) {

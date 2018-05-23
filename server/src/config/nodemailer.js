@@ -17,4 +17,4 @@ var transporter = nodemailer.createTransport({
 
 
 
-export { transporter, }
+export { transporter }
