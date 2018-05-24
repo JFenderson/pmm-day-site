@@ -53,8 +53,20 @@ app.listen(port,(err)=> {
     console.log(`Server is listening on Port ${port}`);
 });
 
-// export RDS_HOSTNAME="pmmpicnic.ckrnv82mga0r.us-east-1.rds.amazonaws.com"
-// export RDS_USERNAME="JFenderson"
-// export RDS_PASSWORD="Tori7784"
-// export RDS_PORT="3306"
-// export RDS_DB_NAME="pmm_picnic"
+// export STRIPE_SK
+// export STRIPE_PK
+// export GMAIL_CLIENT_ID
+// export GMAIL_CLIENT_SECRET
+// export GMAIL_REFRESH_TOKEN
+// export AWS_ACCESS_KEY
+// export AWS_SECRET_ACCESS_KEY
+// export AWS_REGION
+// export AWS_S3_BUCKET
+// export RDS_DB_NAME
+// export AWS_RDS_USERNAME
+// export AWS_RDS_HOSTNAME
+// export AWS_RDS_PASSWORD
+// export AWS_RDS_PORT
+// export MAILGUN_PK
+// export MAILGUN_SK
+// export MAILGUN_DOMAIN
