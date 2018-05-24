@@ -53,20 +53,3 @@ app.listen(port,(err)=> {
     console.log(`Server is listening on Port ${port}`);
 });
 
-// export STRIPE_SK
-// export STRIPE_PK
-// export GMAIL_CLIENT_ID
-// export GMAIL_CLIENT_SECRET
-// export GMAIL_REFRESH_TOKEN
-// export AWS_ACCESS_KEY
-// export AWS_SECRET_ACCESS_KEY
-// export AWS_REGION
-// export AWS_S3_BUCKET
-// export RDS_DB_NAME
-// export AWS_RDS_USERNAME
-// export AWS_RDS_HOSTNAME
-// export AWS_RDS_PASSWORD
-// export AWS_RDS_PORT
-// export MAILGUN_PK
-// export MAILGUN_SK
-// export MAILGUN_DOMAIN

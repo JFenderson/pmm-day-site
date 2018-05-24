@@ -119,7 +119,7 @@ function numberTransition(id, endPoint, transitionDuration, transitionEase){
 
 // END COUNTDOWN
 
-
+//start slideshow
 
 //slideshow
 // var myIndex = 0;
@@ -146,6 +146,8 @@ function numberTransition(id, endPoint, transitionDuration, transitionEase){
 //     currentSlide = (currentSlide+1)%slides.length;
 //     slides[currentSlide].className = 'slide showing';
 // }
+
+//end slideshow
 
 
 $("nav").find("a").click(function(e) {
@@ -295,76 +297,4 @@ $('#contactSubmit').click( () => {
     handler.close();
   });
 
-
-//   stripe.createToken(card,extraDetails).then(function(result) {
-//     $.ajax({
-//       url: 'http://localhost:3000/charge',
-//       method: "POST",
-//       contentType: 'application/json',
-//       data: JSON.stringify(card,{
-//         extraDetails,
-//         phone_number: form.querySelector('input[name=phone-number').value,
-//       }),
-//       success: function(data) {
-//         console.log(data);
-//       },
-//       error: function(err){
-//       console.log('error handling message',err);
-//       }
-//     });
-
-//     if (result.error) {
-//       // Inform the user if there was an error.
-//       var errorElement = document.getElementById('card-errors');
-//       errorElement.innerText = result.error.message;
-//     } else {
-//       // Send the token to your server.
-//       stripeTokenHandler(result.token);
-//     }
-//   });
-// });
-//   stripe.createToken(card, extraDetails).then(setOutcome);
-//   $.ajax({
-//     url: 'http://localhost:3000/charge',
-//     method: "POST",
-//     contentType: 'application/json',
-//     data: JSON.stringify(card,{
-//       extraDetails,
-//       phone_number: form.querySelector('input[name=phone-number').value,
-//     }),
-//     success: function(data) {
-//       console.log(data);
-//     },
-//     error: function(err){
-//     console.log('error handling message',err);
-//     }
-//   });
-// });
-
-  //   $('#formPayment').click( (e) => {
-  //   e.preventDefault();
-  //   var extraDetails = {
-  //     name: $('#cardholder-name').val(),
-  //     address_line1: $('#address-street').val(),
-  //     address_city: $('#address-city').val() ,
-  //     address_state: $('#address-state').val(),
-  //     address_zip: $('#address-zip').val()
-  //   };
-  //   stripe.createToken(card, extraDetails)
-  //   .then(setOutcome);
-  //   $.ajax({
-  //     url: 'http://localhost:3000/api/charge',
-  //     method: "POST",
-  //     contentType: 'application/json',
-      // data: JSON.stringify {
-      //   extraDetails,
-      //   phone_number: $('#phone-number').val(),
-      // },
-  //     success: function(data) {
-  //       console.log(data);
-  //     },
-  //     error: function(err){
-  //     console.log('error handling message',err);
-  //     }
-  //   });
-  // });
+//END STRIPE

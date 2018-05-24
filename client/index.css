@@ -507,6 +507,7 @@ input {
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
     background-color: white;
+    height: 24em;
 }
 .price-box2{
     text-align: center;
@@ -519,6 +520,7 @@ input {
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
     background-color: purple;
+    height: 24em;
 }
 .price-box3{
     text-align: center;
@@ -531,10 +533,11 @@ input {
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
     background-color: goldenrod;
+    height: 24em;
 }
 /* Committee area starts */
 .comittee-area{
-    background: #f8f8f8;
+    /* background: #f8f8f8; */
     padding: 8em 8em;
     height: auto;
 }

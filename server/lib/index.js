@@ -75,9 +75,3 @@ app.listen(port, function (err) {
 
     console.log('Server is listening on Port ' + port);
 });
-
-// export RDS_HOSTNAME="pmmpicnic.ckrnv82mga0r.us-east-1.rds.amazonaws.com"
-// export RDS_USERNAME="JFenderson"
-// export RDS_PASSWORD="Tori7784"
-// export RDS_PORT="3306"
-// export RDS_DB_NAME="pmm_picnic"
