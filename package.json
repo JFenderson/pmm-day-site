@@ -19,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^3.6.1",
     "aws-sdk": "^2.238.1",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",

@@ -61,7 +61,7 @@ router.post('/gold', function (req, res) {
         from: 'Excited User <me@samples.mailgun.org>',
         to: email + ', YOU@YOUR_DOMAIN_NAME\'',
         subject: 'Hello',
-        text: 'Testing some Mailgun awesomness!'
+        text: 'Thank you for you Payment..See you at PMM Weekend!'
     };
 
     mailgun.messages().send(data, function (error, body) {
