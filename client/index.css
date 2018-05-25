@@ -6,142 +6,26 @@ html {
   *, *:before, *:after {
     box-sizing: inherit;
   }
+ 
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) { 
 
-  /* form {
+   }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) { 
 
-    margin: 20px auto;
-    background: #424770;
-    display: block;
-    align-items: center;
-    min-height: 100%;
-  } */
-  
-  label {
-    height: 35px;
-    position: relative;
-    color: #8798AB;
-    display: block;
-    margin-top: 30px;
-    margin-bottom: 20px;
   }
   
-  label > span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-weight: 300;
-    line-height: 32px;
-    color: #8798AB;
-    border-bottom: 1px solid #586A82;
-    transition: border-bottom-color 200ms ease-in-out;
-    cursor: text;
-    pointer-events: none;
+    /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) { 
+
   }
   
-  label > span span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform-origin: 0% 50%;
-    transition: transform 200ms ease-in-out;
-    cursor: text;
-  }
-  
-  label .field.is-focused + span span,
-  label .field:not(.is-empty) + span span {
-    transform: scale(0.68) translateY(-36px);
-    cursor: default;
-  }
-  
-  label .field.is-focused + span {
-    border-bottom-color: #34D08C;
-  }
-  .formPay{
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-size: 19px;
-    font-variant: normal;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .field {
-    background: transparent;
-    font-weight: 300;
-    border: 0;
-    color: white;
-    outline: none;
-    cursor: text;
-    display: block;
-    width: 100%;
-    line-height: 32px;
-    padding-bottom: 3px;
-    transition: opacity 200ms ease-in-out;
-  }
-  
-  .field::-webkit-input-placeholder { color: #8898AA; }
-  .field::-moz-placeholder { color: #8898AA; }
-  
-  /* IE doesn't show placeholders when empty+focused */
-   .field:-ms-input-placeholder { color: #424770; }
-  
-  .field.is-empty:not(.is-focused) {
-    opacity: 0;
-  }
-  
-  .FormButton {
-    float: left;
-    display: block;
-    background: #34D08C;
-    color: white;
-    border-radius: 2px;
-    border: 0;
-    margin-top: 20px;
-    font-size: 19px;
-    font-weight: 400;
-    width: 100%;
-    height: 47px;
-    line-height: 45px;
-    outline: none;
-  }
-  
-  .FormButton:focus {
-    background: #24B47E;
-  }
-  
-  .FormButton:active {
-    background: #159570;
-  }
-  
-  .outcome {
-    float: left;
-    width: 100%;
-    padding-top: 8px;
-    min-height: 20px;
-    text-align: center;
-  }
-  
-  .success, .error {
-    display: none;
-    font-size: 15px;
-  }
-  
-  .success.visible, .error.visible {
-    display: inline;
-  }
-  
-  .error {
-    color: #E4584C;
-  }
-  
-  .success {
-    color: #34D08C;
-  }
-  
-  .success .token {
-    font-weight: 500;
-    font-size: 15px;
+    /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) { 
+      
   }
 
 
@@ -180,7 +64,7 @@ text-transform: uppercase;
 /* Landing Page */
 .landing{
     color: gold;
-    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url('./images/pmm_frontline.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url('./images/frontline_jared.jpg');
     background-color: rgba(66, 14, 66, 0.699);
     background-repeat: no-repeat;
     background-size: cover;
@@ -363,12 +247,29 @@ text-transform: uppercase;
 .photo-gallery-area{
     padding: 118px 0 125px;
     height: 130vh;
+    text-align: center;
 }
-.photo-gallery{
-    width: 20em;
-    height: 20em;
-    margin: 0.3em;
-    border: 2px solid black;
+
+#slideshow {
+    position:relative;
+    height:350px;
+}
+
+#slideshow img {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:8;
+    width: 70em;
+    height: 40em;
+}
+
+#slideshow img.active {
+    z-index:10;
+}
+
+#slideshow img.last-active {
+    z-index:9;
 }
 
 
@@ -405,9 +306,6 @@ text-transform: uppercase;
     max-height: 200px;
     max-width: 100%;
   }
-  .btn-form{
-      
-}
   
 /* Generic Button Styles */
 
