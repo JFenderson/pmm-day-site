@@ -162,20 +162,12 @@ window.addEventListener('popstate', function () {
 //END STRIPE
 
 //START IMAGE GALLERY
-function startSlideshow(){
-  var folder = "../images";
+const images = [];
+const time = 2000;
 
-  $.ajax({
-      url: folder,
-      success: function (data) {
-          $(data).find("img").attr("src", function (i, val) {
-              if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-                  $("#slideshow").append( `<img src=${folder} ${val}>` );
-              } 
-          });
-      }
-  });
-}
+
+
+
 
 
 
