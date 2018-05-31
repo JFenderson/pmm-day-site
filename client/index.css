@@ -49,7 +49,7 @@ html {
     text-align: center;
     font-family: 'Quicksand', sans-serif;
     /* font-family: 'Anton', sans-serif; */
-    color: #CEBD39;
+    color: rgb(230, 191, 22);
 }
 .title-content{
     padding-top: 7em;
@@ -69,7 +69,7 @@ html {
 }
 .hero-nav a:hover{
     background-color: #ffffff;
-    color: #CEBD39;
+    color: rgb(230, 191, 22);
     border-radius: 10px;
     padding: 15px 10px;
 }
@@ -89,7 +89,7 @@ html {
     /* height: 3em; */
     background-color: #ffffff;
     border-radius: 10px;
-    color: #CEBD39;
+    color: rgb(230, 191, 22);
     padding: 15px 10px;
   }
   /* ends navbvar */
@@ -112,7 +112,7 @@ html {
 }
 
 #seconds .number{
-    color: #CEBD39;
+    color: rgb(230, 191, 22);
 }
 li {
     margin: 0 -3px 0 0;
@@ -137,7 +137,7 @@ font-family: 'Comfortaa', cursive;
 
 /* start about section */
 .about-container{
-    height: 80vh;
+    height: 50vh;
     position: grid;
     padding: 4em;
     font-family: 'Quicksand', sans-serif;
@@ -149,9 +149,11 @@ font-family: 'Comfortaa', cursive;
 .about-text h2{
     font-weight: 800;
     line-height: 1.5em;
+    font-size: 2em;
 }
 .about-text p {
     line-height: 2em;
+    font-size: 1.1em;
 }
 /* end about section */
 
@@ -198,7 +200,7 @@ font-family: 'Comfortaa', cursive;
     flex: 4;
     font-size: 65px;
     color: #FFFFFF;
-    border-right: 1px solid #CEBD39;
+    border-right: 1px solid rgb(230, 191, 22);
 }
 .schedule-box .schedule-box-top ul{
     flex: 5;
@@ -219,7 +221,7 @@ font-family: 'Comfortaa', cursive;
     text-align: center;
 }
 .schedule-box h3 {
-    color: #CEBD39;
+    color: rgb(230, 191, 22);
     font-size: 18px;
 }
 .schedule-box .schedule-box-read-more {
@@ -444,7 +446,7 @@ font-family: 'Comfortaa', cursive;
     -ms-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
-    background-color: goldenrod;
+    background-color: rgb(230, 191, 22);
     height: 24em;
 }
 /* ends price area */
@@ -455,12 +457,18 @@ font-family: 'Comfortaa', cursive;
     height: 140vh;
     font-family: 'Quicksand', sans-serif;
 }
+.photo-title{
+    text-align: center;
+}
 .photo-gallery{
     width: 20em;
     height: 20em;
     margin: 0.3em;
     border: 2px solid black;
 }
+
+
+  
 
 /* end photo gallery */
 
@@ -566,7 +574,7 @@ font-family: 'Comfortaa', cursive;
   border-radius: 6px;
 }
 .btn-form:hover{
-  color: #CEBD39;
+  color: rgb(230, 191, 22);
   background: #fff;
   border-radius: 50px;
   transition: all 0.3s ease 0s;

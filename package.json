@@ -12,7 +12,7 @@
     "start": "npm run build:client && npm run build:server && npm run start:server",
     "start:server": "node server/lib/index.js",
     "watch:client": "webpack --watch",
-    "watch:server": "nodemon \"server/lib\" --watch \"server/src\"",
+    "watch:server": "nodemon --watch server --watch lib index.js",
     "sass:build": "node-sass -r client/index.scss client/dist/index.css",
     "sass:watch": "node-sass --w client/index.scss -o client/dist/index.css"
   },
@@ -29,6 +29,7 @@
     "body-parser": "^1.18.2",
     "card": "^2.4.0",
     "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "isomorphic-fetch": "^2.2.1",

@@ -90,7 +90,7 @@ connection.connect(function (err) {
     }
 });
 
-console.log(process.env.AWS_ACCESS_KEY_ID);
+console.log(process.env);
 
 app.listen(port, function (err) {
     if (err) {
