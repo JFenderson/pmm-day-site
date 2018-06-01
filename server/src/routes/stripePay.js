@@ -5,7 +5,7 @@ import mailgun from 'mailgun-js';
 
 
 let router = Router();
-const stripe = stripeLoader('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); // define secret key in ENV_VAR
+const stripe = stripeLoader(process.env.STRIPE_SK); // define secret key in ENV_VAR
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', (req, res) => {
@@ -41,7 +41,8 @@ router.post('/gold', (req, res) => {
 
       //SENDING MAILGUN REGISTRATION FOR EMAIL UPDATES
     var api_key = "key-e73adf48b4acfc0a35cdc70b431faa0c";
-    var domain = "sandboxde3a03b6aac24cd5aee0550866383b54.mailgun.org";
+    var domain = "sandboxde3a03b6aac24cd5aee0550866383b54.mailgun.org"
+    ;
     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});   
 
     var data = {

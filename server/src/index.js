@@ -1,4 +1,4 @@
-require('dotenv').load();
+require('dotenv').config({path: __dirname + '../.env'});
 import express from 'express';
 import { join } from 'path';
 import mysql from 'mysql';

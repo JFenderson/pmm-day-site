@@ -34,7 +34,7 @@ var _awsSdk2 = _interopRequireDefault(_awsSdk);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-require('dotenv').load();
+require('dotenv').config({ path: __dirname + '../.env' });
 
 
 // import nodemailer from 'nodemailer';

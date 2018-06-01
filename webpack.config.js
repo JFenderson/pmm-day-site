@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpa
 
 module.exports = {
     mode: 'development',
-    entry: ['./client/src/index.js', './client/src/index.scss'],
+    entry: ['./client/src/index.js'],
     output: { path: CLIENT_DEST, 
         filename: 'bundle.js' 
             },

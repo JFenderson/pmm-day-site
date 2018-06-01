@@ -19,7 +19,7 @@ var _mailgunJs2 = _interopRequireDefault(_mailgunJs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = (0, _express.Router)();
-var stripe = (0, _stripe2.default)('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); // define secret key in ENV_VAR
+var stripe = (0, _stripe2.default)(process.env.STRIPE_SK); // define secret key in ENV_VAR
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', function (req, res) {

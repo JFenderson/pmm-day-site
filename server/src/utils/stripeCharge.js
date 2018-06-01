@@ -1,6 +1,6 @@
 import stripeLoader from 'stripe';
 
-const stripe = stripeLoader('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); // define secret key in ENV_VAR
+const stripe = stripeLoader(process.env.STRIPE_SK); // define secret key in ENV_VAR
 
 
 function charge(token, email) {

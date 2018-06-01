@@ -162,20 +162,33 @@ window.addEventListener('popstate', function () {
 //END STRIPE
 
 //START IMAGE GALLERY
-var $current, $next, $slides = $(".slideshow .slide");
-
-function doSlideShow () {
-  $current = $slides.filter(".slide.current");
-  $next = $current.next(".slide");
-  if ($next.length < 1) {
-    $next = $slides.first();
+var photoGallery = function($photoGalleryElement) {
+  var $photoGallery = $photoGalleryElement,
+      $photoLinks = $photoGallery.find('a[href*="#photo"]'),
+      $photos = $photoGallery.find('img[id*="photo"]'),
+      activeClass = 'active';
+  
+  function init() {
+    $photoGallery.addClass('enabled');
+       
+    $photoGallery.on({
+      click: function(e) {
+        e.preventDefault();
+        var $photoTarget = $(this).attr('href');
+        $photos.removeClass(activeClass);
+        $photoGallery.find($photoTarget).addClass(activeClass);
+      }
+    }, 'a[href*="#photo"]')
   }
-  $slides.removeClass("previous");
-  $current.addClass("previous").removeClass("current");
-  $next.addClass("current");
-  window.setTimeout(doSlideShow, 5000);
+  
+  init();
 }
-window.setTimeout(doSlideShow, 5000);
+
+$.each($('.photo-gallery'), function() {
+  // Try commenting out this line below to see no-js functionality!
+  var gallery = new photoGallery( $(this) );
+});
+
 
 
 

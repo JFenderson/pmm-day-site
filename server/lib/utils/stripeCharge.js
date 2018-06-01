@@ -11,7 +11,7 @@ var _stripe2 = _interopRequireDefault(_stripe);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var stripe = (0, _stripe2.default)('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); // define secret key in ENV_VAR
+var stripe = (0, _stripe2.default)(process.env.STRIPE_SK); // define secret key in ENV_VAR
 
 
 function charge(token, email) {
