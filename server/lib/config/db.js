@@ -14,9 +14,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var pool = _mysql2.default.createPool({
     connectionLimit: 10,
     host: 'localhost',
-    user: 'innovatebham',
-    password: 'innovatebham',
-    database: 'blog'
+    user: 'JFenderson',
+    password: 'Tori7784',
+    database: 'pmm_picnic'
 });
 
 function executeQuery(sql) {
