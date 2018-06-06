@@ -31,7 +31,7 @@ html {
     -moz-background-size: cover!important;
     -o-background-size: cover!important;
     image-rendering: optimizeQuality;
-    height: 150vh;
+    height: auto;
     text-align: center;
     background-attachment: fixed;
     overflow: hidden;
