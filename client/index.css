@@ -195,7 +195,7 @@ font-family: 'Comfortaa', cursive;
     padding: 75px 12px 70px 40px;
     overflow: hidden;
     background: #651775;
-    margin: 1em;
+    margin-right: 1em;
     border-radius: 15px;
 }
 .schedule-box:hover{
@@ -237,8 +237,7 @@ font-family: 'Comfortaa', cursive;
 }
 .schedule-box h3 {
     color: rgb(230, 191, 22);
-    font-size: 25px;
-    padding-left: 10px;
+    font-size: 18px;
 }
 .schedule-box .schedule-box-read-more {
     content: "";
@@ -695,7 +694,7 @@ font-family: 'Comfortaa', cursive;
     }
     .about-container{
         height: 50vh;
-        margin-top: 25em;
+        margin-top: 20em;
     }
     .about-text h2 {
         font-size: 40px;
@@ -703,12 +702,6 @@ font-family: 'Comfortaa', cursive;
     .about-text p {
         line-height: 2em;
         font-size: 1.1em;
-    }
-    .schedule-box{
-        margin-right: 1em;
-    }
-    .schedule-box h3{
-        font-size: 18px;
     }
     .comittee-area {
         height: 90vh;
