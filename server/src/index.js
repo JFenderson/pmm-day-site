@@ -15,6 +15,7 @@ import AWS from 'aws-sdk';
 // const stripePK = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
 // const stripe = Stripe('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); 
 
+
 AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 AWS.config.region = process.env.AWS_REGION;
@@ -66,7 +67,6 @@ connection.connect((err) => {
     }
 });
 
-console.log(process.env);
 
 app.listen(port,(err)=> {
     if(err){
