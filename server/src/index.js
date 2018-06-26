@@ -59,13 +59,7 @@ app.get('/images', (req, res)=> {
 })
 
 
-connection.connect((err) => {
-    if(!err) {
-        console.log("Database is connected ... ");    
-    } else {
-        console.log("Error connecting database ... ");    
-    }
-});
+
 
 
 app.listen(port,(err)=> {
