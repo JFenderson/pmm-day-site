@@ -1,0 +1,125 @@
+.landing {
+    color: #F9F7F5;
+    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(./images/middle_of_field_M.jpg);
+    background-color: rgba(66, 14, 66, 0.699);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+    background-position: center center;
+    -webkit-background-size: cover!important;
+    -moz-background-size: cover!important;
+    -o-background-size: cover!important;
+    image-rendering: optimizeQuality;
+    height: 163vh;
+    text-align: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+h2, h2 {
+    font-size: 1.5rem;
+}
+.landing h1 {
+    font-size: 39px;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    /* font-family: 'Anton', sans-serif; */
+    color: rgb(230, 191, 22);
+}
+ul#countdown {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 75%;
+    margin: 0 auto;
+    padding: 15px 0 20px 0;
+    color: #fff;
+    border: 1px solid #F9F7F5;
+    border-width: 1px 0;
+    overflow: hidden;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+li {
+    margin: 0 -3px 0 0;
+    padding: 0;
+    display: inline-block;
+    width: 25%;
+    font-size: 72px;
+    font-size: 7vh;
+    text-align: center;
+}
+.about-container {
+    height: 79vh;
+    position: grid;
+    padding: 2em;
+    font-family: 'Quicksand', sans-serif;
+    background-color: rgba(255, 233, 133, 0.27);
+    color: white;
+    border-radius: 15px;
+    font-size: 1.1em;
+    margin-top: 3em;
+}
+.about-text h2 {
+    font-weight: 800;
+    line-height: 1.5em;
+    font-size: 40px;
+}
+.about-text p {
+    line-height: 29px;
+    font-size: 15px;
+}
+// end landing
+.schedule-box {
+    position: relative;
+    padding: 75px 12px 70px 40px;
+    overflow: hidden;
+    background: #651775;
+    margin: 1em;
+    border-radius: 15px;
+}
+.schedule-box h3 {
+    color: rgb(230, 191, 22);
+    font-size: 25px;
+    padding-left: 10px;
+}
+.comittee-area {
+    /* background: #f8f8f8; */
+    /* padding: 8em 8em; */
+    height: auto;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+// full desktop after column change
+.comittee-area {
+    /* background: #f8f8f8; */
+    /* padding: 8em 8em; */
+    height: 64vh;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+//phone display after column changes
+.comittee-area {
+    /* background: #f8f8f8; */
+    /* padding: 8em 8em; */
+    height: 145vh;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+
+.img-responsive {
+    /* display: block; */
+    max-width: 100%;
+    min-width: 50%;
+    height: 20em;
+    width: 16em;
+}
+
+.footer-links li {
+    display: grid;
+    list-style-type: none;
+    text-align: center;
+    margin-bottom: 9px !important;
+    font-size: 20px !important;
+    width: 90%;
+    /* margin: auto 0; */
+}

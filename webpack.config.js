@@ -4,12 +4,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
 
 module.exports = {
+    watch: true,
     mode: 'development',
     entry: ['./client/src/index.js'],
     output: { path: CLIENT_DEST, 
         filename: 'bundle.js' 
             },
-  module: {  // where we defined file patterns and their loaders
+  module: {  
       rules: [ 
         {
             test: /\.js$/,

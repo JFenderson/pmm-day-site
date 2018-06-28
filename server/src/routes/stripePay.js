@@ -40,8 +40,8 @@ router.post('/gold', (req, res) => {
       });
 
       //SENDING MAILGUN REGISTRATION FOR EMAIL UPDATES
-    var api_key = "key-e73adf48b4acfc0a35cdc70b431faa0c";
-    var domain = "sandboxde3a03b6aac24cd5aee0550866383b54.mailgun.org"
+    var api_key = process.env.MAILGUN_SK;
+    var domain = process.env.MAILGUN_DOMAIN;
     ;
     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});   
 
