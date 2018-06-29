@@ -75,13 +75,13 @@
             from 2007-2012 and/or Mr.James Merriweather from 2012-2016, and teh current members of the Purple Marching Machine,
             under the direction of Mr. Willie Snipes.
           </p>
-          <!-- Button trigger modal -->
+          <!-- Button trigger modal
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
             Launch demo modal
-          </button>
+          </button> -->
 
           <!-- Modal -->
-          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -99,7 +99,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -428,7 +428,7 @@
   <footer class="footer-area-top">
     <div class="container ">
       <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 footer-box">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-box">
           <div class="footer-links">
               <h3>Useful Links</h3>
             <ul class="featured-links">
@@ -450,7 +450,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 footer-box">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-box">
           <div class="footer-contact">
             <h3>Send us a Message</h3>
             <input type="text" name="name" placeholder="Your Name" class="form" id="name" required>
@@ -460,7 +460,7 @@
             <button id="contactSubmit" class="btn-form"  onClick="window.location.reload();">Send Message</button>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 footer-box">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-box">
           <div class="footer-social">
             <h3>Connect with PMM</h3>
             <ul>
@@ -512,6 +512,17 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-box">
+          <div class="footer-contact">
+            <h3>Band Members Signup!</h3>
+            <input type="text" name="name" placeholder="Your Name" class="form" id="name" required>
+            <input type="text" name="email" placeholder="Your Email Address" class="form" id="email" required>
+            <input type="number" name="number" placeholder="Your Phone Number" class="form" id="number">
+            <input type="text" name="location" placeholder="Your Location" class="form" id="location">
+            <input type="number" name="crabYear" placeholder="What year did you start" class="form" id="crabYear">
+            <button id="memberSubmit" class="btn-form"  onClick="window.location.reload();">Signup</button>
+          </div>
+        </div>
       </div>
       <div class="footer-copyright">
         <p>&copy; Created by Joseph Fenderson
@@ -551,6 +562,8 @@
     </script> -->
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script src="https://js.stripe.com/v3/"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
   <script src="./src/index.js"></script>
 </body>
 

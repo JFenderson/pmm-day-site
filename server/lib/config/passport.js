@@ -12,7 +12,7 @@ var _passportLocal = require('passport-local');
 
 var _passportHttpBearer = require('passport-http-bearer');
 
-var _table = require('../table');
+var _table = require('../utils/table');
 
 var _table2 = _interopRequireDefault(_table);
 

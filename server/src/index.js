@@ -1,7 +1,6 @@
 require('dotenv').config({path: __dirname + '../.env'});
 import express from 'express';
 import { join } from 'path';
-import mysql from 'mysql';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import routes from './routes';
@@ -11,10 +10,6 @@ import AWS from 'aws-sdk';
 
 // import nodemailer from 'nodemailer';
 // import Stripe from 'stripe';
-
-// const stripePK = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
-// const stripe = Stripe('sk_test_YV5UGpBi1SJ0teMkYeG25keW'); 
-
 
 AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
@@ -28,13 +23,6 @@ const port = 3000;
 
 let app = express();
 
-var connection = mysql.createConnection({
-    database : process.env.RDS_DB_NAME,
-    host     : process.env.RDS_HOSTNAME,
-    user     : process.env.RDS_USERNAME,
-    password : process.env.RDS_PASSWORD,
-    port     : process.env.RDS_PORT
-});
 
 
 const CLIENT_PATH = join(__dirname, '../../client');

@@ -49,6 +49,31 @@ $('#contactSubmit').click(() => {
 });
 //END NODEMAILER
 
+//MEMBER SIGNUP TO ADD TO BE ADDED TO DATABASE
+$('#memberSubmit').click(() => {
+  let name = $('#name').val();
+  let email = $('#email').val();
+  let number = $('#number').val();
+  let location = $('#location').val();
+  let crabYear = $('#crabYear').val();
+  $.ajax({
+    url: 'http://localhost:3000/api/signup',
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      name: name, email: email, number: number, location: location, crabYear: crabYear
+    }),
+    success: function (data) {
+      console.log(data);
+    },
+    error: function (err) {
+      console.log('error handling message', err);
+    },
+    dataType: 'json'
+  });
+});
+//END MEMBER SIGNUP
+
 //START STRIPE PAYMENT
 
 const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
@@ -198,7 +223,7 @@ $.each($('.photo-gallery'), function() {
 
 
 
-})
+
 
 
 
@@ -295,7 +320,7 @@ function numberTransition(id, endPoint, transitionDuration, transitionEase) {
 };
 
 // END COUNTDOWN
-
+});
 // $("nav").find("a").click(function (e) {
 //   e.preventDefault();
 //   var section = $(this).attr("href");

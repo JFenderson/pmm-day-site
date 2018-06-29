@@ -4,8 +4,8 @@ let pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
     user: 'JFenderson',
-    password: 'Tori7784',
-    database: 'pmm_picnic'
+    password: 'M@rqueal1012',
+    database: 'pmm_day'
 });
 
 function executeQuery(sql, args = []) {
@@ -72,6 +72,7 @@ function getConnection() {
                 reject(err);
             } else {
                 resolve(connection);
+                console.log('mysql connected!');
             }
         });
     });
