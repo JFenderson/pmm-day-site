@@ -660,9 +660,9 @@ font-family: 'Comfortaa', cursive;
 .footer-social{
   text-align: center;
 }
-.footer-social h3{
+/* .footer-social h3{
  
-}
+} */
 .footer-social li{
   list-style-type: none;
   display: inline-block;
