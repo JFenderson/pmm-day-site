@@ -198,7 +198,7 @@ $.each($('.photo-gallery'), function() {
 
 
 
-})
+
 
 
 
@@ -295,7 +295,7 @@ function numberTransition(id, endPoint, transitionDuration, transitionEase) {
 };
 
 // END COUNTDOWN
-
+});
 // $("nav").find("a").click(function (e) {
 //   e.preventDefault();
 //   var section = $(this).attr("href");
