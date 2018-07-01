@@ -515,11 +515,12 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-box">
           <div class="footer-contact">
             <h3>Band Members Signup!</h3>
-            <input type="text" name="name" placeholder="Your Name" class="form" id="name" required>
-            <input type="text" name="email" placeholder="Your Email Address" class="form" id="email" required>
-            <input type="number" name="number" placeholder="Your Phone Number" class="form" id="number">
-            <input type="text" name="location" placeholder="Your Location" class="form" id="location">
-            <input type="number" name="crabYear" placeholder="What year did you start" class="form" id="crabYear">
+            <input type="text" name="memberName" placeholder="Your Name" class="form" id="memberName" required>
+            <input type="text" name="memberEmail" placeholder="Your Email Address" class="form" id="memberEmail" required>
+            <input type="tel" name="memberNumber" placeholder="Your Phone Number" class="form" id="memberNumber" data-mask="(999) 999-9999"
+            required>
+            <input type="text" name="memberLocation" placeholder="Your Location" class="form" id="memberLocation" required>
+            <input type="number" name="memberCrabYear" placeholder="What year did you start" class="form" id="memberCrabYear" min="1996" max="2018" step="4" required>
             <button id="memberSubmit" class="btn-form"  onClick="window.location.reload();">Signup</button>
           </div>
         </div>
@@ -563,7 +564,7 @@
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script src="https://js.stripe.com/v3/"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script> -->
   <script src="./src/index.js"></script>
 </body>
 

@@ -10,6 +10,10 @@ var _table = require('../utils/table');
 
 var _table2 = _interopRequireDefault(_table);
 
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = (0, _express.Router)();

@@ -19,7 +19,8 @@ var _mailgunJs2 = _interopRequireDefault(_mailgunJs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = (0, _express.Router)();
-var stripe = (0, _stripe2.default)(process.env.STRIPE_SK); // define secret key in ENV_VAR
+var stripe = (0, _stripe2.default)(process.env.STRIPE_SK);
+// define secret key in ENV_VAR
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', function (req, res) {
@@ -52,22 +53,22 @@ router.post('/gold', function (req, res) {
         res.status(500).send({ error: "Purchase Failed" });
     });
 
-    //SENDING MAILGUN REGISTRATION FOR EMAIL UPDATES
-    var api_key = process.env.MAILGUN_SK;
-    var domain = process.env.MAILGUN_DOMAIN;
-    ;
-    var mailgun = require('mailgun-js')({ apiKey: api_key, domain: domain });
+    //   //SENDING MAILGUN REGISTRATION FOR EMAIL UPDATES
+    // var api_key = process.env.MAILGUN_SK;
+    // var domain = process.env.MAILGUN_DOMAIN;
+    // ;
+    // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});   
 
-    var data = {
-        from: 'Excited User <me@samples.mailgun.org>',
-        to: email + ', YOU@YOUR_DOMAIN_NAME\'',
-        subject: 'Hello',
-        text: 'Thank you for you Payment..See you at PMM Weekend!'
-    };
+    // var data = {
+    // from: 'Excited User <me@samples.mailgun.org>',
+    // to: `${email}, YOU@YOUR_DOMAIN_NAME'`,
+    // subject: 'Hello',
+    // text: 'Thank you for you Payment..See you at PMM Weekend!'
+    // };
 
-    mailgun.messages().send(data, function (error, body) {
-        console.log(body);
-    });
+    // mailgun.messages().send(data, function (error, body) {
+    // console.log(body);
+    // });
 });
 
 // PAYMENT FOR PURPLE PACKAGE($10.00)

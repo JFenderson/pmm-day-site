@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import firebase from "firebase";
 import Table from '../utils/table';
+import fs from 'fs';
 
 let router = Router();
 let user = new Table('person');

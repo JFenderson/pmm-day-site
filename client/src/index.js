@@ -51,17 +51,17 @@ $('#contactSubmit').click(() => {
 
 //MEMBER SIGNUP TO ADD TO BE ADDED TO DATABASE
 $('#memberSubmit').click(() => {
-  let name = $('#name').val();
-  let email = $('#email').val();
-  let number = $('#number').val();
-  let location = $('#location').val();
-  let crabYear = $('#crabYear').val();
+  let name = $('#memberName').val();
+  let email = $('#memberEmail').val();
+  let number = $('#memberNumber').val();
+  let location = $('#memberLocation').val();
+  let crabYear = $('#memberCrabYear').val();
   $.ajax({
     url: 'http://localhost:3000/api/signup',
     method: 'POST',
     contentType: 'application/json',
     data: JSON.stringify({
-      name: name, email: email, number: number, location: location, crabYear: crabYear
+      name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
     }),
     success: function (data) {
       console.log(data);
@@ -76,11 +76,11 @@ $('#memberSubmit').click(() => {
 
 //START STRIPE PAYMENT
 
-const stripe = Stripe('pk_test_H70vmlNTo3eiFAtoKB2AJAoh');
+const stripe = Stripe('pk_test_5AlrlnuTDLCyC0ROgnwRem7x');
 const elements = stripe.elements();
 
 var handlerGold = StripeCheckout.configure({
-  key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+  key: 'pk_test_5AlrlnuTDLCyC0ROgnwRem7x',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -102,7 +102,7 @@ var handlerGold = StripeCheckout.configure({
 });
 
 var handlerPurple = StripeCheckout.configure({
-  key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+  key: 'pk_test_5AlrlnuTDLCyC0ROgnwRem7x',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -124,7 +124,7 @@ var handlerPurple = StripeCheckout.configure({
 });
 
 var handlerWhite = StripeCheckout.configure({
-  key: 'pk_test_H70vmlNTo3eiFAtoKB2AJAoh',
+  key: 'pk_test_5AlrlnuTDLCyC0ROgnwRem7x',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
