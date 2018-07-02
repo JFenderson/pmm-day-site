@@ -36,7 +36,7 @@ html {
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     image-rendering: optimizeQuality;
-    height: 180vh;
+    height: 175vh;
     text-align: center;
     background-attachment: fixed;
     overflow: hidden;
@@ -67,7 +67,7 @@ html {
 }
 
 .title-content {
-    padding-top: 7em;
+    padding-top: 10em;
 }
 
 /* starts navbar */
@@ -161,7 +161,7 @@ li {
 /* start about section */
 
 .title-content {
-    padding-top: 4em;
+    padding-top: 10em;
 }
 
 .top-title {
@@ -169,7 +169,7 @@ li {
 }
 
 .about-container {
-    height: 79vh;
+    height: 60vh;
     position: grid;
     padding: 2em;
     font-family: 'Quicksand', sans-serif;
@@ -177,7 +177,7 @@ li {
     color: white;
     border-radius: 15px;
     font-size: 1.1em;
-    margin-top: 3em;
+    margin-top: 21em;
 }
 
 .about-text {
@@ -393,7 +393,7 @@ li {
 .comittee-area {
     /* background: #f8f8f8; */
     /* padding: 8em 8em; */
-    height: 164vh;
+    height: 90vh;
     font-family: 'Quicksand', sans-serif;
     text-align: center;
 }
