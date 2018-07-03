@@ -33,6 +33,7 @@ app.use(bodyParser.json());
 
 
 app.use('/api', routes);
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(CLIENT_PATH + '/index.html')); 
   });
@@ -50,11 +51,5 @@ app.get('/images', (req, res)=> {
 
 
 
-app.listen(port,(err)=> {
-    if(err){
-        return console.log('something went wrong',err);
-    }
-
-    console.log(`Server is listening on Port ${port}`);
-});
+app.listen(process.env.PORT || 3000);
 
