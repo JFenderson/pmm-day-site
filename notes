@@ -50,3 +50,5 @@ PMMDay1996 pwd
 adding s3 buckets for photos and anything else that may need to be used
 
 we have a google voice phone number for text messages..trying to find a way to add people to a database...(205) 861-0468
+
+mysql://b6a1d0b83b6557:c0e68a1d@us-cdbr-iron-east-04.cleardb.net/heroku_52a402dfe524503?reconnect=true
