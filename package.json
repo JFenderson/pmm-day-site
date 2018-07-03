@@ -4,7 +4,7 @@
   "description": "web site for the 2019 Purple Marching Machine Family and Friend Picnic",
   "main": "server/lib/index.js",
   "scripts": {
-    "start": "nodemon --use_strict server/src/index.js --exec babel-node --presets env,stage-2",
+    "start": "concurrently -k \"nodemon --use_strict server/src/index.js --exec babel-node --presets env,stage-2\" \"webpack\"",
     "bundle": "webpack",
     "build:client": "webpack",
     "build:server": "babel ./server/src -d ./server/lib",
