@@ -35,7 +35,9 @@ app.use(bodyParser.json());
 app.use('/api', routes);
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(CLIENT_PATH + '/index.html')); 
+    res.render(path.join(CLIENT_PATH + '/index.html'), {
+        stripePublishableKey: process.env.STRIPE_PK
+    }); 
   });
 
 const images = '../../client/images';
