@@ -28,6 +28,10 @@ var _awsSdk = require('aws-sdk');
 
 var _awsSdk2 = _interopRequireDefault(_awsSdk);
 
+var _db = require('./config/db');
+
+var _db2 = _interopRequireDefault(_db);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config({ path: __dirname + '../.env' });
@@ -70,4 +74,6 @@ app.get('/images', function (req, res) {
     });
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, function () {
+    (0, _db2.default)();
+});

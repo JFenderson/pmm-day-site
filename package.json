@@ -4,7 +4,8 @@
   "description": "web site for the 2019 Purple Marching Machine Family and Friend Picnic",
   "main": "server/lib/index.js",
   "engines": {
-    "node": "8.9.4"
+    "node": "8.9.4",
+    "npm": "6.1.0"
   },
   "scripts": {
     "build:client": "webpack",
