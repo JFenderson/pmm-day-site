@@ -1,17 +1,12 @@
-require('dotenv').config({path: __dirname + '../.env'});
+require('dotenv').config();
 import express from 'express';
 import { join } from 'path';
 import bodyParser from 'body-parser';
-import fs from 'fs';
 import routes from './routes';
 import cors from 'cors';
 import path from 'path';
 import AWS from 'aws-sdk';
 import configure from './config/db';
-
-
-// import nodemailer from 'nodemailer';
-// import Stripe from 'stripe';
 
 AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
@@ -50,9 +45,6 @@ app.get('/images', (req, res)=> {
         console.log(err);
     })
 })
-
-
-
 
 
 app.listen(process.env.PORT || 3000, () => {
