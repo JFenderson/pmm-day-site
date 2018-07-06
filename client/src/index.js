@@ -1,6 +1,4 @@
 $(document).ready(function(){
-  console.log('ready!');
-  console.log({stripePublishableKey});
   // START NAVBAR
   // grab the initial top offset of the navigation 
   var stickyNavTop = $('.nav').offset().top;
@@ -77,11 +75,11 @@ $('#memberSubmit').click(() => {
 
 //START STRIPE PAYMENT
 
-const stripe = Stripe({stripePublishableKey});
+const stripe = Stripe('pk_test_PekczFIKSL8Goxek1OJAePnS');
 const elements = stripe.elements();
 
 var handlerGold = StripeCheckout.configure({
-  key: {stripePublishableKey},
+  key: 'pk_test_PekczFIKSL8Goxek1OJAePnS',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -103,7 +101,7 @@ var handlerGold = StripeCheckout.configure({
 });
 
 var handlerPurple = StripeCheckout.configure({
-  key: {stripePublishableKey},
+  key: 'pk_test_PekczFIKSL8Goxek1OJAePnS',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -125,7 +123,7 @@ var handlerPurple = StripeCheckout.configure({
 });
 
 var handlerWhite = StripeCheckout.configure({
-  key: {stripePublishableKey},
+  key: 'pk_test_PekczFIKSL8Goxek1OJAePnS',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
