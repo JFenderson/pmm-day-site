@@ -13,10 +13,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var pool = _mysql2.default.createPool({
     connectionLimit: 10,
-    host: 'localhost',
-    user: 'JFenderson',
-    password: 'M@rqueal1012',
-    database: 'pmm_day'
+    host: process.env.CLEARDB_HOST,
+    user: process.env.CLEARDB_USER,
+    password: process.env.CLEARDB_PASSWORD,
+    database: process.env.CLEARDB_DATABASE,
+    port: 3306
 });
 
 function executeQuery(sql) {
