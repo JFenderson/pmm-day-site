@@ -4,19 +4,16 @@
   "description": "web site for the 2019 Purple Marching Machine Family and Friend Picnic",
   "main": "server/lib/index.js",
   "scripts": {
-    "start": "node server/lib/index.js",
-    "start:dev": "concurrently -k \"nodemon --use_strict server/src/index.js --exec babel-node --presets env,stage-2\" \"webpack\"",
-    "bundle": "webpack",
     "build:client": "webpack",
     "build:server": "babel ./server/src -d ./server/lib",
-    "dev": "source .env && concurrently -k \"npm run watch:client\" \"npm run watch:server\"",
-    "prepare": "npm run build:server",
-    "production": "npm run build:client && npm run build:server && npm run start:server",
+    "clean": "npm run clean:client && npm run clean:server",
+    "clean:client": "rimraf ./client/dist",
+    "clean:server": "rimraf ./server/lib",
+    "dev": "npm run clean && npm run build:server && concurrently -r -k \"npm run watch:client\" \"npm run watch:server\" \"nodemon --watch server/lib --delay 1\"",
+    "start": "npm run clean && npm run build:client && npm run build:server && npm run start:server",
     "start:server": "node server/lib/index.js",
     "watch:client": "webpack --watch",
-    "watch:server": "nodemon --watch server --watch lib index.js",
-    "sass:build": "node-sass -r client/index.scss client/dist/index.css",
-    "sass:watch": "node-sass --w client/index.scss -o client/dist/index.css"
+    "watch:server": "babel ./server/src -w -d ./server/lib"
   },
   "author": "",
   "license": "ISC",
@@ -44,6 +41,7 @@
     "multer-s3": "^2.7.0",
     "mysql": "^2.15.0",
     "nodemailer": "^4.6.4",
+    "rimraf": "^2.6.2",
     "stripe": "^6.0.0",
     "webpack": "^4.8.2"
   },

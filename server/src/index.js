@@ -7,6 +7,7 @@ import routes from './routes';
 import cors from 'cors';
 import path from 'path';
 import AWS from 'aws-sdk';
+import configure from './config/db';
 
 
 // import nodemailer from 'nodemailer';
@@ -54,5 +55,7 @@ app.get('/images', (req, res)=> {
 
 
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+    configure();
+});
 

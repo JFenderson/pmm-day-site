@@ -49,7 +49,8 @@ $('#contactSubmit').click(() => {
 //END NODEMAILER
 
 //MEMBER SIGNUP TO ADD TO BE ADDED TO DATABASE
-$('#memberSubmit').click(() => {
+$('#memberSubmit').click((e) => {
+  e.preventDefault();
   let name = $('#memberName').val();
   let email = $('#memberEmail').val();
   let number = $('#memberNumber').val();
@@ -62,9 +63,10 @@ $('#memberSubmit').click(() => {
     data: JSON.stringify({
       name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
     }),
-    success: function (data) {
-      console.log(data);
-    },
+    success: setTimeout(() => {
+      console.log('success')
+       window.location.reload(); 
+      }, 10),
     error: function (err) {
       console.log('error handling message', err);
     },

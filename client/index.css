@@ -36,7 +36,7 @@ html {
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     image-rendering: optimizeQuality;
-    height: 175vh;
+    height: 200vh;
     text-align: center;
     background-attachment: fixed;
     overflow: hidden;
@@ -169,7 +169,7 @@ li {
 }
 
 .about-container {
-    height: 60vh;
+    height: 90vh;
     position: grid;
     padding: 2em;
     font-family: 'Quicksand', sans-serif;
@@ -177,7 +177,7 @@ li {
     color: white;
     border-radius: 15px;
     font-size: 1.1em;
-    margin-top: 21em;
+    margin-top: 5em;
 }
 
 .about-text {
@@ -393,7 +393,7 @@ li {
 .comittee-area {
     /* background: #f8f8f8; */
     /* padding: 8em 8em; */
-    height: 90vh;
+    height: 135vh;
     font-family: 'Quicksand', sans-serif;
     text-align: center;
 }

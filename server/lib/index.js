@@ -54,8 +54,11 @@ app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_bodyParser2.default.json());
 
 app.use('/api', _routes2.default);
+
 app.get('/', function (req, res) {
-    res.sendFile(_path2.default.join(CLIENT_PATH + '/index.html'));
+    res.render(_path2.default.join(CLIENT_PATH + '/index.html'), {
+        stripePublishableKey: process.env.STRIPE_PK
+    });
 });
 
 var images = '../../client/images';
@@ -67,10 +70,4 @@ app.get('/images', function (req, res) {
     });
 });
 
-app.listen(port, function (err) {
-    if (err) {
-        return console.log('something went wrong', err);
-    }
-
-    console.log('Server is listening on Port ' + port);
-});
+app.listen(process.env.PORT || 3000);
