@@ -18,6 +18,14 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
+var _zipcodes = require('zipcodes');
+
+var _zipcodes2 = _interopRequireDefault(_zipcodes);
+
+var _humanparser = require('humanparser');
+
+var _humanparser2 = _interopRequireDefault(_humanparser);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = (0, _express.Router)();
@@ -39,13 +47,15 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   var _req$body = req.body,
-      name = _req$body.name,
       email = _req$body.email,
       phoneNumber = _req$body.phoneNumber,
-      location = _req$body.location,
       crabYear = _req$body.crabYear;
 
-  console.log(name, email, phoneNumber, location, crabYear);
+  var name = _humanparser2.default.parseName(req.body.name);
+  var location = _zipcodes2.default.lookup(req.body.location);
+
+  console.log('this is the name from humanparser', name, email, phoneNumber, 'this is the location details', location, crabYear);
+
   members.insert({
     name: name, email: email, phoneNumber: phoneNumber, location: location, crabYear: crabYear
   }).then(function (id) {

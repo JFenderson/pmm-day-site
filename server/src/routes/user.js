@@ -3,6 +3,8 @@ import firebase from "firebase";
 import Table from '../utils/table';
 import admin from 'firebase-admin';
 import fs from 'fs';
+import ZipCodes from 'zipcodes';
+import human from 'humanparser';
 
 let router = Router();
 let user = new Table('person');
@@ -23,8 +25,13 @@ router.get('/', (req,res)=> {
 
 
 router.post('/', (req, res) => {
-  const { name, email, phoneNumber, location, crabYear} = req.body;
-  console.log(name,email,phoneNumber,location,crabYear);
+  let { email, phoneNumber, crabYear} = req.body;
+  let name = human.parseName(req.body.name);
+  let location = ZipCodes.lookup(req.body.location);
+
+  console.log('this is the name from humanparser',name,email,phoneNumber,'this is the location details',location,crabYear);
+
+
   members.insert({
     name, email, phoneNumber, location, crabYear
   })

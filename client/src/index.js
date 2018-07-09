@@ -23,6 +23,10 @@ $(document).ready(function(){
   });
   //END NAVBAR
 
+  //AUTOCOMPLETE ZIP CODE INPUT USING ZIPCODEAPI.COM
+  
+
+
 //NODEMAILER FOR CONTACT FORM
 
 $('#contactSubmit').click(() => {
@@ -51,6 +55,7 @@ $('#contactSubmit').click(() => {
 //MEMBER SIGNUP TO ADD TO BE ADDED TO DATABASE
 $('#memberSubmit').click((e) => {
   e.preventDefault();
+  
   let name = $('#memberName').val();
   let email = $('#memberEmail').val();
   let number = $('#memberNumber').val();

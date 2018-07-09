@@ -12,10 +12,6 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _fs = require('fs');
-
-var _fs2 = _interopRequireDefault(_fs);
-
 var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
@@ -34,11 +30,8 @@ var _db2 = _interopRequireDefault(_db);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-require('dotenv').config({ path: __dirname + '../.env' });
+require('dotenv').config({ silent: true });
 
-
-// import nodemailer from 'nodemailer';
-// import Stripe from 'stripe';
 
 _awsSdk2.default.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 _awsSdk2.default.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;

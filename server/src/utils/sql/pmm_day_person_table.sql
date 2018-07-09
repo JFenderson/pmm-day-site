@@ -4,10 +4,12 @@ USE pmm_day;
 
 CREATE TABLE IF NOT EXISTS members(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     phoneNumber BIGINT NOT NULL,
-    location VARCHAR(50) NOT NULL,
+    location_city VARCHAR(50) NOT NULL,
+    location_state VARCHAR(50) NOT NULL,
     crabYear INT(4) NOT NULL,
     _CREATED TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
