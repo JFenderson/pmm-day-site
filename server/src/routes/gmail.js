@@ -1,6 +1,8 @@
 import nodemailer from 'nodemailer';
 import { Router } from 'express';
 import { transporter } from '../config/nodemailer';
+import dotenv from 'dotenv';
+dotenv.config();
 
 let router = Router();
 

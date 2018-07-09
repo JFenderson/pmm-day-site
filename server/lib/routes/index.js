@@ -18,7 +18,13 @@ var _stripePay = require('./stripePay');
 
 var _stripePay2 = _interopRequireDefault(_stripePay);
 
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_dotenv2.default.config();
 
 var router = (0, _express.Router)();
 

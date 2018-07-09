@@ -1,21 +1,14 @@
 import { Router } from 'express';
-import firebase from "firebase";
 import Table from '../utils/table';
-import admin from 'firebase-admin';
-import fs from 'fs';
 import ZipCodes from 'zipcodes';
 import human from 'humanparser';
+import dotenv from 'dotenv';
+dotenv.config();
 
 let router = Router();
 let user = new Table('person');
 let members = new Table('members');
 
-//firebase init
-admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-});
-
-var db = admin.firestore();
 
 router.get('/', (req,res)=> {
  members.getAll()
@@ -45,20 +38,6 @@ router.post('/', (req, res) => {
   .then((id) => { 
       console.log(id);
   });
-
-// db.collection('members').add({
-//     name: name,
-//     email: email,
-//     phoneNumber: phoneNumber,
-//     location: location,
-//     crabYear: crabYear
-// })
-//   .then(function (docRef) {
-//     console.log('Document written with ID: ', docRef.id)
-//   })
-//   .catch(function (error) {
-//     console.error('Error adding document: ', error)
-//   })
 });
 
 
