@@ -55,7 +55,7 @@ $('#contactSubmit').click(() => {
 //MEMBER SIGNUP TO ADD TO BE ADDED TO DATABASE
 $('#memberSubmit').click((e) => {
   e.preventDefault();
-  
+
   let name = $('#memberName').val();
   let email = $('#memberEmail').val();
   let number = $('#memberNumber').val();
@@ -82,11 +82,11 @@ $('#memberSubmit').click((e) => {
 
 //START STRIPE PAYMENT
 
-const stripe = Stripe('pk_test_PekczFIKSL8Goxek1OJAePnS');
+const stripe = Stripe('pk_test_obzu76S8L0GFvqkXbKn204a2');
 const elements = stripe.elements();
 
 var handlerGold = StripeCheckout.configure({
-  key: 'pk_test_PekczFIKSL8Goxek1OJAePnS',
+  key: 'pk_test_obzu76S8L0GFvqkXbKn204a2',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -108,7 +108,7 @@ var handlerGold = StripeCheckout.configure({
 });
 
 var handlerPurple = StripeCheckout.configure({
-  key: 'pk_test_PekczFIKSL8Goxek1OJAePnS',
+  key: 'pk_test_obzu76S8L0GFvqkXbKn204a2',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -130,7 +130,7 @@ var handlerPurple = StripeCheckout.configure({
 });
 
 var handlerWhite = StripeCheckout.configure({
-  key: 'pk_test_PekczFIKSL8Goxek1OJAePnS',
+  key: 'pk_test_obzu76S8L0GFvqkXbKn204a2',
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
