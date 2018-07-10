@@ -16,11 +16,16 @@ var _mailgunJs = require('mailgun-js');
 
 var _mailgunJs2 = _interopRequireDefault(_mailgunJs);
 
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_dotenv2.default.config();
 
 var router = (0, _express.Router)();
 var stripe = (0, _stripe2.default)(process.env.STRIPE_SK);
-// define secret key in ENV_VAR
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', function (req, res) {

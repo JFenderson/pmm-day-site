@@ -82,11 +82,14 @@ $('#memberSubmit').click((e) => {
 
 //START STRIPE PAYMENT
 
-const stripe = Stripe('pk_test_obzu76S8L0GFvqkXbKn204a2');
+const stripePK = 'pk_test_obzu76S8L0GFvqkXbKn204a2';
+const stripe = Stripe(stripePK);
 const elements = stripe.elements();
 
+
+
 var handlerGold = StripeCheckout.configure({
-  key: 'pk_test_obzu76S8L0GFvqkXbKn204a2',
+  key: stripePK,
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -96,7 +99,11 @@ var handlerGold = StripeCheckout.configure({
     // Get the token ID to your server-side code for use.
     fetch('http://localhost:3000/api/charge/gold', {
       method: "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer' +  stripePK
+      },
       body: JSON.stringify(token)
     })
       .then(output => {
@@ -108,7 +115,7 @@ var handlerGold = StripeCheckout.configure({
 });
 
 var handlerPurple = StripeCheckout.configure({
-  key: 'pk_test_obzu76S8L0GFvqkXbKn204a2',
+  key: stripePK,
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -118,7 +125,11 @@ var handlerPurple = StripeCheckout.configure({
     // Get the token ID to your server-side code for use.
     fetch('http://localhost:3000/api/charge/purple', {
       method: "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer' +  stripePK
+     },
       body: JSON.stringify(token)
     })
       .then(output => {
@@ -130,7 +141,7 @@ var handlerPurple = StripeCheckout.configure({
 });
 
 var handlerWhite = StripeCheckout.configure({
-  key: 'pk_test_obzu76S8L0GFvqkXbKn204a2',
+  key: stripePK,
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
@@ -140,7 +151,11 @@ var handlerWhite = StripeCheckout.configure({
     // Get the token ID to your server-side code for use.
     fetch('http://localhost:3000/api/charge/white', {
       method: "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer' +  stripePK
+     },
       body: JSON.stringify(token)
     })
       .then(output => {

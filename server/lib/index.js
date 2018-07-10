@@ -30,8 +30,7 @@ var _db2 = _interopRequireDefault(_db);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-require('dotenv').config({ silent: true });
-
+require('dotenv').config();
 
 _awsSdk2.default.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 _awsSdk2.default.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
@@ -66,6 +65,8 @@ app.get('/images', function (req, res) {
         console.log(err);
     });
 });
+
+console.log(process.env.STRIPE_SK);
 
 app.listen(process.env.PORT || 3000, function () {
     (0, _db2.default)();

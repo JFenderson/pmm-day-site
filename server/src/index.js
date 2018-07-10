@@ -1,4 +1,6 @@
-require('dotenv').config({silent: true});
+'use strict';
+require('dotenv').config()
+
 import express from 'express';
 import { join } from 'path';
 import bodyParser from 'body-parser';
@@ -46,6 +48,7 @@ app.get('/images', (req, res)=> {
     })
 })
 
+console.log(process.env.STRIPE_SK)
 
 app.listen(process.env.PORT || 3000, () => {
     configure();

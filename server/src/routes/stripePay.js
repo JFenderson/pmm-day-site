@@ -2,11 +2,11 @@ import { Router } from 'express';
 import { charge } from '../utils/stripeCharge'
 import stripeLoader from 'stripe';
 import mailgun from 'mailgun-js';
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 let router = Router();
 const stripe = stripeLoader(process.env.STRIPE_SK); 
-// define secret key in ENV_VAR
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', (req, res) => {
