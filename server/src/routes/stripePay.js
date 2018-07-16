@@ -10,16 +10,12 @@ const stripe = stripeLoader(process.env.STRIPE_SK);
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', (req, res) => {
-    console.log('this is the req from stripePay', req.body);
-    console.log('stripe token', req.body.id)
 
     let token = req.body.id;
     let email = req.body.email;
-    let card = req.body.card.id;
     
     stripe.customers.create({
       email: email,
-    //   source: card,
     }).then(customer => {
         return stripe.customers.createSource(customer.id, {
             source: 'tok_visa'
@@ -35,9 +31,16 @@ router.post('/gold', (req, res) => {
     }).then((charge) => {
         res.send(charge)
     })
-    .catch((err) => {
-        console.log("Error:", err);
-        res.status(500).send({error: "Purchase Failed"});
+    .catch(function onError(error) {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.');
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.');
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.');
+        } else if(error.status === 500){
+            console.log('Purchase Failed')
+        }
       });
 
     //   //SENDING MAILGUN REGISTRATION FOR EMAIL UPDATES
@@ -60,8 +63,6 @@ router.post('/gold', (req, res) => {
 
 // PAYMENT FOR PURPLE PACKAGE($10.00)
 router.post('/purple', (req, res) => {
-    console.log('this is the req from stripePay', req.body);
-    console.log('stripe token', req.body.id)
 
     let token = req.body.id;
     let email = req.body.email;
@@ -85,24 +86,27 @@ router.post('/purple', (req, res) => {
     }).then((charge) => {
         res.send(charge)
     })
-    .catch((err) => {
-        console.log("Error:", err);
-        res.status(500).send({error: "Purchase Failed"});
+    .catch(function onError(error) {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.');
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.');
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.');
+        } else if(error.status === 500){
+            console.log('Purchase Failed')
+        }
       });
 });
 
 //PAYMENT FOR WHITE PACKAGE($7.00)
 router.post('/white', (req, res) => {
-    console.log('this is the req from stripePay', req.body);
-    console.log('stripe token', req.body.id)
 
     let token = req.body.id;
     let email = req.body.email;
-    let card = req.body.card.id;
     
     stripe.customers.create({
       email: email,
-    //   source: card,
     }).then(customer => {
         return stripe.customers.createSource(customer.id, {
             source: 'tok_visa'
@@ -118,9 +122,16 @@ router.post('/white', (req, res) => {
     }).then((charge) => {
         res.send(charge)
     })
-    .catch((err) => {
-        console.log("Error:", err);
-        res.status(500).send({error: "Purchase Failed"});
+    .catch(function onError(error) {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.');
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.');
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.');
+        } else if(error.status === 500){
+            console.log('Purchase Failed')
+        }
       });
 });
 export default router;

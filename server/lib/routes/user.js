@@ -23,7 +23,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _dotenv2.default.config();
 
 var router = (0, _express.Router)();
-var user = new _table2.default('person');
 var members = new _table2.default('members');
 
 router.get('/', function (req, res) {
@@ -41,16 +40,8 @@ router.post('/', function (req, res) {
   var name = _humanparser2.default.parseName(req.body.name);
   var location = _zipcodes2.default.lookup(req.body.location);
 
-  console.log('this is the name from humanparser', name, email, phoneNumber, 'this is the location details', location, crabYear);
-
   members.insert({
-    name: name, email: email, phoneNumber: phoneNumber, location: location, crabYear: crabYear
-  }).then(function (id) {
-    console.log(id);
-  });
-
-  user.insert({
-    name: name, email: email, phoneNumber: phoneNumber, location: location, crabYear: crabYear
+    firstName: name.firstName, lastName: name.lastName, email: email, phoneNumber: phoneNumber, city: location.city, state: location.state, crabYear: crabYear
   }).then(function (id) {
     console.log(id);
   });
