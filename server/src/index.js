@@ -48,7 +48,6 @@ app.get('/images', (req, res)=> {
     })
 })
 
-console.log(process.env.STRIPE_SK)
 
 app.listen(process.env.PORT || 3000, () => {
     configure();

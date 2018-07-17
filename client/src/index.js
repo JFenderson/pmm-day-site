@@ -61,6 +61,8 @@ $('#memberSubmit').click((e) => {
   let number = $('#memberNumber').val();
   let location = $('#memberLocation').val();
   let crabYear = $('#memberCrabYear').val();
+
+
   $.ajax({
     url: 'http://localhost:3000/api/signup',
     method: 'POST',
