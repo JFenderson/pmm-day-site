@@ -1,14 +1,20 @@
 import AWS from 'aws-sdk';
-import express from 'express';
-import path from 'path';
-import { basename } from 'path';
+import { Router } from 'express';
 import multer from 'multer';
 import Table from '../utils/table';
 import { row, rows, empty } from '../config/db';
 import multerS3 from 'multer-s3';
+import dotenv from 'dotenv';
+dotenv.config();
 
+const router = Router();
 
 //information from .env_var(accessKey,secretKey,region,bucketname)
+AWS.config = new AWS.Config({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION
+});
 AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 AWS.config.region = process.env.AWS_REGION;
@@ -17,11 +23,7 @@ const bucketName = process.env.AWS_S3_BUCKET;
 
 const s3 = new AWS.S3();
 
-const photos = new Table('imageurl')
-
-const router = express.Router();
-
-
+const photos = new Table('photos')
 
 const upload = multer({
     storage: multerS3({
@@ -63,19 +65,20 @@ router.get('/:id', (req,res)=>{
 
 
 
-router.post('/', upload.single('imageFile'),(req,res,next)=>{
+router.post('/', upload.single('imageFile'),(req,res)=>{
+    console.log('this is the file', req.file);
     photos.insert({
         imageName: req.file.originalname,
-        url: req.file.location,
-        familyid: req.query.familyid
+        url: req.file.location
     })
     .then(() => {
         res.json({
             code: 201,
             data: {
+                imageName: req.file.originalname,
                 url: req.file.location
             }
-        });
+        })
     })
     .catch((err) => {
         console.log(err)

@@ -31,8 +31,7 @@ function executeQuery(sql, args = []) {
 
 function callProcedure(procedureName, args = []) {
     let placeholders = generatePlaceholders(args);
-    let callString = `CALL ${procedureName}(${placeholders});`; // CALL GetChirps();, or CALL InsertChirp(?,?,?);
-    return executeQuery(callString, args);
+    let callString = `CALL ${procedureName}(${placeholders});`; 
 }
 
 function rows(procedureName, args = []) {
