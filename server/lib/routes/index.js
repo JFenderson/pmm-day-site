@@ -18,6 +18,10 @@ var _stripePay = require('./stripePay');
 
 var _stripePay2 = _interopRequireDefault(_stripePay);
 
+var _awsphotos = require('./awsphotos');
+
+var _awsphotos2 = _interopRequireDefault(_awsphotos);
+
 var _dotenv = require('dotenv');
 
 var _dotenv2 = _interopRequireDefault(_dotenv);
@@ -31,5 +35,6 @@ var router = (0, _express.Router)();
 router.use('/charge', _stripePay2.default);
 router.use('/contact', _gmail2.default);
 router.use('/signup', _user2.default);
+router.use('/photos', _awsphotos2.default);
 
 exports.default = router;

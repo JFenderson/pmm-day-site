@@ -49,8 +49,7 @@ function callProcedure(procedureName) {
     var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
     var placeholders = generatePlaceholders(args);
-    var callString = 'CALL ' + procedureName + '(' + placeholders + ');'; // CALL GetChirps();, or CALL InsertChirp(?,?,?);
-    return executeQuery(callString, args);
+    var callString = 'CALL ' + procedureName + '(' + placeholders + ');';
 }
 
 function rows(procedureName) {
