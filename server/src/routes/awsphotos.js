@@ -10,18 +10,18 @@ dotenv.config();
 const router = Router();
 
 //information from .env_var(accessKey,secretKey,region,bucketname)
-AWS.config = new AWS.Config({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
     region: process.env.AWS_REGION
-});
-AWS.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
-AWS.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
-AWS.config.region = process.env.AWS_REGION;
-const bucketName = process.env.AWS_S3_BUCKET;
+  });
+const s3 = new AWS.S3({apiVersion: '2006-03-01'});
+const bucketName = 'pmmpicnic96';
 
+var myBucket = bucketName;
 
-const s3 = new AWS.S3();
+var myKey = 'myBucketKey';
+
 
 const photos = new Table('photos')
 
@@ -39,7 +39,34 @@ const upload = multer({
     })
  });
 
+//  s3.createBucket({Bucket: myBucket}, function(err, data) {
 
+//     if (err) {
+    
+//        console.log(err);
+    
+//        } else {
+    
+//          let params = {Bucket: myBucket, Key: myKey, Body: 'Hello!'};
+    
+//          s3.putObject(params, function(err, data) {
+    
+//              if (err) {
+    
+//                  console.log(err)
+    
+//              } else {
+    
+//                  console.log("Successfully uploaded data to myBucket/myKey");
+    
+//              }
+    
+//           });
+    
+//        }
+    
+//     });
+    
 
 
 router.get('/', (req,res)=>{
@@ -50,6 +77,13 @@ router.get('/', (req,res)=>{
         console.log(photos);
         res.json(photos)
     })
+    s3.listBuckets(function(err, data) {
+        if (err) {
+           console.log("Error", err);
+        } else {
+           console.log("Bucket List", data.Buckets);
+        }
+     });
 })
 
 router.get('/:id', (req,res)=>{
@@ -63,6 +97,18 @@ router.get('/:id', (req,res)=>{
 
 })
 
+// router.post('/', s3.upload('imageFile',function (err, data) {
+//     //handle error
+//     if (err) {
+//       console.log("Error", err);
+//     }
+  
+//     //success
+//     if (data) {
+//       console.log("Uploaded in:", data.Location);
+//     }
+//   })
+// );
 
 
 router.post('/', upload.single('imageFile'),(req,res)=>{
