@@ -11,8 +11,8 @@ const router = Router();
 
 //information from .env_var(accessKey,secretKey,region,bucketname)
 AWS.config.update({
-    accessKeyId: "AKIAIKJBMWD4FT5UQOKQ",
-    secretAccessKey: "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",
+    accessKeyId: ,
+    secretAccessKey: ,
     region: "us-east-1"
   });
 const s3 = new AWS.S3({apiVersion: '2006-03-01'});
