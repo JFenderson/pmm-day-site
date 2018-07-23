@@ -11,25 +11,23 @@ const router = Router();
 
 //information from .env_var(accessKey,secretKey,region,bucketname)
 AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.AWS_REGION
+    accessKeyId: "AKIAIKJBMWD4FT5UQOKQ",
+    secretAccessKey: "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",
+    region: "us-east-1"
   });
 const s3 = new AWS.S3({apiVersion: '2006-03-01'});
 const bucketName = 'pmmpicnic96';
-
-var myBucket = bucketName;
-
-var myKey = 'myBucketKey';
 
 
 const photos = new Table('photos')
 
 const upload = multer({
+    contentType: 'image/jpeg',
     storage: multerS3({
         s3: s3,
         acl: 'public-read',
         bucket: bucketName,
+        contentType: multerS3.AUTO_CONTENT_TYPE,
         metadata: function (req, file, cb) {
         cb(null, {fieldName: file.originalname})
     },
@@ -39,33 +37,6 @@ const upload = multer({
     })
  });
 
-//  s3.createBucket({Bucket: myBucket}, function(err, data) {
-
-//     if (err) {
-    
-//        console.log(err);
-    
-//        } else {
-    
-//          let params = {Bucket: myBucket, Key: myKey, Body: 'Hello!'};
-    
-//          s3.putObject(params, function(err, data) {
-    
-//              if (err) {
-    
-//                  console.log(err)
-    
-//              } else {
-    
-//                  console.log("Successfully uploaded data to myBucket/myKey");
-    
-//              }
-    
-//           });
-    
-//        }
-    
-//     });
     
 
 
@@ -77,6 +48,7 @@ router.get('/', (req,res)=>{
         console.log(photos);
         res.json(photos)
     })
+
     s3.listBuckets(function(err, data) {
         if (err) {
            console.log("Error", err);
@@ -84,11 +56,18 @@ router.get('/', (req,res)=>{
            console.log("Bucket List", data.Buckets);
         }
      });
+    s3.listObjects({Bucket: 'pmmpicnic96'},(err, data)=> {
+        if (err) {
+            console.log("Error", err);
+         } else {
+            console.log("Bucket Object List", data);
+         }
+    })
 })
 
 router.get('/:id', (req,res)=>{
     let id = req.params.id
-    photos.getPhotosByFamilyId(id)
+    photos.getOne(id)
     .then(photos => {
         console.log('these are get:id images');
         console.log(photos);
@@ -97,22 +76,9 @@ router.get('/:id', (req,res)=>{
 
 })
 
-// router.post('/', s3.upload('imageFile',function (err, data) {
-//     //handle error
-//     if (err) {
-//       console.log("Error", err);
-//     }
-  
-//     //success
-//     if (data) {
-//       console.log("Uploaded in:", data.Location);
-//     }
-//   })
-// );
-
 
 router.post('/', upload.single('imageFile'),(req,res)=>{
-    console.log('this is the file', req.file);
+console.log('this is the file', req.file);
     photos.insert({
         imageName: req.file.originalname,
         url: req.file.location

@@ -36,24 +36,22 @@ var router = (0, _express.Router)();
 
 //information from .env_var(accessKey,secretKey,region,bucketname)
 _awsSdk2.default.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.AWS_REGION
+    accessKeyId: "AKIAIKJBMWD4FT5UQOKQ",
+    secretAccessKey: "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",
+    region: "us-east-1"
 });
 var s3 = new _awsSdk2.default.S3({ apiVersion: '2006-03-01' });
 var bucketName = 'pmmpicnic96';
 
-var myBucket = bucketName;
-
-var myKey = 'myBucketKey';
-
 var photos = new _table2.default('photos');
 
 var upload = (0, _multer2.default)({
+    contentType: 'image/jpeg',
     storage: (0, _multerS2.default)({
         s3: s3,
         acl: 'public-read',
         bucket: bucketName,
+        contentType: _multerS2.default.AUTO_CONTENT_TYPE,
         metadata: function metadata(req, file, cb) {
             cb(null, { fieldName: file.originalname });
         },
@@ -63,35 +61,6 @@ var upload = (0, _multer2.default)({
     })
 });
 
-//  s3.createBucket({Bucket: myBucket}, function(err, data) {
-
-//     if (err) {
-
-//        console.log(err);
-
-//        } else {
-
-//          let params = {Bucket: myBucket, Key: myKey, Body: 'Hello!'};
-
-//          s3.putObject(params, function(err, data) {
-
-//              if (err) {
-
-//                  console.log(err)
-
-//              } else {
-
-//                  console.log("Successfully uploaded data to myBucket/myKey");
-
-//              }
-
-//           });
-
-//        }
-
-//     });
-
-
 router.get('/', function (req, res) {
     console.log('i am making the request to get photos');
     photos.getAll().then(function (photos) {
@@ -99,6 +68,7 @@ router.get('/', function (req, res) {
         console.log(photos);
         res.json(photos);
     });
+
     s3.listBuckets(function (err, data) {
         if (err) {
             console.log("Error", err);
@@ -106,30 +76,23 @@ router.get('/', function (req, res) {
             console.log("Bucket List", data.Buckets);
         }
     });
+    s3.listObjects({ Bucket: 'pmmpicnic96' }, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+        } else {
+            console.log("Bucket Object List", data);
+        }
+    });
 });
 
 router.get('/:id', function (req, res) {
     var id = req.params.id;
-    photos.getPhotosByFamilyId(id).then(function (photos) {
+    photos.getOne(id).then(function (photos) {
         console.log('these are get:id images');
         console.log(photos);
         res.json(photos);
     });
 });
-
-// router.post('/', s3.upload('imageFile',function (err, data) {
-//     //handle error
-//     if (err) {
-//       console.log("Error", err);
-//     }
-
-//     //success
-//     if (data) {
-//       console.log("Uploaded in:", data.Location);
-//     }
-//   })
-// );
-
 
 router.post('/', upload.single('imageFile'), function (req, res) {
     console.log('this is the file', req.file);
