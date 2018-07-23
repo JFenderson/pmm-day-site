@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  //PULL IMAGES FROM DATABASE
+ fetch('https://localhost:3000/api/photos')
+ .then((res)=> console.log(res.json()))
+//END IMAGES FROM DATABASE PULL
   // START NAVBAR
   // grab the initial top offset of the navigation 
   var stickyNavTop = $('.nav').offset().top;
@@ -22,7 +26,6 @@ $(document).ready(function(){
     stickyNav();
   });
   //END NAVBAR
-
   //AUTOCOMPLETE ZIP CODE INPUT USING ZIPCODEAPI.COM
   
 

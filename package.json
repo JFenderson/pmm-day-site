@@ -49,6 +49,7 @@
     "nodemailer": "^4.6.4",
     "rimraf": "^2.6.2",
     "stripe": "^6.0.0",
+    "uuid": "^3.3.2",
     "webpack": "^4.8.2",
     "zipcodes": "^6.0.1"
   },
