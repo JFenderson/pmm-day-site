@@ -17,31 +17,17 @@ nodemailer or mailgun?
 aws s3 and/or ec2
 google maps
 heroku
-
+***update sendGrid
 
 info---
-https://desolate-beyond-31665.herokuapp.com/ | https://git.heroku.com/desolate-beyond-31665.git
 
 
 mysql_database---
-create table person(
-id int not null auto_increment primary key,
-firstName varchar(30),
-lastName varchar(30), 
-email varchar(50), 
-phoneNumber int, 
-_created datetime default current_timestamp
-);
+using cleardb from heroku
 
-create table photos(
-id int not null auto_increment primary key,
-url varchar(75) not null,
-_created datetime default current_timestamp
-);
+need a way to send emails from contact form and store the contact information in a database(mysql or aws).. using mysql
 
-need a way to send emails from contact form and store the contact information in a database(mysql or aws)..
-
-create some code that generates a confirmation code when someone pays for a ticket
+create some code that generates a confirmation code when someone pays for a ticket..
 
 also need a way to connect paypal or cashapp to the website to collect payment..possibly can use stripe but have to see how mcuh they charge.
 
@@ -53,3 +39,6 @@ we have a google voice phone number for text messages..trying to find a way to a
 
 
 igor-itam-pbpm-roxm-cbww
+
+
+need to setup email newletters and sign up for band members...still need to work on the venue and hotel for the event

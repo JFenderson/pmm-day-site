@@ -28,6 +28,10 @@ var _db = require('./config/db');
 
 var _db2 = _interopRequireDefault(_db);
 
+var _mail = require('@sendgrid/mail');
+
+var _mail2 = _interopRequireDefault(_mail);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
@@ -49,6 +53,18 @@ app.get('/', function (req, res) {
         stripePublishableKey: process.env.STRIPE_PK
     });
 });
+
+// using SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+_mail2.default.setApiKey(process.env.SENDGRID_API_KEY);
+var msg = {
+    to: 'fenderson.joseph@gmail.com',
+    from: 'test@example.com',
+    subject: 'Sending with SendGrid is Fun',
+    text: 'and easy to do anywhere, even with Node.js',
+    html: '<strong>and easy to do anywhere, even with Node.js</strong>'
+};
+_mail2.default.send(msg);
 
 app.listen(process.env.PORT || 3000, function () {
     (0, _db2.default)();

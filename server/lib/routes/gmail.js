@@ -12,6 +12,10 @@ var _express = require('express');
 
 var _nodemailer3 = require('../config/nodemailer');
 
+var _sibApiV3Sdk = require('sib-api-v3-sdk');
+
+var _sibApiV3Sdk2 = _interopRequireDefault(_sibApiV3Sdk);
+
 var _dotenv = require('dotenv');
 
 var _dotenv2 = _interopRequireDefault(_dotenv);
@@ -34,7 +38,7 @@ router.post('/', function (req, res) {
     var message = req.body.message;
     var mailOption = {
         from: name + ' <' + email + '>', // who the email is coming from..in the contact form
-        to: 'purplemarchingmachinepicnic96@gmail.com', //who the email is going to
+        to: 'joseph.fenderson@gmail.com', //who the email is going to
         subject: 'New Message from ' + email + ' from the PMM Weekend Site', //subject line
         text: message,
         html: '<p>' + message + ', Sender\'s Number is ' + number + '</p>'
@@ -46,6 +50,26 @@ router.post('/', function (req, res) {
         } else {
             console.log('email sent!');
             res.sendStatus(201);
+        }
+        _nodemailer3.transporter.close();
+    });
+
+    // sendInBlueTransporter.sendMail(mailOption, (error, res) => {
+    //     if (error) {
+    //         console.log(error);
+    //     } else {
+    //         console.log('email sent!')
+    //         res.sendStatus(201);
+    //     }
+    //     transporter.close();
+    // });
+
+    _nodemailer3.mailgunTransporter.sendMail(mailOption, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('email sent!');
+            console.log(info);
         }
         _nodemailer3.transporter.close();
     });
