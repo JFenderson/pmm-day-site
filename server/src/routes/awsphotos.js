@@ -11,12 +11,12 @@ const router = Router();
 
 //information from .env_var(accessKey,secretKey,region,bucketname)
 AWS.config.update({
-    accessKeyId: "AKIAIKJBMWD4FT5UQOKQ",
-    secretAccessKey: "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" ,
-    region: "us-east-1"
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ,
+    region: process.env.AWS_REGION
   });
 const s3 = new AWS.S3({apiVersion: '2006-03-01'});
-const bucketName = 'pmmpicnic96';
+const bucketName = process.env.AWS_S3_BUCKET;
 
 
 const photos = new Table('photos')

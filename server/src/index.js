@@ -24,7 +24,6 @@ app.use(express.static(CLIENT_PATH));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 app.use('/api', routes);
 
 app.get('/', (req, res) => {
@@ -32,7 +31,6 @@ app.get('/', (req, res) => {
         stripePublishableKey: process.env.STRIPE_PK
     }); 
   });
-
 
 
 // using SendGrid's v3 Node.js Library

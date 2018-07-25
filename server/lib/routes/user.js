@@ -18,6 +18,8 @@ var _dotenv = require('dotenv');
 
 var _dotenv2 = _interopRequireDefault(_dotenv);
 
+var _nodemailer = require('../config/nodemailer');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _dotenv2.default.config();
@@ -43,6 +45,14 @@ router.post('/', function (req, res) {
   var location = _zipcodes2.default.lookup(req.body.location);
   console.log(location);
   console.log(name);
+
+  var mailOption = {
+    from: 'fenderson.joseph@gmail.com', // who the email is coming from..in the contact form
+    to: name + ' <' + email + '>', //who the email is going to
+    subject: 'Thank you for Signing Up to the PMM Weekend Site', //subject line
+    html: '<div>\n    <h2>Hello ' + name.firstName + ', have been added to our PMM Database which will be used to contact you for future events currently in the works.</h2>\n    <p>If you do not wish to be contacted please repond to this email with a simple NO and you will be removed from the listing.</p>\n    </div>'
+  };
+
   members.insert({
     firstName: name.firstName,
     lastName: name.lastName,
@@ -55,6 +65,27 @@ router.post('/', function (req, res) {
     res.json(id);
   }).catch(function (err) {
     console.log(err);
+  }).then(function (res) {
+    console.log(res);
+    _nodemailer.transporter.sendMail(mailOption, function (error, res) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('email sent!');
+        res.sendStatus(201);
+      }
+      _nodemailer.transporter.close();
+    });
+
+    _nodemailer.mailgunTransporter.sendMail(mailOption, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('email sent!');
+        console.log(info);
+      }
+      _nodemailer.transporter.close();
+    });
   });
 });
 

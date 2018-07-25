@@ -36,12 +36,12 @@ var router = (0, _express.Router)();
 
 //information from .env_var(accessKey,secretKey,region,bucketname)
 _awsSdk2.default.config.update({
-    accessKeyId: "AKIAIKJBMWD4FT5UQOKQ",
-    secretAccessKey: "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",
-    region: "us-east-1"
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION
 });
 var s3 = new _awsSdk2.default.S3({ apiVersion: '2006-03-01' });
-var bucketName = 'pmmpicnic96';
+var bucketName = process.env.AWS_S3_BUCKET;
 
 var photos = new _table2.default('photos');
 
