@@ -1,7 +1,7 @@
 $(document).ready(function(){
   //PULL IMAGES FROM DATABASE
- fetch('https://localhost:3000/api/photos')
- .then((res)=> console.log(res.json()))
+//  fetch('https://localhost:3000/api/photos')
+//  .then((res)=> console.log(res.json()))
 //END IMAGES FROM DATABASE PULL
   // START NAVBAR
   // grab the initial top offset of the navigation 
@@ -65,23 +65,42 @@ $('#memberSubmit').click((e) => {
   let location = $('#memberLocation').val();
   let crabYear = $('#memberCrabYear').val();
 
-
-  $.ajax({
-    url: 'http://localhost:3000/api/signup',
-    method: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify({
+  fetch('http://localhost:3000/api/signup', {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify({
       name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
     }),
-    success: setTimeout(() => {
-      console.log('success')
-       window.location.reload(); 
-      }, 10),
-    error: function (err) {
-      console.log('error handling message', err);
-    },
-    dataType: 'json'
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => {
+    console.log('Success:', response)
+      setTimeout(() => {
+        window.location.reload(); 
+        }, 10)
   });
+
+  // $.ajax({
+  //   url: 'http://localhost:3000/api/signup',
+  //   method: 'POST',
+  //   contentType: 'application/json',
+  //   data: JSON.stringify({
+  //     name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
+  //   }),
+  //   success: (data) => {
+  //     console.log(data);
+  //     setTimeout(() => {
+  //       //  window.location.reload(); 
+  //       }, 10)
+  //   },
+  //   error: function (err) {
+  //     console.log('error handling message', err);
+  //   },
+  //   dataType: 'json'
+  // });
 });
 //END MEMBER SIGNUP
 

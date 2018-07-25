@@ -26,9 +26,11 @@ var router = (0, _express.Router)();
 var members = new _table2.default('members');
 
 router.get('/', function (req, res) {
-  members.getAll().then(function (res) {
-    return console.log(res.json());
-  }).then(res.sendStatus(200));
+  members.getAll().then(function (info) {
+    return res.json(info);
+  }).catch(function (err) {
+    console.log(err);
+  });
 });
 
 router.post('/', function (req, res) {
@@ -39,11 +41,20 @@ router.post('/', function (req, res) {
 
   var name = _humanparser2.default.parseName(req.body.name);
   var location = _zipcodes2.default.lookup(req.body.location);
-
+  console.log(location);
+  console.log(name);
   members.insert({
-    firstName: name.firstName, lastName: name.lastName, email: email, phoneNumber: phoneNumber, city: location.city, state: location.state, crabYear: crabYear
+    firstName: name.firstName,
+    lastName: name.lastName,
+    email: email,
+    phoneNumber: phoneNumber,
+    city: location.city,
+    state: location.state,
+    crabYear: crabYear
   }).then(function (id) {
-    console.log(id);
+    res.json(id);
+  }).catch(function (err) {
+    console.log(err);
   });
 });
 
