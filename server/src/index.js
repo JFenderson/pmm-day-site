@@ -33,17 +33,44 @@ app.get('/', (req, res) => {
   });
 
 
-// using SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// const msg = {
-//   to: 'fenderson.joseph@gmail.com',
-//   from: 'test@example.com',
-//   subject: 'Sending with SendGrid is Fun',
-//   text: 'and easy to do anywhere, even with Node.js',
-//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-// };
-// sgMail.send(msg);
+//   # ------------------
+//   # Create a campaign\
+//   # ------------------
+  
+//   # Include the SendinBlue library\
+  var SibApiV3Sdk = require('sib-api-v3-sdk');
+  var defaultClient = SibApiV3Sdk.ApiClient.instance;
+  
+//   # Instantiate the client\
+  var apiKey = defaultClient.authentications['api-key'];
+  apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
+  
+  var apiInstance = new SibApiV3Sdk.EmailCampaignsApi();
+  var emailCampaigns = new SibApiV3Sdk.CreateEmailCampaign();
+  
+//   # Define the campaign settings\
+  emailCampaigns = {
+      name: 'Campaign sent via the API',
+      subject: 'My subject',
+      sender: {name: 'From name', email: 'fenderson.joseph@gmail.com'},
+      type: 'classic',
+  
+    //   # Content that will be sent\
+      htmlContent: 'Congratulations! You successfully sent this example campaign via the SendinBlue API.',
+  
+    //   # Select the recipients\
+      recipients: {listIds: [5]},
+  
+    //   # Schedule the sending in one hour\
+      scheduledAt: '2018-07-28 00:00:01'
+  }
+  
+//   # Make the call to the client\
+  apiInstance.createEmailCampaign(emailCampaigns).then(function(data) {
+    console.log('API called successfully. Returned data: ' + data);
+  }, function(error) {
+    console.error(error);
+  });
 
 
 app.listen(process.env.PORT || 3000, () => {
