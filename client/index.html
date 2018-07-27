@@ -9,7 +9,7 @@
   content="default-src *; 
           frame-src 'self' https://*.stripe.com https://checkout.stripe.com; 
           font-src 'self' https://use.fontawesome.com https://maxcdn.bootstrapcdn.com https://fonts.googleapis.com https://fonts.gstatic.com data: blob: filesystem:;
-          script-src 'unsafe-eval' 'unsafe-inline' http://localhost:* https://*.stripe.com https://checkout.stripe.com https://www.gstatic.com https://code.jquery.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com https://cdnjs.cloudflare.com data: filesystem: blob:; 
+          script-src data: 'unsafe-eval' 'unsafe-inline' http://localhost:* https://*.herokuapp.com/ https://*.stripe.com https://checkout.stripe.com https://www.gstatic.com https://code.jquery.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com https://cdnjs.cloudflare.com filesystem: blob:; 
           object-src 'self' blob: ; 
           connect-src https://api.stripe.com https://checkout.stripe.com http://localhost:*;
           media-src 'self' blob: ; 

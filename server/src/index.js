@@ -32,6 +32,7 @@ app.get('/', (req, res) => {
     }); 
   });
 
+  console.log(process.env)
 
 // using SendGrid's v3 Node.js Library
 // https://github.com/sendgrid/sendgrid-nodejs
