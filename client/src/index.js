@@ -1,8 +1,5 @@
 $(document).ready(function(){
-  //PULL IMAGES FROM DATABASE
-//  fetch('https://localhost:3000/api/photos')
-//  .then((res)=> console.log(res.json()))
-//END IMAGES FROM DATABASE PULL
+
   // START NAVBAR
   // grab the initial top offset of the navigation 
   var stickyNavTop = $('.nav').offset().top;
@@ -31,27 +28,61 @@ $(document).ready(function(){
 
 
 //NODEMAILER FOR CONTACT FORM
+// Used to format phone number
+function phoneFormatter() {
+  $('#number').on('input', function() {
+    var number = $(this).val().replace(/[^\d]/g, '')
+    if (number.length == 7) {
+      number = number.replace(/(\d{3})(\d{4})/, "$1-$2");
+    } else if (number.length == 10) {
+      number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+    }
+    $(this).val(number)
+  });
+};
+
+$(phoneFormatter);
 
 $('#contactSubmit').click(() => {
   let name = $('#name').val();
   let email = $('#email').val();
   let number = $('#number').val();
   let message = $('#message').val();
-  $.ajax({
-    method: 'POST',
-    url: 'http://localhost:3000/api/contact',
-    contentType: 'application/json',
-    data: JSON.stringify({
+
+  fetch('http://localhost:3000/api/contact', {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify({
       name: name, email: email, number: number, message: message
     }),
-    // data: $('#contactForm').serialize(),
-    success: function (data) {
-      console.log(data);
-    },
-    error: function (err) {
-      console.log('error handling message', err);
+    headers:{
+      'Content-Type': 'application/json'
     }
+  })
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => {
+    console.log('Success:', response)
+      setTimeout(() => {
+        window.location.reload(); 
+        }, 10)
   });
+
+
+  // $.ajax({
+  //   method: 'POST',
+  //   url: 'http://localhost:3000/api/contact',
+  //   contentType: 'application/json',
+  //   data: JSON.stringify({
+  //     name: name, email: email, number: number, message: message
+  //   }),
+  //   // data: $('#contactForm').serialize(),
+  //   success: function (data) {
+  //     console.log(data);
+  //   },
+  //   error: function (err) {
+  //     console.log('error handling message', err);
+  //   }
+  // });
 });
 //END NODEMAILER
 
@@ -119,6 +150,8 @@ var handlerGold = StripeCheckout.configure({
   zipCode: true,
   billingAddress: true,
   token: function (token, args) {
+    console.log('this is tokens',token)
+    console.log('this is args',args)
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
     fetch('http://localhost:3000/api/charge/gold', {
@@ -131,6 +164,7 @@ var handlerGold = StripeCheckout.configure({
       body: JSON.stringify(token)
     })
       .then(output => {
+        console.log(output)
         if (output.status === "succeeded")
           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
       })
