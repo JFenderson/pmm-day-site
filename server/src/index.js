@@ -32,7 +32,6 @@ app.get('/', (req, res) => {
     }); 
   });
 
-  console.log(process.env)
 
 //   # ------------------
 //   # Create a campaign\
@@ -60,7 +59,7 @@ app.get('/', (req, res) => {
       htmlContent: 'Congratulations! You successfully sent this example campaign via the SendinBlue API.',
   
     //   # Select the recipients\
-      recipients: {listIds: [5]},
+      recipients: {listIds: [5]}, 
   
     //   # Schedule the sending in one hour\
       scheduledAt: '2018-07-28 00:00:01'
