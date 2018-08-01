@@ -138,8 +138,6 @@ $('#memberSubmit').click((e) => {
 //START STRIPE PAYMENT
 
 const stripePK = 'pk_test_obzu76S8L0GFvqkXbKn204a2';
-const stripe = Stripe(stripePK);
-const elements = stripe.elements();
 
 
 
@@ -161,12 +159,23 @@ var handlerGold = StripeCheckout.configure({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer' +  stripePK
       },
-      body: JSON.stringify(token)
+      body: JSON.stringify(token, args)
     })
       .then(output => {
         console.log(output)
         if (output.status === "succeeded")
           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+      })
+      .catch((error) => {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.',error);
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.', error);
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.', error);
+        } else if(error.status === 500){
+            console.log('Purchase Failed', error)
+        }
       })
 
   }
@@ -188,11 +197,22 @@ var handlerPurple = StripeCheckout.configure({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer' +  stripePK
      },
-      body: JSON.stringify(token)
+      body: JSON.stringify(token, args)
     })
       .then(output => {
         if (output.status === "succeeded")
           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+      })
+      .catch((error) => {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.',error);
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.', error);
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.', error);
+        } else if(error.status === 500){
+            console.log('Purchase Failed', error)
+        }
       })
 
   }
@@ -214,15 +234,48 @@ var handlerWhite = StripeCheckout.configure({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer' +  stripePK
      },
-      body: JSON.stringify(token)
+      body: JSON.stringify(token, args)
     })
       .then(output => {
         if (output.status === "succeeded")
           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
       })
+      .catch((error) => {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.',error);
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.', error);
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.', error);
+        } else if(error.status === 500){
+            console.log('Purchase Failed', error)
+        }
+      })
 
   }
 });
+
+// $('#goldButton').on('click', function(e) {
+//   openCheckout("Gold Package", 2000);
+//   e.preventDefault();
+// });
+// $('#purpleButton').on('click', function(e) {
+//   openCheckout("Purple Package", 1000);
+//   e.preventDefault();
+// });
+// $('#whiteButton').on('click', function(e) {
+//   openCheckout("White Package", 700);
+//   e.preventDefault();
+// });
+
+function openCheckout(description, amount)
+{
+  handler.open({
+    name: 'PMM Weekend',
+    description: description,
+    amount: amount
+  });
+}
 
 //GOLD PACKAGE BUTTON
 document.getElementById('goldButton').addEventListener('click', function (e) {
@@ -260,7 +313,13 @@ document.getElementById('whiteButton').addEventListener('click', function (e) {
 
 // Close Checkout on page navigation:
 window.addEventListener('popstate', function () {
-  handler.close();
+  handlerGold.close();
+});
+window.addEventListener('popstate', function () {
+  handlerPurple.close();
+});
+window.addEventListener('popstate', function () {
+  handlerWhite.close();
 });
 
 //END STRIPE

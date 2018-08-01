@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import { charge } from '../utils/stripeCharge'
 import stripeLoader from 'stripe';
-import mailgun from 'mailgun-js';
+import transporter from '../config/nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -10,17 +9,19 @@ const stripe = stripeLoader(process.env.STRIPE_SK);
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', (req, res) => {
-
+    console.log('this is the req.body',req.body)
     let token = req.body.id;
     let email = req.body.email;
     
     stripe.customers.create({
       email: email,
     }).then(customer => {
+        console.log('this is the customer',customer)
         return stripe.customers.createSource(customer.id, {
             source: 'tok_visa'
         }); 
     }).then((source)=> {
+        console.log('this is source', source)
         return stripe.charges.create({
             amount: 2000,
             currency: 'usd',
@@ -29,6 +30,7 @@ router.post('/gold', (req, res) => {
             customer: source.customer
         });
     }).then((charge) => {
+        console.log('this is the charge!!',charge)
         res.send(charge)
     })
     .catch(function onError(error) {
@@ -43,22 +45,25 @@ router.post('/gold', (req, res) => {
         }
       });
 
-    //   //SENDING MAILGUN REGISTRATION FOR EMAIL UPDATES
-    // var api_key = process.env.MAILGUN_SK;
-    // var domain = process.env.MAILGUN_DOMAIN;
-    // ;
-    // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});   
+      //SENDING email
 
-    // var data = {
-    // from: 'Excited User <me@samples.mailgun.org>',
-    // to: `${email}, YOU@YOUR_DOMAIN_NAME'`,
-    // subject: 'Hello',
-    // text: 'Thank you for you Payment..See you at PMM Weekend!'
-    // };
+    var mailOption = {
+    from: 'Excited User <me@samples.mailgun.org>',
+    to: `${email}, YOU@YOUR_DOMAIN_NAME'`,
+    subject: 'Hello',
+    text: 'Thank you for you Payment..See you at PMM Weekend!'
+    };
 
-    // mailgun.messages().send(data, function (error, body) {
-    // console.log(body);
-    // });
+    transporter.sendMail(mailOption,(error, res)=> {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('email sent!')
+            res.sendStatus(201);
+        }
+        transporter.close();
+    });
+
 });
 
 // PAYMENT FOR PURPLE PACKAGE($10.00)
