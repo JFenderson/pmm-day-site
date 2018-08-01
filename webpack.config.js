@@ -7,17 +7,10 @@ module.exports = {
     watch: true,
     mode: 'development',
     entry: ['./client/src/index.js'],
-    output: { 
-        sourceMapFilename: '[file].map',
-        path: CLIENT_DEST, 
-        filename: 'bundle.js',
-        publicPath: '/client/'
+    output: { path: CLIENT_DEST, 
+        filename: 'bundle.js' 
             },
-    devServer: {
-        historyApiFallback: true,
-        publicPath: '/client/'
-    },
-    module: {  
+  module: {  
       rules: [ 
         {
             test: /\.js$/,
