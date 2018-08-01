@@ -215,16 +215,32 @@ var handlerPurple = StripeCheckout.configure({
         }
       })
 
-  }
+  },
+  opened: function() {
+  	console.log("Form opened");
+  },
+closed: function() {
+    console.log("Form closed");
+  } 
 });
 
 var handlerWhite = StripeCheckout.configure({
   key: stripePK,
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  closed: function() {
+    if (!token_triggered) {
+        // close button click behavior goes here
+        console.log("closed")
+    } else {
+        // payment completion behavior goes here
+        console.log("passed")
+    }
+},
   locale: 'auto',
   zipCode: true,
   billingAddress: true,
   token: function (token, args) {
+    token_triggered = true;
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
     fetch('http://localhost:3000/api/charge/white', {
@@ -268,14 +284,22 @@ var handlerWhite = StripeCheckout.configure({
 //   e.preventDefault();
 // });
 
-function openCheckout(description, amount)
-{
-  handler.open({
-    name: 'PMM Weekend',
-    description: description,
-    amount: amount
-  });
-}
+// function openCheckout(description, amount)
+// {
+//   handler.open({
+//     name: 'PMM Weekend',
+//     description: description,
+//     amount: amount,
+//     opened: function () {
+
+//     },
+//     closed: function () {
+//         if (!handler.isTokenGenerate) {
+
+//         }
+//     },
+//   });
+// }
 
 //GOLD PACKAGE BUTTON
 document.getElementById('goldButton').addEventListener('click', function (e) {
@@ -283,7 +307,7 @@ document.getElementById('goldButton').addEventListener('click', function (e) {
   handlerGold.open({
     name: 'PMM Picnic',
     description: 'Gold Package',
-    amount: 2000
+    amount: 2000,
   });
   e.preventDefault();
 });
@@ -294,7 +318,7 @@ document.getElementById('purpleButton').addEventListener('click', function (e) {
   handlerPurple.open({
     name: 'PMM Picnic',
     description: 'Purple Package',
-    amount: 1000
+    amount: 1000,
   });
   e.preventDefault();
 });
@@ -305,7 +329,7 @@ document.getElementById('whiteButton').addEventListener('click', function (e) {
   handlerWhite.open({
     name: 'PMM Picnic',
     description: 'White Package(Student & Staff Only)',
-    amount: 700
+    amount: 700,
   });
   e.preventDefault();
 });

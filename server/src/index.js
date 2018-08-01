@@ -10,20 +10,26 @@ import path from 'path';
 import AWS from 'aws-sdk';
 import configure from './config/db';
 import sgMail from '@sendgrid/mail';
-
+import webpack from 'webpack';
+import config from '../../webpack.config';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 
 const port = 3000;
 
 let app = express();
 
-
+const compiler = webpack(config);
 
 const CLIENT_PATH = join(__dirname, '../../client');
 app.use(cors());
 app.use(express.static(CLIENT_PATH));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// configuration file as a base.
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath
+}));
 app.use('/api', routes);
 
 app.get('/', (req, res) => {
