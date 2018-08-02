@@ -140,19 +140,19 @@ $('#memberSubmit').click((e) => {
 const stripePK = 'pk_test_obzu76S8L0GFvqkXbKn204a2';
 
 
-var handler = StripeCheckout.configure({
+
+var handlerGold = StripeCheckout.configure({
   key: stripePK,
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
   billingAddress: true,
-  token: function (token, args, amount) {
-    console.log('here is teh amount',amount)
+  token: function (token, args) {
     console.log('this is tokens',token)
     console.log('this is args',args)
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch('http://localhost:3000/api/charge', {
+    fetch('http://localhost:3000/api/charge/gold', {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -178,136 +178,148 @@ var handler = StripeCheckout.configure({
         }
       })
 
+  },
+  opened:() => {
+    console.log('opened')
+  } ,
+  closed: function(error) {
+    if(error){
+      console.log(error)
+    } else{
+      console.log('Payment Sent!')
+    }
   }
 });
 
-$('#goldButton').on('click', function(e) {
-  openCheckout("Gold Package", 2000);
-  e.preventDefault();
-});
-$('#purpleButton').on('click', function(e) {
-  openCheckout("Purple Package", 1000);
-  e.preventDefault();
-});
-$('#whiteButton').on('click', function(e) {
-  openCheckout("White Package", 700);
-  e.preventDefault();
-});
-
-function openCheckout(description, amount)
-{
-  handler.open({
-    name: 'PMM Weekend',
-    description: description,
-    amount: amount,
-    opened: function () {
-
-    },
-    closed: function () {
-        if (!handler.isTokenGenerate) {
-
+var handlerPurple = StripeCheckout.configure({
+  key: stripePK,
+  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  locale: 'auto',
+  zipCode: true,
+  billingAddress: true,
+  token: function (token, args) {
+    // You can access the token ID with `token.id`.
+    // Get the token ID to your server-side code for use.
+    fetch('http://localhost:3000/api/charge/purple', {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer' +  stripePK
+     },
+      body: JSON.stringify(token, args)
+    })
+      .then(output => {
+        if (output.status === "succeeded")
+          document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+      })
+      .catch((error) => {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.',error);
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.', error);
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.', error);
+        } else if(error.status === 500){
+            console.log('Purchase Failed', error)
         }
-    },
-  });
-}
+      })
 
-// Close Checkout on page navigation:
-window.addEventListener('popstate', function () {
-  handler.close();
+  },
+  opened:() => {
+    console.log('opened')
+  } ,
+  closed: function(error) {
+    if(error){
+      console.log(error)
+    } else{
+      console.log('Payment Sent!')
+    }
+  }
 });
 
-// var handlerPurple = StripeCheckout.configure({
-//   key: stripePK,
-//   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-//   locale: 'auto',
-//   zipCode: true,
-//   billingAddress: true,
-//   token: function (token, args) {
-//     // You can access the token ID with `token.id`.
-//     // Get the token ID to your server-side code for use.
-//     fetch('http://localhost:3000/api/charge/purple', {
-//       method: "POST",
-//       headers: {
-//         'Accept': 'application/json', 
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer' +  stripePK
-//      },
-//       body: JSON.stringify(token, args)
-//     })
-//       .then(output => {
-//         if (output.status === "succeeded")
-//           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
-//       })
-//       .catch((error) => {
-//         if (error.status === 400) {
-//           console.log('Bad request, often due to missing a required parameter.',error);
-//         } else if (error.status === 401) {
-//           console.log('No valid API key provided.', error);
-//         } else if (error.status === 404) {
-//           console.log('The requested resource doesn\'t exist.', error);
-//         } else if(error.status === 500){
-//             console.log('Purchase Failed', error)
-//         }
-//       })
+var handlerWhite = StripeCheckout.configure({
+  key: stripePK,
+  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  locale: 'auto',
+  zipCode: true,
+  billingAddress: true,
+  token: function (token, args) {
+    // You can access the token ID with `token.id`.
+    // Get the token ID to your server-side code for use.
+    fetch('http://localhost:3000/api/charge/white', {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer' +  stripePK
+     },
+      body: JSON.stringify(token, args)
+    })
+      .then(output => {
+        if (output.status === "succeeded")
+          document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+      })
+      .catch((error) => {
+        if (error.status === 400) {
+          console.log('Bad request, often due to missing a required parameter.',error);
+        } else if (error.status === 401) {
+          console.log('No valid API key provided.', error);
+        } else if (error.status === 404) {
+          console.log('The requested resource doesn\'t exist.', error);
+        } else if(error.status === 500){
+            console.log('Purchase Failed', error)
+        }
+      })
 
-//   },
-//   opened: function() {
-//   	console.log("Form opened");
-//   },
-// closed: function() {
-//     console.log("Form closed");
-//   } 
-// });
+  },
+  opened:() => {
+    console.log('opened')
+  } ,
+  closed: function(error) {
+    if(error){
+      console.log(error)
+    } else{
+      console.log('Payment Sent!')
+    }
+  }
+});
 
-// var handlerWhite = StripeCheckout.configure({
-//   key: stripePK,
-//   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-//   closed: function() {
-//     if (!token_triggered) {
-//         // close button click behavior goes here
-//         console.log("closed")
-//     } else {
-//         // payment completion behavior goes here
-//         console.log("passed")
-//     }
-// },
-//   locale: 'auto',
-//   zipCode: true,
-//   billingAddress: true,
-//   token: function (token, args) {
-//     token_triggered = true;
-//     // You can access the token ID with `token.id`.
-//     // Get the token ID to your server-side code for use.
-//     fetch('http://localhost:3000/api/charge/white', {
-//       method: "POST",
-//       headers: {
-//         'Accept': 'application/json', 
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer' +  stripePK
-//      },
-//       body: JSON.stringify(token, args)
-//     })
-//       .then(output => {
-//         if (output.status === "succeeded")
-//           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
-//       })
-//       .catch((error) => {
-//         if (error.status === 400) {
-//           console.log('Bad request, often due to missing a required parameter.',error);
-//         } else if (error.status === 401) {
-//           console.log('No valid API key provided.', error);
-//         } else if (error.status === 404) {
-//           console.log('The requested resource doesn\'t exist.', error);
-//         } else if(error.status === 500){
-//             console.log('Purchase Failed', error)
-//         }
-//       })
+// GOLD PACKAGE BUTTON
+$('#goldButton').on('click', function (e) {
+  e.preventDefault();
+  // Open Checkout with further options:
+  handlerGold.open({
+    name: 'PMM Picnic',
+    description: 'Gold Package',
+    amount: 2000,
+  });
+});
 
-//   }
-// });
+//PURPLE PACKAGE BUTTON
+$('#purpleButton').on('click', function (e) {
+  e.preventDefault();
+  // Open Checkout with further options:
+  handlerPurple.open({
+    name: 'PMM Picnic',
+    description: 'Purple Package',
+    amount: 1000,
+  });
+});
+
+//WHITE PACKAGE BUTTON
+$('#whiteButton').on('click', function (e) {
+  e.preventDefault();
+  // Open Checkout with further options:
+  handlerWhite.open({
+    name: 'PMM Picnic',
+    description: 'White Package(Student & Staff Only)',
+    amount: 700,
+  });
+});
 
 
-//GOLD PACKAGE BUTTON
+// GOLD PACKAGE BUTTON
 // document.getElementById('goldButton').addEventListener('click', function (e) {
 //   // Open Checkout with further options:
 //   handlerGold.open({
@@ -340,14 +352,26 @@ window.addEventListener('popstate', function () {
 //   e.preventDefault();
 // });
 
+// function openCheckout(description, amount)
+// {
+//   handler.open({
+//     name: 'Demo Site',
+//     description: description,
+//     amount: amount
+//   });
+// }
 
 
-// window.addEventListener('popstate', function () {
-//   handlerPurple.close();
-// });
-// window.addEventListener('popstate', function () {
-//   handlerWhite.close();
-// });
+// Close Checkout on page navigation:
+$(window).on('popstate', function () {
+  handlerGold.close();
+});
+$(window).on('popstate', function () {
+  handlerPurple.close();
+});
+$(window).on('popstate', function () {
+  handlerWhite.close();
+});
 
 //END STRIPE
 

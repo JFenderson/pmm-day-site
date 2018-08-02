@@ -28,8 +28,7 @@ var router = (0, _express.Router)();
 var stripe = (0, _stripe2.default)(process.env.STRIPE_SK);
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
-router.post('/', function (req, res) {
-    console.log('this is the req.body', req.body);
+router.post('/gold', function (req, res) {
     var token = req.body.id;
     var email = req.body.email;
 
@@ -38,20 +37,14 @@ router.post('/', function (req, res) {
         email: email
     }).then(function (customer) {
         console.log('this is the customer', customer);
-        return stripe.customers.createSource(customer.id, {
-            source: 'tok_visa'
-        });
-    }).then(function (source) {
-        console.log('this is source', source);
-        return stripe.charges.create({
-            // amount: 2000,
+        stripe.charges.create({
+            amount: 2000,
             currency: 'usd',
             description: 'For PMM Weekend',
-            receipt_email: 'purplemarchingmachine96@gmail.com',
-            customer: source.customer
+            customer: customer.id,
+            receipt_email: customer.email
         });
     }).then(function (charge) {
-        console.log('this is the charge!!', charge);
         res.send(charge);
     }).catch(function onError(error) {
         if (error.status === 400) {
@@ -86,76 +79,68 @@ router.post('/', function (req, res) {
 });
 
 // PAYMENT FOR PURPLE PACKAGE($10.00)
-// router.post('/purple', (req, res) => {
+router.post('/purple', function (req, res) {
 
-//     let token = req.body.id;
-//     let email = req.body.email;
-//     let card = req.body.card.id;
+    var token = req.body.id;
+    var email = req.body.email;
 
-//     stripe.customers.create({
-//       email: email,
-//     //   source: card,
-//     }).then(customer => {
-//         return stripe.customers.createSource(customer.id, {
-//             source: 'tok_visa'
-//         }); 
-//     }).then((source)=> {
-//         return stripe.charges.create({
-//             amount: 1000,
-//             currency: 'usd',
-//             description: 'For PMM Weekend',
-//             receipt_email: 'purplemarchingmachine96@gmail.com',
-//             customer: source.customer
-//         });
-//     }).then((charge) => {
-//         res.send(charge)
-//     })
-//     .catch(function onError(error) {
-//         if (error.status === 400) {
-//           console.log('Bad request, often due to missing a required parameter.');
-//         } else if (error.status === 401) {
-//           console.log('No valid API key provided.');
-//         } else if (error.status === 404) {
-//           console.log('The requested resource doesn\'t exist.');
-//         } else if(error.status === 500){
-//             console.log('Purchase Failed')
-//         }
-//       });
-// });
+    stripe.customers.create({
+        email: email,
+        source: token
+    }).then(function (customer) {
+        console.log('this is the customer', customer);
+        stripe.charges.create({
+            amount: 1000,
+            currency: 'usd',
+            description: 'For PMM Weekend',
+            customer: customer.id,
+            receipt_email: customer.email
+        });
+    }).then(function (charge) {
+        res.send(charge);
+    }).catch(function onError(error) {
+        if (error.status === 400) {
+            console.log('Bad request, often due to missing a required parameter.');
+        } else if (error.status === 401) {
+            console.log('No valid API key provided.');
+        } else if (error.status === 404) {
+            console.log('The requested resource doesn\'t exist.');
+        } else if (error.status === 500) {
+            console.log('Purchase Failed');
+        }
+    });
+});
 
 // //PAYMENT FOR WHITE PACKAGE($7.00)
-// router.post('/white', (req, res) => {
+router.post('/white', function (req, res) {
 
-//     let token = req.body.id;
-//     let email = req.body.email;
+    var token = req.body.id;
+    var email = req.body.email;
 
-//     stripe.customers.create({
-//       email: email,
-//     }).then(customer => {
-//         return stripe.customers.createSource(customer.id, {
-//             source: 'tok_visa'
-//         }); 
-//     }).then((source)=> {
-//         return stripe.charges.create({
-//             amount: 700,
-//             currency: 'usd',
-//             description: 'For PMM Weekend',
-//             receipt_email: 'purplemarchingmachine96@gmail.com',
-//             customer: source.customer
-//         });
-//     }).then((charge) => {
-//         res.send(charge)
-//     })
-//     .catch(function onError(error) {
-//         if (error.status === 400) {
-//           console.log('Bad request, often due to missing a required parameter.');
-//         } else if (error.status === 401) {
-//           console.log('No valid API key provided.');
-//         } else if (error.status === 404) {
-//           console.log('The requested resource doesn\'t exist.');
-//         } else if(error.status === 500){
-//             console.log('Purchase Failed')
-//         }
-//       });
-// });
+    stripe.customers.create({
+        email: email,
+        source: token
+    }).then(function (customer) {
+        console.log('this is the customer', customer);
+        stripe.charges.create({
+            amount: 700,
+            currency: 'usd',
+            description: 'For PMM Weekend',
+            customer: customer.id,
+            receipt_email: customer.email
+        });
+    }).then(function (charge) {
+        res.send(charge);
+    }).catch(function onError(error) {
+        if (error.status === 400) {
+            console.log('Bad request, often due to missing a required parameter.');
+        } else if (error.status === 401) {
+            console.log('No valid API key provided.');
+        } else if (error.status === 404) {
+            console.log('The requested resource doesn\'t exist.');
+        } else if (error.status === 500) {
+            console.log('Purchase Failed');
+        }
+    });
+});
 exports.default = router;

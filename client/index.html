@@ -468,7 +468,7 @@
               <h3>Send us a Message</h3>
               <input type="text" name="name" placeholder="Your Name" class="form" id="name" required>
               <input type="text" name="email" placeholder="Your Email Address" class="form" id="email" required>
-              <input name="number" placeholder="Your Phone Number (optional)" class="form" id="number">
+              <input name="number" placeholder="Your Phone Number (optional)" class="form" id="number" pattern="[1-9]{1}[0-9]{9}" maxlength="10">
               <textarea name="message" cols="30" rows="10" placeholder="Your Message Here..." class="form" type="text" id="message" required></textarea>
               <button id="contactSubmit" class="btn-form" onClick="window.location.reload();">Send Message</button>
             </div>
