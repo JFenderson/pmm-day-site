@@ -318,50 +318,6 @@ $('#whiteButton').on('click', function (e) {
   });
 });
 
-
-// GOLD PACKAGE BUTTON
-// document.getElementById('goldButton').addEventListener('click', function (e) {
-//   // Open Checkout with further options:
-//   handlerGold.open({
-//     name: 'PMM Picnic',
-//     description: 'Gold Package',
-//     amount: 2000,
-//   });
-//   e.preventDefault();
-// });
-
-// //PURPLE PACKAGE BUTTON
-// document.getElementById('purpleButton').addEventListener('click', function (e) {
-//   // Open Checkout with further options:
-//   handlerPurple.open({
-//     name: 'PMM Picnic',
-//     description: 'Purple Package',
-//     amount: 1000,
-//   });
-//   e.preventDefault();
-// });
-
-// //WHITE PACKAGE BUTTON
-// document.getElementById('whiteButton').addEventListener('click', function (e) {
-//   // Open Checkout with further options:
-//   handlerWhite.open({
-//     name: 'PMM Picnic',
-//     description: 'White Package(Student & Staff Only)',
-//     amount: 700,
-//   });
-//   e.preventDefault();
-// });
-
-// function openCheckout(description, amount)
-// {
-//   handler.open({
-//     name: 'Demo Site',
-//     description: description,
-//     amount: amount
-//   });
-// }
-
-
 // Close Checkout on page navigation:
 $(window).on('popstate', function () {
   handlerGold.close();
@@ -402,19 +358,20 @@ $.each($('.photo-gallery'), function() {
   // Try commenting out this line below to see no-js functionality!
   var gallery = new photoGallery( $(this) );
 });
+let images = [];
+let gallery = document.getElementById('photo-gallery');
 
-
-
-
-
-
-
-
-
-
-
-
-
+fetch('http://localhost:3000/api/photos')
+.then((results) => {
+  return results.json()
+})
+.then((data) => {
+  let images = data.results.map((image)=> {
+    
+  })
+  console.log(images)
+})
+.catch(error => console.log('error is', error))
 
 
 // COUNTDOWN 

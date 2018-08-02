@@ -452,13 +452,13 @@
                   <a href="#schedule">Schedule</a>
                 </li>
                 <li>
+                  <a href="#comittee">Comittee</a>
+                </li>
+                <li>
                   <a href="#registration">Register</a>
                 </li>
                 <li>
-                  <a href="https://www.miles.edu">Miles College</a>
-                </li>
-                <li>
-                  <a href="#">Privacy</a>
+                  <a href="#photo-gallery">Photo Gallery</a>
                 </li>
               </ul>
             </div>
@@ -530,7 +530,7 @@
               <h3>Band Members Signup!</h3>
               <input type="text" name="memberName" placeholder="Your Name" class="form" id="memberName" required>
               <input type="text" name="memberEmail" placeholder="Your Email Address" class="form" id="memberEmail" required>
-              <input type="tel" name="memberNumber" placeholder="Your Phone Number" class="form" id="memberNumber" data-mask="(999) 999-9999"
+              <input type="tel" name="memberNumber" placeholder="Your Phone Number" class="form" id="memberNumber" pattern="[1-9]{1}[0-9]{9}" maxlength="10"
                 required>
               <input type="text" pattern="[0-9]*" name="memberLocation" placeholder="Your Location(Zip Code)" class="form" id="memberLocation" required>
               <input type="number" name="memberCrabYear" placeholder="What year did you start" class="form" id="memberCrabYear" min="1996"
@@ -540,7 +540,7 @@
           </div>
         </div>
         <div class="footer-copyright">
-          <p>Developed by Joseph Fenderson
+          <p>Developed by <span style="color: goldenrod">Joseph Fenderson</span>
             <p>
         </div>
       </div>
