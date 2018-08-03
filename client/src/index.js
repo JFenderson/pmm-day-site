@@ -1,4 +1,11 @@
-$(document).ready(function(){
+import $ from 'jquery';
+
+import 'slick-carousel';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+var $jq = jQuery.noConflict();
+
+$jq(document).ready(function(){
 
   // START NAVBAR
   // grab the initial top offset of the navigation 
@@ -332,46 +339,184 @@ $(window).on('popstate', function () {
 //END STRIPE
 
 //START IMAGE GALLERY
-var photoGallery = function($photoGalleryElement) {
-  var $photoGallery = $photoGalleryElement,
-      $photoLinks = $photoGallery.find('a[href*="#photo"]'),
-      $photos = $photoGallery.find('img[id*="photo"]'),
-      activeClass = 'active';
+// var photoGallery = function($photoGalleryElement) {
+//   var $photoGallery = $photoGalleryElement,
+//       $photoLinks = $photoGallery.find('a[href*="#photo"]'),
+//       $photos = $photoGallery.find('img[id*="photo"]'),
+//       activeClass = 'active';
   
-  function init() {
-    $photoGallery.addClass('enabled');
+//   function init() {
+//     $photoGallery.addClass('enabled');
        
-    $photoGallery.on({
-      click: function(e) {
-        e.preventDefault();
-        var $photoTarget = $(this).attr('href');
-        $photos.removeClass(activeClass);
-        $photoGallery.find($photoTarget).addClass(activeClass);
-      }
-    }, 'a[href*="#photo"]')
-  }
+//     $photoGallery.on({
+//       click: function(e) {
+//         e.preventDefault();
+//         var $photoTarget = $(this).attr('href');
+//         $photos.removeClass(activeClass);
+//         $photoGallery.find($photoTarget).addClass(activeClass);
+//       }
+//     }, 'a[href*="#photo"]')
+//   }
   
-  init();
-}
+//   init();
+// }
 
-$.each($('.photo-gallery'), function() {
-  // Try commenting out this line below to see no-js functionality!
-  var gallery = new photoGallery( $(this) );
-});
-let images = [];
-let gallery = document.getElementById('photo-gallery');
+// $.each($('.photo-gallery'), function() {
+//   // Try commenting out this line below to see no-js functionality!
+//   var gallery = new photoGallery( $(this) );
+// });
+// let images = [];
+// let gallery = document.getElementById('photo-gallery');
+
+/*   THIS IS TEH SLIDESHOW IDEA FROM CODEPEN MANUAL/AUTOMATIC 
+var main = function() {
+
+	var paused = false
+
+	$('.arrowR').click(function() {
+		paused = true;
+		$('#slideshow > div:first')
+		.fadeOut(1000)
+		.next()
+		.fadeIn(1000)
+		.end()
+		.appendTo('#slideshow');
+	});
+		
+	$('.arrowL').click(function() {
+		paused = true;
+		$('#slideshow > div:last')
+		.fadeIn(1000)
+		.prependTo('#slideshow')
+		.next()
+		.fadeOut(1000)
+		.end();
+	});
+
+
+	
+	setInterval(function() {
+		if (paused === false) { 
+			$('#slideshow > div:first')
+			.fadeOut(1000)
+			.next()
+			.fadeIn(1000)
+			.end()
+			.appendTo('#slideshow');
+		};
+	},  4000);
+   
+  main()
+	
+};*/
+
+
 
 fetch('http://localhost:3000/api/photos')
-.then((results) => {
-  return results.json()
+.then((res) => {
+  return res.json()
 })
 .then((data) => {
-  let images = data.results.map((image)=> {
-    
-  })
-  console.log(images)
+  // let images = data.reduce((acc, image, index)=> {
+  //   console.log(image)
+  //   acc += `<div class="hidden"><img id="photo${index} "src="${image.url}" /></div>`;
+  //   return acc;
+  // }, ``);
+  let images = data.reduce((acc, image, index)=> {
+    console.log(image)
+    acc += `<div class="item">
+              <img id="photo${index} "src="${image.url}" />
+            </div>`;
+    return acc;
+  }, ``);
+
+  $('#slideshow').append(images);
 })
 .catch(error => console.log('error is', error))
+//slideshow from codepen
+
+
+var $slider = $('.slideshow .slider'),
+  maxItems = $('.item', $slider).length,
+  dragging = false,
+  tracking,
+  rightTracking;
+
+let $sliderRight = $('.slideshow').clone().addClass('slideshow-right').appendTo($('.split-slideshow'));
+
+let rightItems = $('.item', $sliderRight).toArray();
+let reverseItems = rightItems.reverse();
+$('.slider', $sliderRight).html('');
+for (let i = 0; i < maxItems; i++) {
+  $(reverseItems[i]).appendTo($('.slider', $sliderRight));
+}
+
+$slider.addClass('slideshow-left');
+$('.slideshow-left').slick({
+  vertical: true,
+  verticalSwiping: true,
+  arrows: false,
+  infinite: true,
+  dots: true,
+  speed: 1000,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)'
+}).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+
+  if (currentSlide > nextSlide && nextSlide == 0 && currentSlide == maxItems - 1) {
+    $('.slideshow-right .slider').slick('slickGoTo', -1);
+    $('.slideshow-text').slick('slickGoTo', maxItems);
+  } else if (currentSlide < nextSlide && currentSlide == 0 && nextSlide == maxItems - 1) {
+    $('.slideshow-right .slider').slick('slickGoTo', maxItems);
+    $('.slideshow-text').slick('slickGoTo', -1);
+  } else {
+    $('.slideshow-right .slider').slick('slickGoTo', maxItems - 1 - nextSlide);
+    $('.slideshow-text').slick('slickGoTo', nextSlide);
+  }
+}).on("mousewheel", function(event) {
+  event.preventDefault();
+  if (event.deltaX > 0 || event.deltaY < 0) {
+    $(this).slick('slickNext');
+  } else if (event.deltaX < 0 || event.deltaY > 0) {
+    $(this).slick('slickPrev');
+  };
+}).on('mousedown touchstart', function(){
+  dragging = true;
+  tracking = $('.slick-track', $slider).css('transform');
+  tracking = parseInt(tracking.split(',')[5]);
+  rightTracking = $('.slideshow-right .slick-track').css('transform');
+  rightTracking = parseInt(rightTracking.split(',')[5]);
+}).on('mousemove touchmove', function(){
+  if (dragging) {
+    newTracking = $('.slideshow-left .slick-track').css('transform');
+    newTracking = parseInt(newTracking.split(',')[5]);
+    diffTracking = newTracking - tracking;
+    $('.slideshow-right .slick-track').css({'transform': 'matrix(1, 0, 0, 1, 0, ' + (rightTracking - diffTracking) + ')'});
+  }
+}).on('mouseleave touchend mouseup', function(){
+  dragging = false;
+});
+
+$('.slideshow-right .slider').slick({
+  swipe: false,
+  vertical: true,
+  arrows: false,
+  infinite: true,
+  speed: 950,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+  initialSlide: maxItems - 1
+});
+$('.slideshow-text').slick({
+  swipe: false,
+  vertical: true,
+  arrows: false,
+  infinite: true,
+  speed: 900,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)'
+});
+
+
+
+
 
 
 // COUNTDOWN 
@@ -453,16 +598,17 @@ function countDownTimer() {
  * -------------------------- */
 function numberTransition(id, endPoint, transitionDuration, transitionEase) {
   // Transition numbers from 0 to the final number
-  $({ numberCount: $(id).text() }).animate({ numberCount: endPoint }, {
-    duration: transitionDuration,
-    easing: transitionEase,
-    step: function () {
-      $(id).text(Math.floor(this.numberCount));
-    },
-    complete: function () {
-      $(id).text(this.numberCount);
-    }
-  });
+  $({ numberCount: $(id).text() })
+  // .animate({ numberCount: endPoint }, {
+  //   duration: transitionDuration,
+  //   easing: transitionEase,
+  //   step: function () {
+  //     $(id).text(Math.floor(this.numberCount));
+  //   },
+  //   complete: function () {
+  //     $(id).text(this.numberCount);
+  //   }
+  // });
 };
 
 // END COUNTDOWN
