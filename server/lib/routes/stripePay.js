@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _express = require('express');
 
-var _stripeCharge = require('../utils/stripeCharge');
-
 var _stripe = require('stripe');
 
 var _stripe2 = _interopRequireDefault(_stripe);
 
-var _mailgunJs = require('mailgun-js');
+var _nodemailer = require('nodemailer');
 
-var _mailgunJs2 = _interopRequireDefault(_mailgunJs);
+var _nodemailer2 = _interopRequireDefault(_nodemailer);
+
+var _nodemailer3 = require('../config/nodemailer');
 
 var _dotenv = require('dotenv');
 
@@ -29,23 +29,20 @@ var stripe = (0, _stripe2.default)(process.env.STRIPE_SK);
 
 //PAYMENT FOR GOLD PACKAGE ($20.00)
 router.post('/gold', function (req, res) {
-
     var token = req.body.id;
     var email = req.body.email;
 
     stripe.customers.create({
+        source: token,
         email: email
     }).then(function (customer) {
-        return stripe.customers.createSource(customer.id, {
-            source: 'tok_visa'
-        });
-    }).then(function (source) {
-        return stripe.charges.create({
+        console.log('this is the customer', customer);
+        stripe.charges.create({
             amount: 2000,
             currency: 'usd',
             description: 'For PMM Weekend',
-            receipt_email: 'purplemarchingmachine96@gmail.com',
-            customer: source.customer
+            customer: customer.id,
+            receipt_email: customer.email
         });
     }).then(function (charge) {
         res.send(charge);
@@ -61,22 +58,24 @@ router.post('/gold', function (req, res) {
         }
     });
 
-    //   //SENDING MAILGUN REGISTRATION FOR EMAIL UPDATES
-    // var api_key = process.env.MAILGUN_SK;
-    // var domain = process.env.MAILGUN_DOMAIN;
-    // ;
-    // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});   
+    //SENDING email
 
-    // var data = {
-    // from: 'Excited User <me@samples.mailgun.org>',
-    // to: `${email}, YOU@YOUR_DOMAIN_NAME'`,
-    // subject: 'Hello',
-    // text: 'Thank you for you Payment..See you at PMM Weekend!'
-    // };
+    var mailOption = {
+        from: 'Excited User <me@samples.mailgun.org>',
+        to: email + ', YOU@YOUR_DOMAIN_NAME\'',
+        subject: 'Hello',
+        text: 'Thank you for you Payment..See you at PMM Weekend!'
+    };
 
-    // mailgun.messages().send(data, function (error, body) {
-    // console.log(body);
-    // });
+    _nodemailer3.transporter.sendMail(mailOption, function (error, res) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('email sent!');
+            res.sendStatus(201);
+        }
+        _nodemailer3.transporter.close();
+    });
 });
 
 // PAYMENT FOR PURPLE PACKAGE($10.00)
@@ -84,22 +83,18 @@ router.post('/purple', function (req, res) {
 
     var token = req.body.id;
     var email = req.body.email;
-    var card = req.body.card.id;
 
     stripe.customers.create({
-        email: email
-        //   source: card,
+        email: email,
+        source: token
     }).then(function (customer) {
-        return stripe.customers.createSource(customer.id, {
-            source: 'tok_visa'
-        });
-    }).then(function (source) {
-        return stripe.charges.create({
+        console.log('this is the customer', customer);
+        stripe.charges.create({
             amount: 1000,
             currency: 'usd',
             description: 'For PMM Weekend',
-            receipt_email: 'purplemarchingmachine96@gmail.com',
-            customer: source.customer
+            customer: customer.id,
+            receipt_email: customer.email
         });
     }).then(function (charge) {
         res.send(charge);
@@ -116,25 +111,23 @@ router.post('/purple', function (req, res) {
     });
 });
 
-//PAYMENT FOR WHITE PACKAGE($7.00)
+// //PAYMENT FOR WHITE PACKAGE($7.00)
 router.post('/white', function (req, res) {
 
     var token = req.body.id;
     var email = req.body.email;
 
     stripe.customers.create({
-        email: email
+        email: email,
+        source: token
     }).then(function (customer) {
-        return stripe.customers.createSource(customer.id, {
-            source: 'tok_visa'
-        });
-    }).then(function (source) {
-        return stripe.charges.create({
+        console.log('this is the customer', customer);
+        stripe.charges.create({
             amount: 700,
             currency: 'usd',
             description: 'For PMM Weekend',
-            receipt_email: 'purplemarchingmachine96@gmail.com',
-            customer: source.customer
+            customer: customer.id,
+            receipt_email: customer.email
         });
     }).then(function (charge) {
         res.send(charge);

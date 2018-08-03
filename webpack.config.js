@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CLIENT_DEST = path.join(__dirname, './client/dist');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
@@ -109,7 +110,11 @@ module.exports = {
     //       template: __dirname + "/src/public/index.html",
     //       inject: 'body'
     //   }),
-      new ExtractTextPlugin({ filename: 'index.css', allChunks: true })
+      new ExtractTextPlugin({ filename: 'index.css', allChunks: true }),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+    })
   ],
 //   devServer: {  // configuration for webpack-dev-server
 //       contentBase: './src/public',  //source of static assets
