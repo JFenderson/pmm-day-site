@@ -41,10 +41,9 @@ const upload = multer({
 
 
 router.get('/', (req,res)=>{
-    console.log('i am making the request to get photos');
+
     photos.getAll()
     .then(photos => {
-        console.log('these are the urls on the server');
         res.send(photos)
         // res.json(photos)
     })
@@ -89,7 +88,6 @@ router.get('/:id', (req,res)=>{
 
 
 router.post('/', upload.single('imageFile'),(req,res)=>{
-console.log('this is the file', req.file);
     photos.insert({
         imageName: req.file.originalname,
         url: req.file.location
@@ -106,6 +104,34 @@ console.log('this is the file', req.file);
     .catch((err) => {
         console.log(err)
     })
+
+    // res.send('Successfully uploaded ' + req.files.length + ' files!')
 });
+
+router.post('/multi', upload.any(),(req,res)=>{
+    // console.log('this is the file', req.files);
+    req.files.map((image, index)=> {
+        photos.insert({
+            imageName: image.originalname,
+            url: image.location
+        })
+        .then(() => {
+            res.json({
+                code: 201,
+                data: {
+                    imageName: image.originalname,
+                    url: image.location
+                }
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        
+    })
+    
+        // res.send('Successfully uploaded ' + req.files.length + ' files!')
+    });
+
 
 export default router;
