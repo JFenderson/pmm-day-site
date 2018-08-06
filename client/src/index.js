@@ -428,33 +428,41 @@ fetch('http://localhost:3000/api/photos')
 
 
 //init slick js for slideshow
+// $('.slideshow').slick({
+//   centerMode: true,
+//   centerPadding: '60px',
+//   slidesToShow: 3,
+//   infinite: true,
+//   autoplay: true,
+//   autoplaySpeed: 4000,
+//   responsive: [
+//     {
+//       breakpoint: 768,
+//       settings: {
+//         arrows: false,
+//         centerMode: true,
+//         centerPadding: '40px',
+//         slidesToShow: 3
+//       }
+//     },
+//     {
+//       breakpoint: 480,
+//       settings: {
+//         arrows: false,
+//         centerMode: true,
+//         centerPadding: '40px',
+//         slidesToShow: 1
+//       }
+//     }
+//   ]
+// });
+
 $('.slideshow').slick({
-  centerMode: true,
-  centerPadding: '60px',
-  slidesToShow: 3,
   infinite: true,
   autoplay: true,
-  autoplaySpeed: 4000,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-  ]
+  dots: true,
+  arrows: true,
+  autoplaySpeed: 4000
 });
 
 
