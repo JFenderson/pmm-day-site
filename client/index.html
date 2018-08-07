@@ -410,23 +410,23 @@
       <div class="container">
           <h3 class="title-member">Band Members Signup!</h3>
       </div>
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="member-left">
-              Are you a current or previous member of the Purple Marching Machine? if so, please fill out our form to be added to the PMM directory.
+              <p>Are you a current or previous member of the Purple Marching Machine? if so, please fill out our form to be added to the PMM directory.</p>
             </div>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="member-form">
-                <input type="text" name="memberName" placeholder="Your Name" id="memberName" required>
-                <input type="text" name="memberEmail" placeholder="Your Email Address" id="memberEmail" required>
-                <input type="tel" name="memberNumber" placeholder="Your Phone Number" id="memberNumber" pattern="[1-9]{1}[0-9]{9}" maxlength="10"
+                <input type="text" name="memberName" placeholder="Name" id="memberName" required>
+                <input type="text" name="memberEmail" placeholder="Email Address" id="memberEmail" required>
+                <input type="tel" name="memberNumber" placeholder="Phone Number" id="memberNumber" pattern="[1-9]{1}[0-9]{9}" maxlength="10"
                   required>
-                <input type="text" pattern="[0-9]*" name="memberLocation" placeholder="Your Location(Zip Code)" id="memberLocation" required>
+                <input type="text" pattern="[0-9]*" name="memberLocation" placeholder="Location(Zip Code)" id="memberLocation" required>
                 <input type="number" name="memberCrabYear" placeholder="What year did you start" id="memberCrabYear" min="1996"
                   max="2018" step="4" required>
-                <button id="memberSubmit" class="btn-form">Signup</button>
+                <input id="memberSubmit" type="submit" value="Sign Up"/>
               </div>
             </div>          
         </div>
