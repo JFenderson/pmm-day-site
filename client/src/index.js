@@ -427,7 +427,7 @@ fetch('http://localhost:3000/api/photos')
 })
 .catch(error => console.log('error is', error))
 
-main()
+
 
 // COUNTDOWN 
 
