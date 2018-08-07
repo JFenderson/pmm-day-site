@@ -369,44 +369,45 @@ $(window).on('popstate', function () {
 // let gallery = document.getElementById('photo-gallery');
 
 
-// var main = function() {
+var main = function() {
 
-// 	var paused = false
+	var paused = false
 
-// 	$('.arrowR').click(function() {
-// 		paused = true;
-// 		$('#slideshow > div:first')
-// 		.fadeOut(1000)
-// 		.next()
-// 		.fadeIn(1000)
-// 		.end()
-// 		.appendTo('#slideshow');
-// 	});
+	$('.arrowR').click(function() {
+		paused = true;
+		$('#slideshow > div:first')
+		.fadeOut(1000)
+		.next()
+		.fadeIn(1000)
+		.end()
+		.appendTo('#slideshow');
+	});
 		
-// 	$('.arrowL').click(function() {
-// 		paused = true;
-// 		$('#slideshow > div:last')
-// 		.fadeIn(1000)
-// 		.prependTo('#slideshow')
-// 		.next()
-// 		.fadeOut(1000)
-// 		.end();
-// 	});
+	$('.arrowL').click(function() {
+		paused = true;
+		$('#slideshow > div:last')
+		.fadeIn(1000)
+		.prependTo('#slideshow')
+		.next()
+		.fadeOut(1000)
+		.end();
+	});
 
 
 	
-// 	setInterval(function() {
-// 		if (paused === false) { 
-// 			$('#slideshow > div:first')
-// 			.fadeOut(1000)
-// 			.next()
-// 			.fadeIn(1000)
-// 			.end()
-// 			.appendTo('#slideshow');
-// 		};
-// 	},  7000);
+	setInterval(function() {
+    let paused = true;
+		if (paused === false) { 
+			$('#slideshow > div:first')
+			.fadeOut(1000)
+			.next()
+			.fadeIn(1000)
+			.end()
+			.appendTo('#slideshow');
+		};
+	},  );
 	
-// };
+};
 
 
 
@@ -417,7 +418,7 @@ fetch('http://localhost:3000/api/photos')
 .then((data) => {
   let images = data.reduce((acc, image, index)=> {
     console.log(image)
-    acc += `<div class="slide"><img id="photo${index} "src="${image.url}" /></div>`;
+    acc += `<div><img id="photo${index} "src="${image.url}" /></div>`;
     return acc;
   }, ``);
 
@@ -426,45 +427,7 @@ fetch('http://localhost:3000/api/photos')
 })
 .catch(error => console.log('error is', error))
 
-
-//init slick js for slideshow
-// $('.slideshow').slick({
-//   centerMode: true,
-//   centerPadding: '60px',
-//   slidesToShow: 3,
-//   infinite: true,
-//   autoplay: true,
-//   autoplaySpeed: 4000,
-//   responsive: [
-//     {
-//       breakpoint: 768,
-//       settings: {
-//         arrows: false,
-//         centerMode: true,
-//         centerPadding: '40px',
-//         slidesToShow: 3
-//       }
-//     },
-//     {
-//       breakpoint: 480,
-//       settings: {
-//         arrows: false,
-//         centerMode: true,
-//         centerPadding: '40px',
-//         slidesToShow: 1
-//       }
-//     }
-//   ]
-// });
-
-$('.slideshow').slick({
-  infinite: true,
-  autoplay: true,
-  dots: true,
-  arrows: true,
-  autoplaySpeed: 4000
-});
-
+main()
 
 // COUNTDOWN 
 
