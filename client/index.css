@@ -36,10 +36,13 @@ html {
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     image-rendering: optimizeQuality;
-    min-height: 175vh;
+    height: 150vh;
     text-align: center;
     background-attachment: fixed;
     overflow: hidden;
+}
+.landing-front{
+    height: 100vh;
 }
 
 .overlay {
@@ -182,7 +185,7 @@ li {
     color: white;
     border-radius: 15px;
     font-size: 1.1em;
-    margin-top: 11em;
+    /* margin-top: 11em; */
 }
 
 .about-text {
@@ -908,12 +911,13 @@ li {
     }
     .about-container{
         height: 70vh;
-        margin-top: 11em;
+        /* margin-top: 11em; */
     }
 }
+@media (min-height: 668) {}
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) and (max-width: 767.98px) { 
+@media screen and (min-width: 576px) and (max-width: 767.98px) { 
 
     /* navbar */
     .hero-nav a{
@@ -1067,7 +1071,7 @@ li {
 }
 
 /* // Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
         /* navbar */
     .hero-nav a{
         width: 11em;
@@ -1219,7 +1223,7 @@ li {
  }
 
  /* // Large devices (desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199.98px){
+@media screen and (min-width: 992px) and (max-width: 1199.98px){
             /* navbar */
     .hero-nav a{
         width: 12em;
@@ -1342,7 +1346,7 @@ li {
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
+@media screen and (min-width: 1200px) { 
         /* navbar */
     .hero-nav{
         padding-top: 2em;
@@ -1366,18 +1370,27 @@ li {
         font-size: 14vh;
     }
     .about-container{
-        height: 55vh;
-        margin-top: 17em;
+        height: 39vh;
     }
     .about-text h2{
-        font-size: 3em;
+        font-size: 2.3em;
     }
     .about-text p {
-        font-size: 30px;
+        font-size: 22px;
+        line-height: 34px;
     }
     /* landing end */
     /* schedule start */
+    .schedule{
+        height: 50vh;
+    }
+    .schedule .container{
+        margin-top: 8em;
+    }
     .schedule-box{
+        margin: 0%;
+    }
+    /* .schedule-box{
         margin: 5px;
         width: 53%;
         display: block;
@@ -1390,17 +1403,38 @@ li {
     }
     .schedule-box .schedule-box-top ul {
         flex: 0;
+    } */
+    .schedule-box .schedule-box-top span {
+        font-size: 56px;
+    }
+    .schedule-box .schedule-box-top ul li {
+        font-size: 20px;
+    }
+    .schedule-box h3 {
+        font-size: 24px;
     }
     /* schedule end */
+    .comittee-area{
+        height: 75vh;
+    }
+    .comittee-wrapper {
+        padding-top: 8em;
+    }
+    .img-responsive{
+        height: 18em;
+    }
     /* price area start */
-    .price-box1{
-        width: 75%;
+    .price-area{
+        height: 75vh;
     }
-    .price-box2{
-        width: 75%;
+    .plan{
+        margin-top: 8em;
     }
-    .price-box3{
-        width: 75%;
+    .title-default{
+        font-size: 44px;
+    }
+    .sub-title-default{
+        font-size: 23px;
     }
     /* price area end */
     /* starts photo gallery/slideshow */
@@ -1453,12 +1487,15 @@ li {
       #slideshow img {
         /* width: 60vw;
         height: 90vh; */
-        width: 90vw;
-        height: 70vh;
+        width: 63vw;
+        height: 74vh;
         margin: 0;
         border: solid 1px #283593;
         image-rendering: optimizeQuality;
         border-radius: 15px;
+        /* image-rendering: auto; */
+        image-rendering: crisp-edges;
+        /* image-rendering: pixelated; */
       }
       
       .photo-links {

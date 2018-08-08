@@ -338,77 +338,18 @@ $(window).on('popstate', function () {
 //END STRIPE
 
 //START IMAGE GALLERY
-// var photoGallery = function($photoGalleryElement) {
-//   var $photoGallery = $photoGalleryElement,
-//       $photoLinks = $photoGallery.find('a[href*="#photo"]'),
-//       $photos = $photoGallery.find('img[id*="photo"]'),
-//       activeClass = 'active';
-  
-//   function init() {
-//     $photoGallery.addClass('enabled');
-       
-//     $photoGallery.on({
-//       click: function(e) {
-//         e.preventDefault();
-//         var $photoTarget = $(this).attr('href');
-//         $photos.removeClass(activeClass);
-//         $photoGallery.find($photoTarget).addClass(activeClass);
-//       }
-//     }, 'a[href*="#photo"]')
-//   }
-  
-//   init();
-// }
-
-// $.each($('.photo-gallery'), function() {
-//   // Try commenting out this line below to see no-js functionality!
-//   var gallery = new photoGallery( $(this) );
-// });
-// let images = [];
-// let gallery = document.getElementById('photo-gallery');
 
 
-var main = function() {
+$("#slideshow > div:gt(0)").hide();
 
-	var paused = false
-
-	$('.arrowR').click(function() {
-		paused = true;
-		$('#slideshow > div:first')
-		.fadeOut(1000)
-		.next()
-		.fadeIn(1000)
-		.end()
-		.appendTo('#slideshow');
-	});
-		
-	$('.arrowL').click(function() {
-		paused = true;
-		$('#slideshow > div:last')
-		.fadeIn(1000)
-		.prependTo('#slideshow')
-		.next()
-		.fadeOut(1000)
-		.end();
-	});
-
-
-	
-	setInterval(function() {
-    let paused = true;
-		if (paused === false) { 
-			$('#slideshow > div:first')
-			.fadeOut(1000)
-			.next()
-			.fadeIn(1000)
-			.end()
-			.appendTo('#slideshow');
-		};
-	},  );
-	
-};
-
-
+setInterval(function() {
+  $('#slideshow > div:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow');
+}, 3000);
 
 fetch('http://localhost:3000/api/photos')
 .then((res) => {
@@ -416,7 +357,6 @@ fetch('http://localhost:3000/api/photos')
 })
 .then((data) => {
   let images = data.reduce((acc, image, index)=> {
-    console.log(image)
     acc += `<div><img id="photo${index} "src="${image.url}" /></div>`;
     return acc;
   }, ``);
@@ -427,7 +367,7 @@ fetch('http://localhost:3000/api/photos')
 .catch(error => console.log('error is', error))
 
 
-
+//END PHOTO GALLERY
 // COUNTDOWN 
 
 // The date you want to count down to
@@ -529,6 +469,7 @@ function numberTransition(id, endPoint, transitionDuration, transitionEase) {
 //     scrollTop: $(section).offset().top
 //   });
 // });
+
 
 
 
