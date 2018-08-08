@@ -16,7 +16,6 @@ router.post('/', (req, res) => {
 
     const name = req.body.name;
     const email = req.body.email;
-    const number = formatNumber(req.body.number, 'National');
     const message = req.body.message;
     const mailOption = {
         from: `${name} <${email}>`,// who the email is coming from..in the contact form
@@ -27,7 +26,6 @@ router.post('/', (req, res) => {
         <h1>Hey PMM Admin,</h1> 
         <h1>You have a new message from the PMM Weekend Site</h1>
         <h2>From: ${name}</h2>
-        <h2>Number: ${number}</h2>
         <h2>Message:</h2>
         <h2>${message} </h2>
       </div>`,

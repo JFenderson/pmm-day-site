@@ -53,13 +53,12 @@ $(phoneFormatter);
 $('#contactSubmit').click(() => {
   let name = $('#name').val();
   let email = $('#email').val();
-  let number = $('#number').val();
   let message = $('#message').val();
 
   fetch('http://localhost:3000/api/contact', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
-      name: name, email: email, number: number, message: message
+      name: name, email: email, message: message
     }),
     headers:{
       'Content-Type': 'application/json'

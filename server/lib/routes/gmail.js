@@ -36,14 +36,13 @@ router.post('/', function (req, res) {
 
     var name = req.body.name;
     var email = req.body.email;
-    var number = (0, _libphonenumberJs.formatNumber)(req.body.number, 'National');
     var message = req.body.message;
     var mailOption = {
         from: name + ' <' + email + '>', // who the email is coming from..in the contact form
         to: 'joseph.fenderson@gmail.com', //who the email is going to
         subject: 'New Message from ' + email + ' from the PMM Weekend Site', //subject line
         text: message,
-        html: '<div style="text-align: center; margin: auto; margin-right: auto 0; border: 1px solid; padding: 10px; width: 50%; height: auto;">\n        <h1>Hey PMM Admin,</h1> \n        <h1>You have a new message from the PMM Weekend Site</h1>\n        <h2>From: ' + name + '</h2>\n        <h2>Number: ' + number + '</h2>\n        <h2>Message:</h2>\n        <h2>' + message + ' </h2>\n      </div>'
+        html: '<div style="text-align: center; margin: auto; margin-right: auto 0; border: 1px solid; padding: 10px; width: 50%; height: auto;">\n        <h1>Hey PMM Admin,</h1> \n        <h1>You have a new message from the PMM Weekend Site</h1>\n        <h2>From: ' + name + '</h2>\n        <h2>Message:</h2>\n        <h2>' + message + ' </h2>\n      </div>'
     };
 
     _nodemailer3.transporter.sendMail(mailOption, function (error, res) {
