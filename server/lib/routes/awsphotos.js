@@ -125,6 +125,7 @@ router.post('/', upload.single('imageFile'), function (req, res) {
 router.post('/multi', upload.any(), function (req, res) {
     // console.log('this is the file', req.files);
     req.files.map(function (image, index) {
+        console.log('these are the images', image);
         photos.insert({
             imageName: image.originalname,
             url: image.location

@@ -716,6 +716,7 @@ li {
 #memberSubmit:hover{
     cursor: pointer;
     background-color: #651775;
+    color: white;
 }
 
 .memberSubmit:before {
@@ -732,7 +733,6 @@ li {
 }
 
 .member-form input:focus {
-    color: #e2dedb;
     border: solid 1px transparent;
     -webkit-box-shadow: 0px 0px 13px 2px rgba(101,23,117,0.55);
     -moz-box-shadow: 0px 0px 13px 2px rgba(101,23,117,0.55);
@@ -1425,7 +1425,7 @@ li {
     }
     /* price area start */
     .price-area{
-        height: 75vh;
+        height: 81vh;
     }
     .plan{
         margin-top: 8em;
