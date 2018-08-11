@@ -8,12 +8,18 @@ module.exports = {
     watch: true,
     mode: 'development',
     entry: ['./client/src/index.js'],
-    output: { path: CLIENT_DEST, 
-        filename: 'bundle.js' 
+    output: { 
+        path: CLIENT_DEST, 
+        filename: 'bundle.js',
+        publicPath: '/' 
             },
-  module: {  
-      rules: [ 
-        {
+    devServer: {
+       historyApiFallback: true,
+       publicPath: '/'
+            },
+    module: {  
+        rules: [ 
+            {
             test: /\.js$/,
             use: {
                 loader: 'babel-loader',
