@@ -23,14 +23,18 @@ app.use(cors());
 app.use(express.static(CLIENT_PATH));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.get('/', (_, res) => { 
+  res.sendFile(path.join(__dirname, 'index.html')) 
+});
 app.use('/api', routes);
+// app.get('/', (req, res) => {
+//     res.render(path.join(CLIENT_PATH + '/index.html'), {
+//         stripePublishableKey: process.env.STRIPE_PK
+//     }); 
+//   });
 
-app.get('/', (req, res) => {
-    res.render(path.join(CLIENT_PATH + '/index.html'), {
-        stripePublishableKey: process.env.STRIPE_PK
-    }); 
-  });
+
+
 
 
 //   # ------------------
