@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpa
 module.exports = {
     watch: true,
     mode: 'development',
-    entry: ['./client/src/index.js'],
+    entry: {main: './client/src/index.js'},
     output: { 
         path: CLIENT_DEST, 
         filename: 'bundle.js',
@@ -33,9 +33,11 @@ module.exports = {
         },
         {
             test: /\.css$/,
-            loader: [ 'style-loader', 'css-loader',
-                ]
-        
+            use: ExtractTextPlugin.extract(
+              {
+                fallback: 'style-loader',
+                use: ['css-loader']
+              })
         },
         {
             test: /\.ttf$/,
@@ -116,11 +118,17 @@ module.exports = {
     //       template: __dirname + "/src/public/index.html",
     //       inject: 'body'
     //   }),
-      new ExtractTextPlugin({ filename: 'index.css', allChunks: true }),
+      new ExtractTextPlugin({ filename: 'index.css'}),
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"
-    })
+    }),
+    new HtmlWebpackPlugin({
+        inject: false,
+        hash: true,
+        template: './client/index.html',
+        filename: 'index.html'
+      })
   ],
 //   devServer: {  // configuration for webpack-dev-server
 //       contentBase: './src/public',  //source of static assets

@@ -45,14 +45,16 @@ app.use((0, _cors2.default)());
 app.use(_express2.default.static(CLIENT_PATH));
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_bodyParser2.default.json());
-
-app.use('/api', _routes2.default);
-
-app.get('/', function (req, res) {
-  res.render(_path2.default.join(CLIENT_PATH + '/index.html'), {
-    stripePublishableKey: process.env.STRIPE_PK
-  });
+app.get('/', function (_, res) {
+  res.sendFile(_path2.default.join(__dirname, 'index.html'));
 });
+app.use('/api', _routes2.default);
+// app.get('/', (req, res) => {
+//     res.render(path.join(CLIENT_PATH + '/index.html'), {
+//         stripePublishableKey: process.env.STRIPE_PK
+//     }); 
+//   });
+
 
 //   # ------------------
 //   # Create a campaign\

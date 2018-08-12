@@ -8,6 +8,7 @@
     "npm": "6.1.0"
   },
   "scripts": {
+    "build:product": "webpack --mode production",
     "build:client": "webpack",
     "build:server": "babel ./server/src -d ./server/lib",
     "clean": "npm run clean:client && npm run clean:server",
