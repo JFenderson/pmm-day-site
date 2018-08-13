@@ -1,3 +1,6 @@
 node_modules
 .env
 sendgrid.env
+./client/dist
+./server/lib
+.DS_Store

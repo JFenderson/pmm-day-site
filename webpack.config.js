@@ -3,19 +3,19 @@ const webpack = require('webpack');
 const CLIENT_DEST = path.join(__dirname, './client/dist');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
+var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
     watch: true,
-    mode: 'development',
+    mode: 'production',
     entry: {main: './client/src/index.js'},
     output: { 
         path: CLIENT_DEST, 
         filename: 'bundle.js',
-        publicPath: '/' 
+        publicPath: 'https://enigmatic-scrubland-67448.herokuapp.com/client/dist' 
             },
     devServer: {
        historyApiFallback: true,
-       publicPath: '/'
             },
     module: {  
         rules: [ 
@@ -37,7 +37,10 @@ module.exports = {
               {
                 fallback: 'style-loader',
                 use: ['css-loader']
-              })
+              }),
+              exclude: [
+                /node_modules/
+              ]
         },
         {
             test: /\.ttf$/,
@@ -124,11 +127,12 @@ module.exports = {
         jQuery: "jquery"
     }),
     new HtmlWebpackPlugin({
-        inject: false,
+        inject: true,
         hash: true,
         template: './client/index.html',
-        filename: 'index.html'
-      })
+        filename: 'index_bundle.html'
+    }),
+    new DashboardPlugin()
   ],
 //   devServer: {  // configuration for webpack-dev-server
 //       contentBase: './src/public',  //source of static assets

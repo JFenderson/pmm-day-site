@@ -1,8 +1,5 @@
 import $ from 'jquery';
 
-import 'slick-carousel';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 var $jq = jQuery.noConflict();
 
 $jq(document).ready(function(){
