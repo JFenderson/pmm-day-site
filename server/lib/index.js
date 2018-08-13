@@ -97,5 +97,6 @@ app.use('/api', _routes2.default);
 
 
 app.listen(process.env.PORT || 3000, function () {
+  console.log("Express server listening on port %d in %s mode", undefined.address().port, app.settings.env);
   (0, _db2.default)();
 });
