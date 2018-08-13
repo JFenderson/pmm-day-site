@@ -7,7 +7,7 @@ var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
     watch: true,
-    mode: 'production',
+    mode: process.env.NODE_ENV,
     entry: {main: './client/src/index.js'},
     output: { 
         path: CLIENT_DEST, 
