@@ -65,7 +65,7 @@ $('#contactSubmit').click(() => {
   let email = $('#email').val();
   let message = $('#message').val();
 
-  fetch(`${API_URL[environment]}contact`, {
+  fetch('https://enigmatic-scrubland-67448.herokuapp.com/api/contact', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
       name: name, email: email, message: message
@@ -112,7 +112,7 @@ $('#memberSubmit').click((e) => {
   let location = $('#memberLocation').val();
   let crabYear = $('#memberCrabYear').val();
 
-  fetch(`${API_URL[environment]}signup`, {
+  fetch('https://enigmatic-scrubland-67448.herokuapp.com/api/signup', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
       name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
@@ -168,7 +168,7 @@ var handlerGold = StripeCheckout.configure({
     console.log('this is args',args)
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${API_URL[environment]}charge/gold`, {
+    fetch('https://enigmatic-scrubland-67448.herokuapp.com/api/charge/gold', {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -216,7 +216,7 @@ var handlerPurple = StripeCheckout.configure({
   token: function (token, args) {
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${API_URL[environment]}charge/purple`, {
+    fetch('https://enigmatic-scrubland-67448.herokuapp.com/api/charge/purple', {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -263,7 +263,7 @@ var handlerWhite = StripeCheckout.configure({
   token: function (token, args) {
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${API_URL[environment]}charge/white`, {
+    fetch('https://enigmatic-scrubland-67448.herokuapp.com/api/charge/white', {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -361,7 +361,7 @@ setInterval(function() {
     .appendTo('#slideshow');
 }, 3000);
 
-fetch(`${API_URL[environment]}photos`)
+fetch('https://enigmatic-scrubland-67448.herokuapp.com/api/photos')
 .then((res) => {
   return res.json()
 })
