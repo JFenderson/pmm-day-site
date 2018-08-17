@@ -12,7 +12,6 @@ module.exports = {
     output: { 
         path: CLIENT_DEST, 
         filename: 'bundle.js',
-        publicPath: 'https://enigmatic-scrubland-67448.herokuapp.com/client/dist' 
             },
     devServer: {
        historyApiFallback: true,

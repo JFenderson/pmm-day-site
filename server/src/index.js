@@ -23,6 +23,7 @@ app.use(cors());
 app.use(express.static(CLIENT_PATH));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.get('/', (_, res) => { 
   res.sendFile(path.join(__dirname, 'index.html')) 
 });
@@ -33,51 +34,12 @@ app.use('/api', routes);
 //     }); 
 //   });
 
-
-
-
-
-//   # ------------------
-//   # Create a campaign\
-//   # ------------------
-  
-//   # Include the SendinBlue library\
-  // var SibApiV3Sdk = require('sib-api-v3-sdk');
-//   var defaultClient = SibApiV3Sdk.ApiClient.instance;
-  
-// //   # Instantiate the client\
-//   var apiKey = defaultClient.authentications['api-key'];
-//   apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
-  
-//   var apiInstance = new SibApiV3Sdk.EmailCampaignsApi();
-//   var emailCampaigns = new SibApiV3Sdk.CreateEmailCampaign();
-  
-//   # Define the campaign settings\
-  // emailCampaigns = {
-  //     name: 'Campaign sent via the API',
-  //     subject: 'My subject',
-  //     sender: {name: 'From name', email: 'fenderson.joseph@gmail.com'},
-  //     type: 'classic',
-  
-  //   //   # Content that will be sent\
-  //     htmlContent: 'Congratulations! You successfully sent this example campaign via the SendinBlue API.',
-  
-  //   //   # Select the recipients\
-  //     recipients: {listIds: [5]}, 
-  
-  //   //   # Schedule the sending in one hour\
-  //     scheduledAt: '2018-07-28 00:00:01'
-  // }
-  
-//   # Make the call to the client\
-  // apiInstance.createEmailCampaign(emailCampaigns).then(function(data) {
-  //   console.log('API called successfully. Returned data: ' + data);
-  // }, function(error) {
-  //   console.error(error);
-  // });
-
-
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3000, (err) => {
+  if(err){
+    console.log(err)
+  }else{
+    console.log('server listening')
     configure();
+  }
 });
 

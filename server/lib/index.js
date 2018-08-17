@@ -45,6 +45,7 @@ app.use((0, _cors2.default)());
 app.use(_express2.default.static(CLIENT_PATH));
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_bodyParser2.default.json());
+
 app.get('/', function (_, res) {
   res.sendFile(_path2.default.join(__dirname, 'index.html'));
 });
@@ -55,48 +56,11 @@ app.use('/api', _routes2.default);
 //     }); 
 //   });
 
-
-//   # ------------------
-//   # Create a campaign\
-//   # ------------------
-
-//   # Include the SendinBlue library\
-// var SibApiV3Sdk = require('sib-api-v3-sdk');
-//   var defaultClient = SibApiV3Sdk.ApiClient.instance;
-
-// //   # Instantiate the client\
-//   var apiKey = defaultClient.authentications['api-key'];
-//   apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
-
-//   var apiInstance = new SibApiV3Sdk.EmailCampaignsApi();
-//   var emailCampaigns = new SibApiV3Sdk.CreateEmailCampaign();
-
-//   # Define the campaign settings\
-// emailCampaigns = {
-//     name: 'Campaign sent via the API',
-//     subject: 'My subject',
-//     sender: {name: 'From name', email: 'fenderson.joseph@gmail.com'},
-//     type: 'classic',
-
-//   //   # Content that will be sent\
-//     htmlContent: 'Congratulations! You successfully sent this example campaign via the SendinBlue API.',
-
-//   //   # Select the recipients\
-//     recipients: {listIds: [5]}, 
-
-//   //   # Schedule the sending in one hour\
-//     scheduledAt: '2018-07-28 00:00:01'
-// }
-
-//   # Make the call to the client\
-// apiInstance.createEmailCampaign(emailCampaigns).then(function(data) {
-//   console.log('API called successfully. Returned data: ' + data);
-// }, function(error) {
-//   console.error(error);
-// });
-
-
-app.listen(process.env.PORT || 3000, function () {
-  console.log("Express server listening on port %d in %s mode", undefined.address().port, app.settings.env);
-  (0, _db2.default)();
+app.listen(process.env.PORT || 3000, function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('server listening');
+    (0, _db2.default)();
+  }
 });
