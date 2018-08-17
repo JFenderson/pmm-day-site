@@ -4,6 +4,15 @@ const CLIENT_DEST = path.join(__dirname, './client/dist');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
 var DashboardPlugin = require('webpack-dashboard/plugin');
+// this config can be in webpack.config.js or other file with constants
+var API_URL = {
+    production: JSON.stringify('https://enigmatic-scrubland-67448.herokuapp.com/'),
+    development: JSON.stringify('http://localhost:3000/')
+}
+
+// check environment mode
+var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
 
 module.exports = {
     watch: true,
@@ -131,7 +140,10 @@ module.exports = {
         template: './client/index.html',
         filename: 'index_bundle.html'
     }),
-    new DashboardPlugin()
+    new DashboardPlugin(),
+    new webpack.DefinePlugin({
+        API_URL: API_URL[environment]
+    })
   ],
 //   devServer: {  // configuration for webpack-dev-server
 //       contentBase: './src/public',  //source of static assets

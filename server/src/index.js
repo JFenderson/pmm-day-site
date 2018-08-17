@@ -34,6 +34,8 @@ app.use('/api', routes);
 //     }); 
 //   });
 
+console.log(process.env.NODE_ENV)
+
 app.listen(process.env.PORT || 3000, (err) => {
   if(err){
     console.log(err)

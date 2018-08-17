@@ -56,7 +56,7 @@ $('#contactSubmit').click(() => {
   let email = $('#email').val();
   let message = $('#message').val();
 
-  fetch(`${url}contact`, {
+  fetch(`${API_URL}contact`, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
       name: name, email: email, message: message
@@ -103,7 +103,7 @@ $('#memberSubmit').click((e) => {
   let location = $('#memberLocation').val();
   let crabYear = $('#memberCrabYear').val();
 
-  fetch(`${url}signup`, {
+  fetch(`${API_URL}signup`, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
       name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
@@ -159,7 +159,7 @@ var handlerGold = StripeCheckout.configure({
     console.log('this is args',args)
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${url}charge/gold`, {
+    fetch(`${API_URL}charge/gold`, {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -207,7 +207,7 @@ var handlerPurple = StripeCheckout.configure({
   token: function (token, args) {
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${url}charge/purple`, {
+    fetch(`${API_URL}charge/purple`, {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -254,7 +254,7 @@ var handlerWhite = StripeCheckout.configure({
   token: function (token, args) {
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${url}charge/white`, {
+    fetch(`${API_URL}charge/white`, {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -352,7 +352,7 @@ setInterval(function() {
     .appendTo('#slideshow');
 }, 3000);
 
-fetch(`${url}photos`)
+fetch(`${API_URL}photos`)
 .then((res) => {
   return res.json()
 })

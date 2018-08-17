@@ -56,6 +56,8 @@ app.use('/api', _routes2.default);
 //     }); 
 //   });
 
+console.log(process.env.NODE_ENV);
+
 app.listen(process.env.PORT || 3000, function (err) {
   if (err) {
     console.log(err);
