@@ -8,6 +8,15 @@ $jq(document).ready(function(){
   ? 'http://localhost:3000/api/'
   : 'https://enigmatic-scrubland-67448.herokuapp.com/api/';
 
+  var API_URL = {
+    production: JSON.stringify('https://enigmatic-scrubland-67448.herokuapp.com/api/'),
+    development: JSON.stringify('http://localhost:3000/api/')
+}
+
+// check environment mode
+var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
+  console.log(API_URL[environment]);
   // START NAVBAR
   // grab the initial top offset of the navigation 
   var stickyNavTop = $('.nav').offset().top;
@@ -56,7 +65,7 @@ $('#contactSubmit').click(() => {
   let email = $('#email').val();
   let message = $('#message').val();
 
-  fetch(`${API_URL}contact`, {
+  fetch(`${API_URL[environment]}contact`, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
       name: name, email: email, message: message
@@ -103,7 +112,7 @@ $('#memberSubmit').click((e) => {
   let location = $('#memberLocation').val();
   let crabYear = $('#memberCrabYear').val();
 
-  fetch(`${API_URL}signup`, {
+  fetch(`${API_URL[environment]}signup`, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
       name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
@@ -159,7 +168,7 @@ var handlerGold = StripeCheckout.configure({
     console.log('this is args',args)
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${API_URL}charge/gold`, {
+    fetch(`${API_URL[environment]}charge/gold`, {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -207,7 +216,7 @@ var handlerPurple = StripeCheckout.configure({
   token: function (token, args) {
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${API_URL}charge/purple`, {
+    fetch(`${API_URL[environment]}charge/purple`, {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -254,7 +263,7 @@ var handlerWhite = StripeCheckout.configure({
   token: function (token, args) {
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${API_URL}charge/white`, {
+    fetch(`${API_URL[environment]}charge/white`, {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -352,7 +361,7 @@ setInterval(function() {
     .appendTo('#slideshow');
 }, 3000);
 
-fetch(`${API_URL}photos`)
+fetch(`${API_URL[environment]}photos`)
 .then((res) => {
   return res.json()
 })
