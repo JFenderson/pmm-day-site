@@ -34,7 +34,6 @@ app.use('/api', routes);
 //     }); 
 //   });
 
-console.log(process.env)
 
 app.listen(process.env.PORT || 3000, (err) => {
   if(err){

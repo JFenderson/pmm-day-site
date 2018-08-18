@@ -4,9 +4,9 @@ var $jq = jQuery.noConflict();
 
 $jq(document).ready(function(){
 
-  const url = (process.env.NODE_ENV === 'development') 
-  ? 'http://localhost:3000/api/'
-  : 'https://enigmatic-scrubland-67448.herokuapp.com/api/';
+  const url = process.env.NODE_ENV === 'production'
+  ? 'https://enigmatic-scrubland-67448.herokuapp.com/api/'
+  : 'http://localhost:3000/api/';
 
   var API_URL = {
     production: 'https://enigmatic-scrubland-67448.herokuapp.com/api/',
@@ -14,7 +14,9 @@ $jq(document).ready(function(){
 }
 
 // check environment mode
-var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+// var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
+var environment = 'production'
 
   console.log(process.env.NODE_ENV)
   console.log(API_URL[environment]);

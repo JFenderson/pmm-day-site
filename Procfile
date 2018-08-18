@@ -1,1 +1,1 @@
-web: node server/lib/index.js
+web: NODE_ENV=production node server/lib/index.js
