@@ -56,13 +56,12 @@ app.use('/api', _routes2.default);
 //     }); 
 //   });
 
-console.log(process.env);
 
 app.listen(process.env.PORT || 3000, function (err) {
   if (err) {
     console.log(err);
   } else {
-    console.log('server listening on ' + process.env.PORT + ' ');
+    console.log('server listening');
     (0, _db2.default)();
   }
 });
