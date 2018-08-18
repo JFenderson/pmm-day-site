@@ -16,6 +16,7 @@ $jq(document).ready(function(){
 // check environment mode
 var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
+  console.log(process.env.NODE_ENV)
   console.log(API_URL[environment]);
   // START NAVBAR
   // grab the initial top offset of the navigation 
