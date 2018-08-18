@@ -39,7 +39,7 @@ app.listen(process.env.PORT || 3000, (err) => {
   if(err){
     console.log(err)
   }else{
-    console.log(`server listening on ${process.env.PORT} `)
+    console.log(`server listening`)
     configure();
   }
 });

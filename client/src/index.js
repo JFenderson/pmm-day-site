@@ -11,13 +11,14 @@ $jq(document).ready(function(){
   var API_URL = {
     production: 'https://enigmatic-scrubland-67448.herokuapp.com/api/',
     development: 'http://localhost:3000/api/'
-}
+  }
 
 // check environment mode
 // var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
-var environment = 'production'
+  var environment = 'production'
 
+  console.log('url', url)
   console.log(process.env.NODE_ENV)
   console.log(API_URL[environment]);
   // START NAVBAR
