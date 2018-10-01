@@ -365,7 +365,9 @@ setInterval(function() {
     .appendTo('#slideshow');
 }, 3000);
 
-fetch(`${API_URL[environment]}photos`)
+// fetch(`${API_URL[environment]}photos`)
+
+fetch('http://localhost:3000/client/images')
 .then((res) => {
   return res.json()
 })

@@ -18,6 +18,10 @@ var _dotenv = require('dotenv');
 
 var _dotenv2 = _interopRequireDefault(_dotenv);
 
+var _googleDb = require('../config/googleDb');
+
+var _googleDb2 = _interopRequireDefault(_googleDb);
+
 var _nodemailer = require('../config/nodemailer');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -26,8 +30,10 @@ _dotenv2.default.config();
 
 var router = (0, _express.Router)();
 var members = new _table2.default('members');
+var pmmMember = _googleDb2.default.collection('pmmMembers');
 
 router.get('/', function (req, res) {
+
   members.getAll().then(function (info) {
     return res.json(info);
   }).catch(function (err) {

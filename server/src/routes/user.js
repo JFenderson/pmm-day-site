@@ -3,19 +3,25 @@ import Table from '../utils/table';
 import ZipCodes from 'zipcodes';
 import human from 'humanparser';
 import dotenv from 'dotenv';
+import db from '../config/googleDb';
 import { transporter, sendInBlueTransporter, mailgunTransporter } from '../config/nodemailer';
 dotenv.config();
 
 let router = Router();
 let members = new Table('members');
+let pmmMember = db.collection('pmmMembers')
+
 
 
 router.get('/', (req,res)=> {
- members.getAll()
- .then( (info) => res.json(info))
- .catch((err)=> {
-  console.log(err);
-})
+
+  
+
+  members.getAll()
+  .then( (info) => res.json(info))
+  .catch((err)=> {
+    console.log(err);
+  })
 })
 
 

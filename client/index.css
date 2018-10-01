@@ -468,6 +468,7 @@ li {
 /* price area starts */
 
 .price-area {
+    background-image: url('./images/banner.jpg') ;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./images/banner.jpg');
     padding: 2em 0;
     background-repeat: no-repeat;
@@ -478,7 +479,7 @@ li {
     -o-background-size: cover !important;
     image-rendering: optimizeQuality;
     background-attachment: fixed;
-    overflow: scroll;
+    overflow: hidden;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -1346,7 +1347,7 @@ li {
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
-@media screen and (min-width: 1200px) { 
+@media only screen and (min-width: 1200px) { 
         /* navbar */
     .hero-nav{
         padding-top: 2em;

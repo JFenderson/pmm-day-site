@@ -32,6 +32,16 @@ var _mail = require('@sendgrid/mail');
 
 var _mail2 = _interopRequireDefault(_mail);
 
+var _googleDb = require('./config/googleDb');
+
+var _googleDb2 = _interopRequireDefault(_googleDb);
+
+var _storage = require('@google-cloud/storage');
+
+var Storage = _interopRequireWildcard(_storage);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
@@ -56,6 +66,34 @@ app.use('/api', _routes2.default);
 //     }); 
 //   });
 
+// Imports the Google Cloud client library.
+
+// Instantiates a client. If you don't specify credentials when constructing
+// the client, the client library will look for credentials in the
+// environment.
+var storage = new Storage();
+
+// Makes an authenticated API request.
+storage.getBuckets().then(function (results) {
+  var buckets = results[0];
+
+  console.log('Buckets:');
+  buckets.forEach(function (bucket) {
+    console.log(bucket.name);
+  });
+}).catch(function (err) {
+  console.error('ERROR:', err);
+});
+
+var pmmMember = _googleDb2.default.collection('pmmMembers');
+
+pmmMember.get().then(function (snapshot) {
+  snapshot.forEach(function (doc) {
+    console.log(doc.id, '=>', doc.data());
+  });
+}).catch(function (err) {
+  console.log('Error getting documents', err);
+});
 
 app.listen(process.env.PORT || 3000, function (err) {
   if (err) {
