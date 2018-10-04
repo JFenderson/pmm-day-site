@@ -71,19 +71,22 @@ app.use('/api', _routes2.default);
 // Instantiates a client. If you don't specify credentials when constructing
 // the client, the client library will look for credentials in the
 // environment.
-var storage = new Storage();
+// const storage = new Storage();
 
-// Makes an authenticated API request.
-storage.getBuckets().then(function (results) {
-  var buckets = results[0];
+// // Makes an authenticated API request.
+// storage
+//   .getBuckets()
+//   .then((results) => {
+//     const buckets = results[0];
 
-  console.log('Buckets:');
-  buckets.forEach(function (bucket) {
-    console.log(bucket.name);
-  });
-}).catch(function (err) {
-  console.error('ERROR:', err);
-});
+//     console.log('Buckets:');
+//     buckets.forEach((bucket) => {
+//       console.log(bucket.name);
+//     });
+//   })
+//   .catch((err) => {
+//     console.error('ERROR:', err);
+//   });
 
 var pmmMember = _googleDb2.default.collection('pmmMembers');
 

@@ -41,4 +41,4 @@ var mailgunTransporter = nodemailer.createTransport(mg(mgAuth))
 
 
 
-export { transporter, sendInBlueTransporter, mailgunTransporter }
+export { transporter, sendInBlueTransporter, mailgunTransporter}

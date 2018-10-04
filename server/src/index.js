@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.get('/', (_, res) => { 
   res.sendFile(path.join(__dirname, 'index.html')) 
 });
-app.use('/api', routes);
+app.use('/api', routes); 
 // app.get('/', (req, res) => {
 //     res.render(path.join(CLIENT_PATH + '/index.html'), {
 //         stripePublishableKey: process.env.STRIPE_PK
@@ -40,22 +40,22 @@ app.use('/api', routes);
 // Instantiates a client. If you don't specify credentials when constructing
 // the client, the client library will look for credentials in the
 // environment.
-const storage = new Storage();
+// const storage = new Storage();
 
-// Makes an authenticated API request.
-storage
-  .getBuckets()
-  .then((results) => {
-    const buckets = results[0];
+// // Makes an authenticated API request.
+// storage
+//   .getBuckets()
+//   .then((results) => {
+//     const buckets = results[0];
 
-    console.log('Buckets:');
-    buckets.forEach((bucket) => {
-      console.log(bucket.name);
-    });
-  })
-  .catch((err) => {
-    console.error('ERROR:', err);
-  });
+//     console.log('Buckets:');
+//     buckets.forEach((bucket) => {
+//       console.log(bucket.name);
+//     });
+//   })
+//   .catch((err) => {
+//     console.error('ERROR:', err);
+//   });
 
 let pmmMember = db.collection('pmmMembers')
 
