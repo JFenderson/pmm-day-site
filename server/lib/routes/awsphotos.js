@@ -10,6 +10,10 @@ var _awsSdk2 = _interopRequireDefault(_awsSdk);
 
 var _express = require('express');
 
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
 var _multer = require('multer');
 
 var _multer2 = _interopRequireDefault(_multer);
@@ -24,13 +28,10 @@ var _multerS = require('multer-s3');
 
 var _multerS2 = _interopRequireDefault(_multerS);
 
-var _dotenv = require('dotenv');
-
-var _dotenv2 = _interopRequireDefault(_dotenv);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _dotenv2.default.config();
+
 
 var router = (0, _express.Router)();
 

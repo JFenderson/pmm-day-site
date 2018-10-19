@@ -10,16 +10,13 @@ import path from 'path';
 import AWS from 'aws-sdk';
 import configure from './config/db';
 import sgMail from '@sendgrid/mail';
-import db from './config/googleDb'
+import db from './config/googleDb';
 import * as Storage from '@google-cloud/storage';
 
 const port = 3000;
-
+const CLIENT_PATH = join(__dirname, '../../client');
 let app = express();
 
-
-
-const CLIENT_PATH = join(__dirname, '../../client');
 app.use(cors());
 app.use(express.static(CLIENT_PATH));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,41 +31,6 @@ app.use('/api', routes);
 //         stripePublishableKey: process.env.STRIPE_PK
 //     }); 
 //   });
-
-// Imports the Google Cloud client library.
-
-// Instantiates a client. If you don't specify credentials when constructing
-// the client, the client library will look for credentials in the
-// environment.
-// const storage = new Storage();
-
-// // Makes an authenticated API request.
-// storage
-//   .getBuckets()
-//   .then((results) => {
-//     const buckets = results[0];
-
-//     console.log('Buckets:');
-//     buckets.forEach((bucket) => {
-//       console.log(bucket.name);
-//     });
-//   })
-//   .catch((err) => {
-//     console.error('ERROR:', err);
-//   });
-
-let pmmMember = db.collection('pmmMembers')
-
-pmmMember.get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.id, '=>', doc.data());
-    })
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err);
-  })
-
 
 app.listen(process.env.PORT || 3000, (err) => {
   if(err){
