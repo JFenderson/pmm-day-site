@@ -444,7 +444,9 @@ li {
     min-width: 50%;
     height: 20em;
 }
-
+.comittee-content a{
+    color: black;
+}
 /* .committee-content {
     position: absolute;
     top: 0;
@@ -508,11 +510,39 @@ li {
     margin: 5px auto;
     height: 50px;
 }
+.ticket-button-div{
+    justify-content: center;
+    text-align: center;
+}
 
 .ticket-button{
-    display: flex;
-    justify-content: center;
+    border: 2px solid #651775;
+    font-family: inherit;
+    font-size: inherit;
+    color: #651775;
+    background: #fff;
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+    margin: auto;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: 6px;
 }
+
+.ticket-button:hover {
+    color: rgb(230, 191, 22);
+    background: #fff;
+    border-radius: 50px;
+    transition: all 0.3s ease 0s;
+}
+
 .ticket-sub-text{
     color: white;
     font-size: 25px;
@@ -520,13 +550,15 @@ li {
 }
 
 .ticket-link{
+    color: white;
     
 }
 
 .price-area {
     background-image: url('./images/banner.jpg') ;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('./images/banner.jpg');
-    padding: 2em 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('./images/banner.jpg');
+    padding: 6em 0;
+    height: auto;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -552,9 +584,17 @@ li {
     padding: 0 15%;
     margin-bottom: 65px;
     line-height: 1.5;
+    font-size: 23px;
     margin: 0 0 20px 0;
     color: #F9F7F5;
     font-family: 'Quicksand', sans-serif;
+}
+
+.sub-title-fine-print{
+    color: #F9F7F5;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 23px;
+    text-align: center;
 }
 
 .price-box-hover:hover {

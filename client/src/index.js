@@ -153,68 +153,259 @@ $('#memberSubmit').click((e) => {
 //END MEMBER SIGNUP
 
 //START STRIPE PAYMENT
-var toValidate = $('#ticketName,#ticketPhoneNumber, #ticketEmail, ticketZip'),
-valid = false;
+// var toValidate = $('#numberOfTickets, #purchase'),
+// valid = false;
 
-toValidate.keyup(function () {
-if ($(this).val().length > 0) {
-    $(this).data('valid', true);
-} else {
-    $(this).data('valid', false);
-}
-toValidate.each(function () {
-    if ($(this).data('valid') == true) {
-        valid = true;
-    } else {
-        valid = false;
-    }
-});
-if (valid === true) {
-    $('input[type=submit]').prop('disabled', false);
-}else{
-    $('input[type=submit]').prop('disabled', true);        
-}
-});
+// toValidate.keyup(function () {
+// if ($(this).val().length > 0) {
+//     $(this).data('valid', true);
+// } else {
+//     $(this).data('valid', false);
+// }
+// toValidate.each(function () {
+//     if ($(this).data('valid') == true) {
+//         valid = true;
+//     } else {
+//         valid = false;
+//     }
+// });
+// if (valid === true) {
+//     $('input[type=submit]').prop('disabled', false);
+// }else{
+//     $('input[type=submit]').prop('disabled', true);        
+// }
+// });
 
 const stripePK = 'pk_test_obzu76S8L0GFvqkXbKn204a2';
+let ticketHandler = (token, args) => {
+    console.log('this is tokens',token)
+    console.log('this is args',args)
+    // You can access the token ID with `token.id`.
+    // Get the token ID to your server-side code for use.
+  if(tixType == 'individual'){
+    if(tixQuanity == 1){
+        fetch(`http://localhost:3000/api/charge/tickets/idv/1`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })
+      }else if(tixQuanity == 2){
+
+        fetch(`http://localhost:3000/api/charge/tickets/idv/2`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })
+      }else if(tixQuanity == 3){
+        fetch(`http://localhost:3000/api/charge/tickets/idv/3`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })
+      }else if(tixQuanity == 4){
+        fetch(`http://localhost:3000/api/charge/tickets/idv/4`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })
+      }else if(tixQuanity == 5){
+        fetch(`http://localhost:3000/api/charge/tickets/idv/5`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })
+      }
+    }else{
+      if(tixQuanity == 1){
+        fetch(`http://localhost:3000/api/charge/tickets/tntsp/1`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })    
+      }else if(tixQuanity == 2){
+        fetch(`http://localhost:3000/api/charge/tickets/tntsp/2`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })    
+      }else if(tixQuanity == 3){
+        fetch(`http://localhost:3000/api/charge/tickets/tntsp/3`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' +  stripePK
+          },
+          body: JSON.stringify(token, args)
+        })
+          .then(output => {
+            console.log(output)
+            if (output.status === "succeeded")
+              document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              console.log('Bad request, often due to missing a required parameter.',error);
+            } else if (error.status === 401) {
+              console.log('No valid API key provided.', error);
+            } else if (error.status === 404) {
+              console.log('The requested resource doesn\'t exist.', error);
+            } else if(error.status === 500){
+                console.log('Purchase Failed', error)
+            }
+          })    
+      }
+    }
+  }
+
+
 var handler = StripeCheckout.configure({
   key: stripePK,
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
   zipCode: true,
   billingAddress: true,
-  token: function (token, args) {
-    console.log('this is tokens',token)
-    console.log('this is args',args)
-    // You can access the token ID with `token.id`.
-    // Get the token ID to your server-side code for use.
-    fetch(`http://localhost:3000/api/charge/tickets`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer' +  stripePK
-      },
-      body: JSON.stringify(token, args)
-    })
-      .then(output => {
-        console.log(output)
-        if (output.status === "succeeded")
-          document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
-      })
-      .catch((error) => {
-        if (error.status === 400) {
-          console.log('Bad request, often due to missing a required parameter.',error);
-        } else if (error.status === 401) {
-          console.log('No valid API key provided.', error);
-        } else if (error.status === 404) {
-          console.log('The requested resource doesn\'t exist.', error);
-        } else if(error.status === 500){
-            console.log('Purchase Failed', error)
-        }
-      })
-
-  },
+  token: ticketHandler,
   opened:() => {
     console.log('opened')
   } ,
@@ -226,6 +417,8 @@ var handler = StripeCheckout.configure({
     }
   }
 });
+
+
 
 $('#ticketBtn').on('click',(e) => {
   e.preventDefault();
@@ -239,15 +432,17 @@ $('#ticketBtn').on('click',(e) => {
     zipcode: $('#ticketZip').val()
   };
 
-  if(tixType == "individualTicket"){
+  console.log(tixType)
+
+  if(tixType == "individual"){
     // Open Checkout with further options:
     handler.open({
       name: 'PMM Picnic',
-      description: 'Gold Package',
-      amount: 1000 * tixQuanity,
+      description: 'Individual Tickets',
+      amount: 1000 * tixQuanity
     });
   }
-  else if(tixType == "tentSpace"){
+  else if(tixType == "space"){
     if(tixQuanity == "1" || tixQuanity == "2" || tixQuanity == "3"){
           // Open Checkout with further options:
     handler.open({
