@@ -413,7 +413,7 @@ li {
 .comittee-area {
     /* background: #f8f8f8; */
     /* padding: 8em 8em; */
-    height: 110vh;
+    height: auto;
     font-family: 'Quicksand', sans-serif;
     text-align: center;
     padding: 2em 0;
@@ -442,8 +442,8 @@ li {
     /* display: block; */
     max-width: 100%;
     min-width: 50%;
-    height: 10em;
-    width: 16em;
+    height: auto;
+    width: auto;
 }
 
 .comittee-box-content {
@@ -957,10 +957,10 @@ li {
 
 @media (max-height: 667px){
     .landing{
-        height: 175vh;
+        height: 200vh;
     }
     .about-container{
-        height: auto;
+        height: 80vh;
         /* margin-top: 11em; */
     }
 }
@@ -1171,7 +1171,7 @@ li {
     /* schedule end */
     /* committee area start */
     .comittee-area{
-        height: 100vh;
+        height: auto;
     }
     /* committee area end */
     /* price area start */
@@ -1311,7 +1311,7 @@ li {
     /* landing end */
     /* committee area start */
     .comittee-area{
-        height: 65vh;
+        height: auto;
     }
     /* committee area end */
 
@@ -1477,9 +1477,9 @@ li {
     .comittee-wrapper {
         padding-top: 8em;
     }
-    .img-responsive{
+    /* .img-responsive{
         height: 18em;
-    }
+    } */
     /* price area start */
     .price-area{
         height: auto;
