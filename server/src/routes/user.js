@@ -9,29 +9,35 @@ dotenv.config();
 
 let router = Router();
 let members = new Table('members');
-let pmmMember = db.collection('pmmMembers')
+let pmmMember = db.firestore.collection('pmmMembers').doc();
 
-
-
-router.get('/', (req,res)=> {
-
-  
-
-  members.getAll()
-  .then( (info) => res.json(info))
-  .catch((err)=> {
-    console.log(err);
+router.get('/', (req, res) => {
+  pmmMember.get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      res.json(doc.data());
+    })
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
   })
 })
 
-
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
   let { email, phoneNumber, crabYear} = req.body;
   let name = human.parseName(req.body.name);
   let location = ZipCodes.lookup(req.body.location);
-  console.log(location)
-  console.log(name)
-
+ 
+  let data = {
+    firstName: name.firstName,
+    lastName: name.lastName,
+    email: email,
+    phoneNumber: phoneNumber,
+    city: location.city,
+    state: location.state,
+    crabYear: crabYear
+  }
+  
   const mailOption = {
     from: `fenderson.joseph@gmail.com`,// who the email is coming from..in the contact form
     to: `${name} <${email}>`,//who the email is going to
@@ -46,47 +52,56 @@ router.post('/', (req, res) => {
 };
 
 
-
-  members.insert({
-    firstName: name.firstName,
-    lastName: name.lastName, 
-    email, 
-    phoneNumber, 
-    city: location.city, 
-    state: location.state, 
-    crabYear
+pmmMember.set(data)
+.then((ref) => {
+  res.json(ref.writeTime.toDate());
+  console.log('added!')
+})
+.then((res) => {
+  console.log(res);
+  transporter.sendMail(mailOption,(error, res)=> {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('email sent!')
+        res.sendStatus(201);
+    }
+    transporter.close();
   })
-  .then((id) => { 
-      res.json(id);
-  })
-  .catch((err)=> {
-    console.log(err);
-  })
-  .then(res => {
-    console.log(res);
-    transporter.sendMail(mailOption,(error, res)=> {
-      if (error) {
-          console.log(error);
-      } else {
-          console.log('email sent!')
-          res.sendStatus(201);
-      }
-      transporter.close();
-    });
+})
+.catch((err)=> {
+  console.log('There was an error posting users',err);
+})
 
-    mailgunTransporter.sendMail(mailOption, (error, info)=> {
-      if (error) {
-          console.log(error);
-      } else {
-          console.log('email sent!')
-          console.log(info)
-      }
-      transporter.close();
-    })    
-  })
+  // members.insert({
+    //   firstName: name.firstName,
+  //   lastName: name.lastName, 
+  //   email, 
+  //   phoneNumber, 
+  //   city: location.city, 
+  //   state: location.state, 
+  //   crabYear
+  // })
+  // .then((id) => { 
+  //     res.json(id);
+  // })
+  // .catch((err)=> {
+  //   console.log(err);
+  // })
+
+  //   mailgunTransporter.sendMail(mailOption, (error, info)=> {
+  //     if (error) {
+  //         console.log(error);
+  //     } else {
+  //         console.log('email sent!')
+  //         console.log(info)
+  //     }
+  //     transporter.close();
+  //   })    
+  // })
 
 
-});
+})
 
 
 

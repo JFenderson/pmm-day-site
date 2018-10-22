@@ -1,11 +1,11 @@
 import AWS from 'aws-sdk';
 import { Router } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 import multer from 'multer';
 import Table from '../utils/table';
 import { row, rows, empty } from '../config/db';
 import multerS3 from 'multer-s3';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const router = Router();
 

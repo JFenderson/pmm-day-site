@@ -1,55 +1,52 @@
 import $ from 'jquery';
 
-var $jq = jQuery.noConflict();
-
-$jq(document).ready(function(){
-
-  const url = process.env.NODE_ENV === 'production'
-  ? 'https://enigmatic-scrubland-67448.herokuapp.com/api/'
-  : 'http://localhost:3000/api/';
-
-  var API_URL = {
-    production: 'https://enigmatic-scrubland-67448.herokuapp.com/api/',
-    development: 'http://localhost:3000/api/'
-  }
-
-// check environment mode
-// var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-
-  var environment = 'production'
-
-  console.log('url', url)
-  console.log(process.env.NODE_ENV)
-  console.log(API_URL[environment]);
+$(document).ready(function(){
   // START NAVBAR
   // grab the initial top offset of the navigation 
-  var stickyNavTop = $('.nav').offset().top;
+  // var stickyNavTop = $('.nav').offset().top;
 
-  // our function that decides weather the navigation bar should have "fixed" css position or not.
   var stickyNav = function () {
-    var scrollTop = $(window).scrollTop(); // our current vertical position from the top
-
-    // if we've scrolled more than the navigation, change its position to fixed to stick to top,
-    // otherwise change it back to relative
-    if (scrollTop > stickyNavTop) {
+    var scrollTop = $(window).scrollTop(); 
+    if (scrollTop >= 40) {
       $('.hero-nav').addClass('sticky');
     } else {
       $('.hero-nav').removeClass('sticky');
     }
   };
-
-  stickyNav();
-  // and run it again every time you scroll
-  $(window).scroll(function () {
-    stickyNav();
-  });
-  //END NAVBAR
-  //AUTOCOMPLETE ZIP CODE INPUT USING ZIPCODEAPI.COM
   
 
 
+  $('.hero-nav .link-1').click(function(e) {
+    e.preventDefault();
+  	
+    var targetHref = $(this).attr('href');
+	  
+    $('html, body').animate({
+      scrollTop: $(targetHref).offset().top
+    }, 700);
+    
+    $(window).scroll(function () {
+      stickyNav();
+    });
+  });
+
+  $('.footer-links li a').click(function(e) {
+    e.preventDefault();
+  	
+    var targetHref = $(this).attr('href');
+	  
+    $('html, body').animate({
+      scrollTop: $(targetHref).offset().top
+    }, 700);
+    
+    $(window).scroll(function () {
+      stickyNav();
+    });
+  });
+
+  
+//END NAVBAR
 //NODEMAILER FOR CONTACT FORM
-// Used to format phone number
 function phoneFormatter() {
   $('#number').on('input', function() {
     var number = $(this).val().replace(/[^\d]/g, '')
@@ -69,8 +66,8 @@ $('#contactSubmit').click(() => {
   let email = $('#email').val();
   let message = $('#message').val();
 
-  fetch(`${API_URL[environment]}contact`, {
-    method: 'POST', // or 'PUT'
+  fetch(`http://localhost/api/contact`, {
+    method: 'POST',
     body: JSON.stringify({
       name: name, email: email, message: message
     }),
@@ -116,7 +113,7 @@ $('#memberSubmit').click((e) => {
   let location = $('#memberLocation').val();
   let crabYear = $('#memberCrabYear').val();
 
-  fetch(`${API_URL[environment]}signup`, {
+  fetch(`http://localhost:3000/api/user/signup`, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify({
       name: name, email: email, phoneNumber: number, location: location, crabYear: crabYear
@@ -156,12 +153,31 @@ $('#memberSubmit').click((e) => {
 //END MEMBER SIGNUP
 
 //START STRIPE PAYMENT
+var toValidate = $('#ticketName,#ticketPhoneNumber, #ticketEmail, ticketZip'),
+valid = false;
+
+toValidate.keyup(function () {
+if ($(this).val().length > 0) {
+    $(this).data('valid', true);
+} else {
+    $(this).data('valid', false);
+}
+toValidate.each(function () {
+    if ($(this).data('valid') == true) {
+        valid = true;
+    } else {
+        valid = false;
+    }
+});
+if (valid === true) {
+    $('input[type=submit]').prop('disabled', false);
+}else{
+    $('input[type=submit]').prop('disabled', true);        
+}
+});
 
 const stripePK = 'pk_test_obzu76S8L0GFvqkXbKn204a2';
-
-
-
-var handlerGold = StripeCheckout.configure({
+var handler = StripeCheckout.configure({
   key: stripePK,
   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
   locale: 'auto',
@@ -172,7 +188,7 @@ var handlerGold = StripeCheckout.configure({
     console.log('this is args',args)
     // You can access the token ID with `token.id`.
     // Get the token ID to your server-side code for use.
-    fetch(`${API_URL[environment]}charge/gold`, {
+    fetch(`http://localhost:3000/api/charge/tickets`, {
       method: "POST",
       headers: {
         'Accept': 'application/json', 
@@ -211,149 +227,181 @@ var handlerGold = StripeCheckout.configure({
   }
 });
 
-var handlerPurple = StripeCheckout.configure({
-  key: stripePK,
-  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-  locale: 'auto',
-  zipCode: true,
-  billingAddress: true,
-  token: function (token, args) {
-    // You can access the token ID with `token.id`.
-    // Get the token ID to your server-side code for use.
-    fetch(`${API_URL[environment]}charge/purple`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer' +  stripePK
-     },
-      body: JSON.stringify(token, args)
-    })
-      .then(output => {
-        if (output.status === "succeeded")
-          document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
-      })
-      .catch((error) => {
-        if (error.status === 400) {
-          console.log('Bad request, often due to missing a required parameter.',error);
-        } else if (error.status === 401) {
-          console.log('No valid API key provided.', error);
-        } else if (error.status === 404) {
-          console.log('The requested resource doesn\'t exist.', error);
-        } else if(error.status === 500){
-            console.log('Purchase Failed', error)
-        }
-      })
+$('#ticketBtn').on('click',(e) => {
+  e.preventDefault();
 
-  },
-  opened:() => {
-    console.log('opened')
-  } ,
-  closed: function(error) {
-    if(error){
-      console.log(error)
-    } else{
-      console.log('Payment Sent!')
+  var tixQuanity = $('#numberOfTickets').val();
+  var tixType = $('#purchase').val();
+  var custInfo = {
+    name: $('#ticketName').val(),
+    phoneNumber: $('#ticketPhoneNumber').val(), 
+    email: $('#ticketEmail').val(), 
+    zipcode: $('#ticketZip').val()
+  };
+
+  if(tixType == "individualTicket"){
+    // Open Checkout with further options:
+    handler.open({
+      name: 'PMM Picnic',
+      description: 'Gold Package',
+      amount: 1000 * tixQuanity,
+    });
+  }
+  else if(tixType == "tentSpace"){
+    if(tixQuanity == "1" || tixQuanity == "2" || tixQuanity == "3"){
+          // Open Checkout with further options:
+    handler.open({
+      name: 'PMM Picnic',
+      description: 'Tent Space',
+      amount: 12000 * tixQuanity,
+    });
+    }else{
+      alert('You can only purchase 3 tent spaces per transaction, please contact the committee if more is needed.');
     }
   }
 });
 
-var handlerWhite = StripeCheckout.configure({
-  key: stripePK,
-  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-  locale: 'auto',
-  zipCode: true,
-  billingAddress: true,
-  token: function (token, args) {
-    // You can access the token ID with `token.id`.
-    // Get the token ID to your server-side code for use.
-    fetch(`${API_URL[environment]}charge/white`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer' +  stripePK
-     },
-      body: JSON.stringify(token, args)
-    })
-      .then(output => {
-        if (output.status === "succeeded")
-          document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
-      })
-      .catch((error) => {
-        if (error.status === 400) {
-          console.log('Bad request, often due to missing a required parameter.',error);
-        } else if (error.status === 401) {
-          console.log('No valid API key provided.', error);
-        } else if (error.status === 404) {
-          console.log('The requested resource doesn\'t exist.', error);
-        } else if(error.status === 500){
-            console.log('Purchase Failed', error)
-        }
-      })
+// var handlerPurple = StripeCheckout.configure({
+//   key: stripePK,
+//   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+//   locale: 'auto',
+//   zipCode: true,
+//   billingAddress: true,
+//   token: function (token, args) {
+//     // You can access the token ID with `token.id`.
+//     // Get the token ID to your server-side code for use.
+//     fetch(`http://localhost:3000:3000/api/charge/purple`, {
+//       method: "POST",
+//       headers: {
+//         'Accept': 'application/json', 
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer' +  stripePK
+//      },
+//       body: JSON.stringify(token, args)
+//     })
+//       .then(output => {
+//         if (output.status === "succeeded")
+//           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+//       })
+//       .catch((error) => {
+//         if (error.status === 400) {
+//           console.log('Bad request, often due to missing a required parameter.',error);
+//         } else if (error.status === 401) {
+//           console.log('No valid API key provided.', error);
+//         } else if (error.status === 404) {
+//           console.log('The requested resource doesn\'t exist.', error);
+//         } else if(error.status === 500){
+//             console.log('Purchase Failed', error)
+//         }
+//       })
 
-  },
-  opened:() => {
-    console.log('opened')
-  } ,
-  closed: function(error) {
-    if(error){
-      console.log(error)
-    } else{
-      console.log('Payment Sent!')
-    }
-  }
-});
+//   },
+//   opened:() => {
+//     console.log('opened')
+//   } ,
+//   closed: function(error) {
+//     if(error){
+//       console.log(error)
+//     } else{
+//       console.log('Payment Sent!')
+//     }
+//   }
+// });
+
+// var handlerWhite = StripeCheckout.configure({
+//   key: stripePK,
+//   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+//   locale: 'auto',
+//   zipCode: true,
+//   billingAddress: true,
+//   token: function (token, args) {
+//     // You can access the token ID with `token.id`.
+//     // Get the token ID to your server-side code for use.
+//     fetch(`http://localhost:3000/api/charge/white`, {
+//       method: "POST",
+//       headers: {
+//         'Accept': 'application/json', 
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer' +  stripePK
+//      },
+//       body: JSON.stringify(token, args)
+//     })
+//       .then(output => {
+//         if (output.status === "succeeded")
+//           document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+//       })
+//       .catch((error) => {
+//         if (error.status === 400) {
+//           console.log('Bad request, often due to missing a required parameter.',error);
+//         } else if (error.status === 401) {
+//           console.log('No valid API key provided.', error);
+//         } else if (error.status === 404) {
+//           console.log('The requested resource doesn\'t exist.', error);
+//         } else if(error.status === 500){
+//             console.log('Purchase Failed', error)
+//         }
+//       })
+
+//   },
+//   opened:() => {
+//     console.log('opened')
+//   } ,
+//   closed: function(error) {
+//     if(error){
+//       console.log(error)
+//     } else{
+//       console.log('Payment Sent!')
+//     }
+//   }
+// });
 
 // GOLD PACKAGE BUTTON
-$('#goldButton').on('click', function (e) {
-  e.preventDefault();
-  // Open Checkout with further options:
-  handlerGold.open({
-    name: 'PMM Picnic',
-    description: 'Gold Package',
-    amount: 2000,
-  });
-});
+// $('#goldButton').on('click', function (e) {
+//   e.preventDefault();
+//   // Open Checkout with further options:
+//   handlerGold.open({
+//     name: 'PMM Picnic',
+//     description: 'Gold Package',
+//     amount: 2000,
+//   });
+// });
 
 //PURPLE PACKAGE BUTTON
-$('#purpleButton').on('click', function (e) {
-  e.preventDefault();
-  // Open Checkout with further options:
-  handlerPurple.open({
-    name: 'PMM Picnic',
-    description: 'Purple Package',
-    amount: 1000,
-  });
-});
+// $('#purpleButton').on('click', function (e) {
+//   e.preventDefault();
+//   // Open Checkout with further options:
+//   handlerPurple.open({
+//     name: 'PMM Picnic',
+//     description: 'Purple Package',
+//     amount: 1000,
+//   });
+// });
 
 //WHITE PACKAGE BUTTON
-$('#whiteButton').on('click', function (e) {
-  e.preventDefault();
-  // Open Checkout with further options:
-  handlerWhite.open({
-    name: 'PMM Picnic',
-    description: 'White Package(Student & Staff Only)',
-    amount: 700,
-  });
-});
+// $('#whiteButton').on('click', function (e) {
+//   e.preventDefault();
+//   // Open Checkout with further options:
+//   handlerWhite.open({
+//     name: 'PMM Picnic',
+//     description: 'White Package(Student & Staff Only)',
+//     amount: 700,
+//   });
+// });
 
 // Close Checkout on page navigation:
 $(window).on('popstate', function () {
-  handlerGold.close();
+  handler.close();
 });
-$(window).on('popstate', function () {
-  handlerPurple.close();
-});
-$(window).on('popstate', function () {
-  handlerWhite.close();
-});
+// $(window).on('popstate', function () {
+//   handlerPurple.close();
+// });
+// $(window).on('popstate', function () {
+//   handlerWhite.close();
+// });
 
 //END STRIPE
 
 //START IMAGE GALLERY
-
-
 $("#slideshow > div:gt(0)").hide();
 
 setInterval(function() {
@@ -364,24 +412,6 @@ setInterval(function() {
     .end()
     .appendTo('#slideshow');
 }, 3000);
-
-// fetch(`${API_URL[environment]}photos`)
-
-fetch('http://localhost:3000/client/images')
-.then((res) => {
-  return res.json()
-})
-.then((data) => {
-  let images = data.reduce((acc, image, index)=> {
-    acc += `<div><img id="photo${index} "src="${image.url}" /></div>`;
-    return acc;
-  }, ``);
-
-  $('#slideshow').append(images);
-  // main();
-})
-.catch(error => console.log('error is', error))
-
 
 //END PHOTO GALLERY
 // COUNTDOWN 
@@ -477,14 +507,14 @@ function numberTransition(id, endPoint, transitionDuration, transitionEase) {
 };
 
 // END COUNTDOWN
+
+
 });
-// $("nav").find("a").click(function (e) {
-//   e.preventDefault();
-//   var section = $(this).attr("href");
-//   $("html, body").animate({
-//     scrollTop: $(section).offset().top
-//   });
-// });
+
+
+
+
+
 
 
 

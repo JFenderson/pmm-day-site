@@ -110,6 +110,15 @@ html {
     z-index: 100;
     border-top: 0;
     transition: 0.5s ease;
+    animation: smoothScroll 1s forwards;
+}
+@keyframes smoothScroll {
+	0% {
+		transform: translateY(-40px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
 }
 
 .sticky a:hover {
@@ -404,7 +413,7 @@ li {
 .comittee-area {
     /* background: #f8f8f8; */
     /* padding: 8em 8em; */
-    height: 110vh;
+    height: auto;
     font-family: 'Quicksand', sans-serif;
     text-align: center;
     padding: 2em 0;
@@ -433,8 +442,8 @@ li {
     /* display: block; */
     max-width: 100%;
     min-width: 50%;
-    height: 10em;
-    width: 16em;
+    height: auto;
+    width: auto;
 }
 
 .comittee-box-content {
@@ -467,9 +476,48 @@ li {
 
 /* price area starts */
 
+.ticket-form-left{
+    height: auto;
+    display: grid;
+    float: right;
+    width: 75%;
+}
+.ticket-form-right{
+    height: auto;
+    display: grid;
+    float: left;
+    width: 75%;
+}
+
+.ticket-form input {
+    width: 75%;
+    margin: 5px auto;
+    height: 40px;
+}
+
+.ticket-form select{
+    width: 75%;
+    margin: 5px auto;
+    height: 2em;
+}
+
+.ticket-button{
+    display: flex;
+    justify-content: center;
+}
+.ticket-sub-text{
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+
+.ticket-link{
+    
+}
+
 .price-area {
     background-image: url('./images/banner.jpg') ;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./images/banner.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('./images/banner.jpg');
     padding: 2em 0;
     background-repeat: no-repeat;
     background-size: cover;
@@ -598,7 +646,7 @@ li {
     display: none;
 }
 
-/* .photo-title h1{
+.photo-title h1{
     text-align: center;
     font-size: 3em;
 }
@@ -657,13 +705,14 @@ li {
     line-height: 400px;
     font-weight: bold;
     padding: 0 10px;
-  } */
+  }
 
 
 /* end photo gallery */
 /* start member */
 .band-member-area{
-    margin: 5vh 0;
+    margin: 2em 0;
+    height: auto;
 }
 .title-member{
     text-align: center;
@@ -908,10 +957,10 @@ li {
 
 @media (max-height: 667px){
     .landing{
-        height: 175vh;
+        height: 200vh;
     }
     .about-container{
-        height: 70vh;
+        height: 80vh;
         /* margin-top: 11em; */
     }
 }
@@ -939,7 +988,7 @@ li {
         font-size: 12vh;
     }
     .about-container{
-        height: 55vh;
+        height: auto;
     }
     /* landing end */
     /* schedule start */
@@ -1090,10 +1139,11 @@ li {
         font-size: 2.2rem;
     }
     #countdown li{
-        font-size: 12vh;
+        font-size: 1vh;
+        width: 20%;
     }
     .about-container{
-        height: 50vh;
+        height: auto;
     }
     .about-text h2 {
         font-size: 37px;
@@ -1121,7 +1171,7 @@ li {
     /* schedule end */
     /* committee area start */
     .comittee-area{
-        height: 90vh;
+        height: auto;
     }
     /* committee area end */
     /* price area start */
@@ -1248,7 +1298,7 @@ li {
         padding-top: 15em;
     }
     .about-container{
-        height: 50vh;
+        height: auto;
         margin-top: 24em;
     }
     .about-text h2 {
@@ -1261,7 +1311,7 @@ li {
     /* landing end */
     /* committee area start */
     .comittee-area{
-        height: 65vh;
+        height: auto;
     }
     /* committee area end */
 
@@ -1370,8 +1420,11 @@ li {
     #countdown li{
         font-size: 14vh;
     }
+    li{
+        width: 20%;
+    }
     .about-container{
-        height: 44vh;
+        height: auto;
     }
     .about-text h2{
         font-size: 2.3em;
@@ -1386,10 +1439,13 @@ li {
         height: 50vh;
     }
     .schedule .container{
-        margin-top: 8em;
+        margin-top: 4em;
+    }
+    .schedule-row{
+        flex-wrap: inherit;
     }
     .schedule-box{
-        margin: 0%;
+        margin: 5px;
     }
     /* .schedule-box{
         margin: 5px;
@@ -1416,17 +1472,17 @@ li {
     }
     /* schedule end */
     .comittee-area{
-        height: 75vh;
+        height: auto;
     }
     .comittee-wrapper {
         padding-top: 8em;
     }
-    .img-responsive{
+    /* .img-responsive{
         height: 18em;
-    }
+    } */
     /* price area start */
     .price-area{
-        height: 88vh;
+        height: auto;
     }
     .plan{
         margin-top: 8em;
@@ -1441,7 +1497,7 @@ li {
     /* starts photo gallery/slideshow */
     .photo-gallery-area {
         padding: 50px 0 125px;
-        height: 110vh;
+        height: auto;
         font-family: 'Quicksand', sans-serif;
         display: grid;
     }
@@ -1572,7 +1628,7 @@ li {
         font-size: 13vh
     }
     .about-container {
-        height: 50vh;
+        height: auto;
         margin-top: 21em;
     }
     .about-text h2 {

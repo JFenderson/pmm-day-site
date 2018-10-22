@@ -47,10 +47,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 require('dotenv').config();
 
 var port = 3000;
-
+var CLIENT_PATH = (0, _path.join)(__dirname, '../../client');
 var app = (0, _express2.default)();
 
-var CLIENT_PATH = (0, _path.join)(__dirname, '../../client');
 app.use((0, _cors2.default)());
 app.use(_express2.default.static(CLIENT_PATH));
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
@@ -65,38 +64,6 @@ app.use('/api', _routes2.default);
 //         stripePublishableKey: process.env.STRIPE_PK
 //     }); 
 //   });
-
-// Imports the Google Cloud client library.
-
-// Instantiates a client. If you don't specify credentials when constructing
-// the client, the client library will look for credentials in the
-// environment.
-// const storage = new Storage();
-
-// // Makes an authenticated API request.
-// storage
-//   .getBuckets()
-//   .then((results) => {
-//     const buckets = results[0];
-
-//     console.log('Buckets:');
-//     buckets.forEach((bucket) => {
-//       console.log(bucket.name);
-//     });
-//   })
-//   .catch((err) => {
-//     console.error('ERROR:', err);
-//   });
-
-var pmmMember = _googleDb2.default.collection('pmmMembers');
-
-pmmMember.get().then(function (snapshot) {
-  snapshot.forEach(function (doc) {
-    console.log(doc.id, '=>', doc.data());
-  });
-}).catch(function (err) {
-  console.log('Error getting documents', err);
-});
 
 app.listen(process.env.PORT || 3000, function (err) {
   if (err) {
