@@ -442,9 +442,27 @@ li {
     /* display: block; */
     max-width: 100%;
     min-width: 50%;
-    height: auto;
-    width: auto;
+    height: 20em;
 }
+
+/* .committee-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(29, 106, 154, 0.72);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+  
+    transition: opacity .2s, visibility .2s;
+  }
+  
+  .img__responsive:hover .comittee-content {
+    visibility: visible;
+    opacity: 1;
+  } */
 
 .comittee-box-content {
     padding: 25px 0 30px;
@@ -475,30 +493,20 @@ li {
 /* end comittee area */
 
 /* price area starts */
-
-.ticket-form-left{
-    height: auto;
-    display: grid;
-    float: right;
-    width: 75%;
-}
-.ticket-form-right{
-    height: auto;
-    display: grid;
-    float: left;
-    width: 75%;
+.ticket-row{
+    text-align: center;
 }
 
 .ticket-form input {
     width: 75%;
     margin: 5px auto;
-    height: 40px;
+    height: 50px;
 }
 
 .ticket-form select{
     width: 75%;
     margin: 5px auto;
-    height: 2em;
+    height: 50px;
 }
 
 .ticket-button{
@@ -846,6 +854,17 @@ li {
     font-size: 25px;
     transition: all 0.3s ease 0s;
 }
+.footer-copyright a {
+    color:white;
+    text-decoration: none;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+.footer-copyright a:hover {
+    color: gold;
+    transition: all 0.3s ease 0s;
+}
 
 .footer-contact {
     display: grid;
@@ -1018,6 +1037,16 @@ li {
         width: 75%;
     }
     /* price area end */
+    .img-responsive {
+        /* display: block; */
+        max-width: 100%;
+        min-width: 50%;
+        height: 20em;
+    }
+
+    .ticket-row{
+        text-align: center;
+    }
     /* starts photo gallery/slideshow */
     .photo-gallery-area {
         padding: 50px 0 125px;
@@ -1173,6 +1202,15 @@ li {
     .comittee-area{
         height: auto;
     }
+    .img-responsive {
+        /* display: block; */
+        max-width: 100%;
+        min-width: 50%;
+        height: 20em;
+    }
+    .ticket-row{
+        text-align: center;
+    }
     /* committee area end */
     /* price area start */
     .price-box1{
@@ -1312,6 +1350,12 @@ li {
     /* committee area start */
     .comittee-area{
         height: auto;
+    }
+    .img-responsive {
+        /* display: block; */
+        max-width: 100%;
+        min-width: 50%;
+        height: 20em;
     }
     /* committee area end */
 
@@ -1477,9 +1521,12 @@ li {
     .comittee-wrapper {
         padding-top: 8em;
     }
-    /* .img-responsive{
-        height: 18em;
-    } */
+    .img-responsive {
+        /* display: block; */
+        max-width: 100%;
+        min-width: 50%;
+        height: 20em;
+    }
     /* price area start */
     .price-area{
         height: auto;
@@ -1494,6 +1541,16 @@ li {
         font-size: 23px;
     }
     /* price area end */
+    .ticket-form input {
+        width: 90%;
+        margin: 5px auto;
+        height: 50px;
+    }
+    .ticket-form select{
+        width: 90%;
+        margin: 5px auto;
+        height: 50px;
+    }
     /* starts photo gallery/slideshow */
     .photo-gallery-area {
         padding: 50px 0 125px;

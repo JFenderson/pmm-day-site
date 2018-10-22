@@ -59,11 +59,6 @@ app.get('/', function (_, res) {
   res.sendFile(_path2.default.join(__dirname, 'index.html'));
 });
 app.use('/api', _routes2.default);
-// app.get('/', (req, res) => {
-//     res.render(path.join(CLIENT_PATH + '/index.html'), {
-//         stripePublishableKey: process.env.STRIPE_PK
-//     }); 
-//   });
 
 app.listen(process.env.PORT || 3000, function (err) {
   if (err) {

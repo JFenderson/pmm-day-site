@@ -272,35 +272,6 @@
               </div>
             </div>
           </div>
-          <!-- person 3 -->
-          <!-- <div class="col-sm-6 col-lg-3 col-6">
-            <div class="comittee-person">
-              <a href="#">
-                <img class="img-responsive" src="./images/girl3.jpeg" alt="Card image cap">
-              </a>
-              <div class="comittee-content">
-                <h3>
-                  <a href="#">First Last Name</a>
-                </h3>
-                <span>Occupation</span>
-              </div>
-            </div>
-          </div> -->
-          <!-- person 4 -->
-          <!-- <div class="col-sm-6 col-lg-3 col-6">
-            <div class="comittee-person">
-              <a href="#">
-                <img class="img-responsive" src="./images/girl_otnb.jpeg" alt="Card image cap">
-              </a>
-              <div class="comittee-content">
-                <h3>
-                  <a href="#">First Last Name</a>
-                </h3>
-                <span>Occupation</span>
-              </div>
-            </div>
-          </div> -->
-          <!-- end people -->
         </div>
       </div>
     </div>
@@ -311,35 +282,40 @@
         <p class="sub-title-default">Here you can purchase your ticket and wristbands for the event and skip the lines</p>
       </div>
       <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="ticket-form-left ticket-form">
-                <input type="text" name="name" placeholder="Full Name" id="ticketName">
-                <input type="tel" name="phoneNumber" placeholder="Number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" id="ticketPhoneNumber">
-                <select id="numberOfTickets">
-                  <option value="0">Quantity of Tickets</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-            </div>
+        <div class="row ticket-row">
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ticket-form">
+            <input type="text" name="name" placeholder="Full Name" id="ticketName">
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="ticket-form-right ticket-form">
-              <input type="email" name="email" placeholder="Your Email Address" id="ticketEmail">
-              <input type="number" name="zipcode" placeholder="ZipCode" id="ticketZip">
-              <select id="purchase">
-                <option value="individualTickets">Individual Tickets - $10</option>
-                <option value="tentSpace">Tent Space - $120</option>
-              </select>
-            </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ticket-form">
+            <input type="tel" name="phoneNumber" placeholder="Number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" id="ticketPhoneNumber">
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ticket-form">
+            <input type="email" name="email" placeholder="Your Email Address" id="ticketEmail">
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ticket-form">
+            <input type="number" name="zipcode" placeholder="ZipCode" id="ticketZip">
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ticket-form">
+            <select id="numberOfTickets">
+              <option value="0">Quantity of Tickets</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ticket-form">
+            <select id="purchase">
+              <option value="individualTickets">Individual Tickets - $10</option>
+              <option value="tentSpace">Tent Space - $120</option>
+            </select>
           </div>
         </div>
-        <div class="ticket-button">
-          <input type="submit" value="Submit" id="ticketBtn" disabled/>
-        </div>
+      </div>
+      <div class="ticket-button">
+        <input type="submit" value="Submit" id="ticketBtn" disabled/>
+      </div>
         <div>
           <p class="ticket-sub-text">If you would like to donate to the PMM Weekend, Please send your payments to either cashApp: $PMMWeekend or by clicking the link <a href="https://www.paypal.me/PMMPicnic" class="ticket-link">PayPal</a></p>
         </div>
@@ -493,26 +469,6 @@
                   </a>
                 </li>
               </ul>
-              <div class="footer-creator">
-                <h3>Connect with Me</h3>
-                <ul>
-                  <li>
-                    <a target="_blank" href="mailto:fenderson.joseph@gmail.com">
-                      <i class="fa fa-envelope"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://www.github.com/JFenderson">
-                      <i class="fab fa-github"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://www.linkedin.com/in/joseph-fenderson-6319a964/">
-                      <i class="fab fa-linkedin"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
               <div class="footer-social">
                 <h3>Apply for Miles!</h3>
                 <ul>
@@ -527,19 +483,22 @@
           </div>
         </div>
         <div class="footer-copyright">
-          <p>Developed by <span style="color: #CEBD39">Joseph Fenderson</span>
-            <p>
+          <span>Developed by <span style="color: #CEBD39">Joseph Fenderson</span>
+        </span>
+          <span>
+            <a target="_blank" href="mailto:fenderson.joseph@gmail.com">
+              <i class="fa fa-envelope"></i>
+            </a>
+          </span>
+          <span><a target="_blank" href="https://www.github.com/JFenderson">
+            <i class="fab fa-github"></i>
+          </a></span>
+          <span><a target="_blank" href="https://www.miles.edu">
+            <i class="fas fa-graduation-cap"></i>
+          </a></span>
         </div>
       </div>
     </footer>
-    <!-- <audio src="/images/miles_tear.mp3" controls autoplay loop>	
-    <embed 
-      src="/images/miles_tear.mp3"
-      width="300"
-      height="90"
-      loop="true"
-      autostart="true">
-  </audio> -->
   </div>
   </div>
 
