@@ -242,7 +242,7 @@ li {
     position: relative;
     padding: 40px 9px 40px 20px;
     overflow: hidden;
-    background: #651775;
+    background: rgb(66, 14, 66);
     margin: 1em;
     border-radius: 15px;
 }
@@ -346,7 +346,7 @@ li {
     text-align: center;
     pointer-events: auto;
     /* background-color: #651775; */
-    background: linear-gradient(rgba(86, 43, 126, 0.8), rgba(86, 43, 126, 0.8)), url('./images/frontline_jared.jpg');
+    background: linear-gradient(rgba(66, 14, 66, 0.8), rgba(66, 14, 66, 0.8)), url('./images/frontline_jared.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -516,10 +516,10 @@ li {
 }
 
 .ticket-button{
-    border: 2px solid #651775;
+    border: 2px solid rgb(66, 14, 66);
     font-family: inherit;
     font-size: inherit;
-    color: #651775;
+    color: rgb(66, 14, 66);
     background: #fff;
     cursor: pointer;
     padding: 10px;
@@ -641,7 +641,7 @@ li {
     -ms-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
-    background-color: purple;
+    background-color: rgb(66, 14, 66);
     height: 24em;
 }
 
@@ -739,7 +739,7 @@ li {
     width: 60vw;
     height: 95vh;
     margin: 0;
-    border: solid 1px #283593;
+    border: solid 1px rgb(66, 14, 66);
   }
   
   .photo-links {
@@ -813,7 +813,7 @@ li {
 }
 #memberSubmit:hover{
     cursor: pointer;
-    background-color: #651775;
+    background-color: rgb(66, 14, 66);
     color: white;
 }
 
@@ -832,9 +832,9 @@ li {
 
 .member-form input:focus {
     border: solid 1px transparent;
-    -webkit-box-shadow: 0px 0px 13px 2px rgba(101,23,117,0.55);
-    -moz-box-shadow: 0px 0px 13px 2px rgba(101,23,117,0.55);
-    box-shadow: 0px 0px 13px 2px rgba(101,23,117,0.55);
+    -webkit-box-shadow: 0px 0px 13px 2px rgba(66, 14, 66,0.55);
+    -moz-box-shadow: 0px 0px 13px 2px rgba(66, 14, 66,0.55);
+    box-shadow: 0px 0px 13px 2px rgba(66, 14, 66,0.55);
     /* padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px; */
   }
@@ -852,7 +852,7 @@ li {
     grid-template-areas: "footer footer footer"; */
     position: relative;
     padding: 20px;
-    background-color: #651775;
+    background-color: rgb(66, 14, 66);
     font-family: 'Quicksand', sans-serif;
     height: auto;
 }
@@ -951,10 +951,10 @@ li {
 }
 
 .btn-form {
-    border: 2px solid #651775;
+    border: 2px solid rgb(66, 14, 66);
     font-family: inherit;
     font-size: inherit;
-    color: #651775;
+    color: rgb(66, 14, 66);
     background: #fff;
     cursor: pointer;
     padding: 10px;
@@ -1140,7 +1140,7 @@ li {
         width: 90vw;
         height: 70vh;
         margin: 0;
-        border: solid 1px #283593;
+        border: solid 1px rgb(66, 14, 66);
         image-rendering: optimizeQuality;
         border-radius: 15px;
       }
@@ -1316,7 +1316,7 @@ li {
         width: 90vw;
         height: 70vh;
         margin: 0;
-        border: solid 1px #283593;
+        border: solid 1px rgb(66, 14, 66);
         image-rendering: optimizeQuality;
         border-radius: 15px;
       }
@@ -1452,7 +1452,7 @@ li {
         width: 90vw;
         height: 70vh;
         margin: 0;
-        border: solid 1px #283593;
+        border: solid 1px rgb(66, 14, 66);
         image-rendering: optimizeQuality;
         border-radius: 15px;
       }
@@ -1644,7 +1644,7 @@ li {
         width: 63vw;
         height: 74vh;
         margin: 0;
-        border: solid 1px #283593;
+        border: solid 1px rgb(66, 14, 66);
         image-rendering: optimizeQuality;
         border-radius: 15px;
         /* image-rendering: auto; */
@@ -1820,7 +1820,7 @@ li {
         width: 60vw;
         height: 90vh;
         margin: 0;
-        border: solid 1px #283593;
+        border: solid 1px rgb(66, 14, 66);
         image-rendering: optimizeQuality;
         border-radius: 25px;
       }
