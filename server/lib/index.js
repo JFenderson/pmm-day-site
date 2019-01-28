@@ -24,10 +24,6 @@ var _awsSdk = require('aws-sdk');
 
 var _awsSdk2 = _interopRequireDefault(_awsSdk);
 
-var _db = require('./config/db');
-
-var _db2 = _interopRequireDefault(_db);
-
 var _mail = require('@sendgrid/mail');
 
 var _mail2 = _interopRequireDefault(_mail);
@@ -45,6 +41,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
+// import configure from './config/db';
+
 
 var port = 3000;
 var CLIENT_PATH = (0, _path.join)(__dirname, '../../client');
@@ -65,6 +63,6 @@ app.listen(process.env.PORT || 3000, function (err) {
     console.log(err);
   } else {
     console.log('server listening');
-    (0, _db2.default)();
+    // configure();
   }
 });

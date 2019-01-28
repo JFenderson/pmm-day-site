@@ -612,10 +612,10 @@ $(document).ready(function () {
   // COUNTDOWN 
 
   // The date you want to count down to
-  var dateStr = "5/04/2019 08:18";
+  var dateStr = "4/13/2019 12:00";
   var date = dateStr.split(/\s|\/|:/);
   // var targetDate = new Date(date[2], date[1], date[0], date[3], date[4]);
-  var targetDate = new Date("2019/4/5");
+  var targetDate = new Date("2019/4/13");
 
   // Other date related variables
   var days;

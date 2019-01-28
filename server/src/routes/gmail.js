@@ -43,25 +43,25 @@ router.post('/', (req, res) => {
         transporter.close();
     });
 
-    // sendInBlueTransporter.sendMail(mailOption, (error, res) => {
-    //     if (error) {
-    //         console.log(error);
-    //     } else {
-    //         console.log('email sent!')
-    //         res.sendStatus(201);
-    //     }
-    //     transporter.close();
-    // });
-
-    mailgunTransporter.sendMail(mailOption, (error, info)=> {
+    sendInBlueTransporter.sendMail(mailOption, (error, res) => {
         if (error) {
             console.log(error);
         } else {
             console.log('email sent!')
-            console.log(info)
+            res.sendStatus(201);
         }
         transporter.close();
-    })
+    });
+
+    // mailgunTransporter.sendMail(mailOption, (error, info)=> {
+    //     if (error) {
+    //         console.log(error);
+    //     } else {
+    //         console.log('email sent!')
+    //         console.log(info)
+    //     }
+    //     transporter.close();
+    // })
 
 });
 

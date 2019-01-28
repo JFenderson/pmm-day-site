@@ -55,25 +55,25 @@ router.post('/', function (req, res) {
         _nodemailer3.transporter.close();
     });
 
-    // sendInBlueTransporter.sendMail(mailOption, (error, res) => {
-    //     if (error) {
-    //         console.log(error);
-    //     } else {
-    //         console.log('email sent!')
-    //         res.sendStatus(201);
-    //     }
-    //     transporter.close();
-    // });
-
-    _nodemailer3.mailgunTransporter.sendMail(mailOption, function (error, info) {
+    _nodemailer3.sendInBlueTransporter.sendMail(mailOption, function (error, res) {
         if (error) {
             console.log(error);
         } else {
             console.log('email sent!');
-            console.log(info);
+            res.sendStatus(201);
         }
         _nodemailer3.transporter.close();
     });
+
+    // mailgunTransporter.sendMail(mailOption, (error, info)=> {
+    //     if (error) {
+    //         console.log(error);
+    //     } else {
+    //         console.log('email sent!')
+    //         console.log(info)
+    //     }
+    //     transporter.close();
+    // })
 });
 
 exports.default = router;

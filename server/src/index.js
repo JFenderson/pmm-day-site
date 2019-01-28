@@ -8,7 +8,7 @@ import routes from './routes';
 import cors from 'cors';
 import path from 'path';
 import AWS from 'aws-sdk';
-import configure from './config/db';
+// import configure from './config/db';
 import sgMail from '@sendgrid/mail';
 import db from './config/googleDb';
 import * as Storage from '@google-cloud/storage';
@@ -32,7 +32,7 @@ app.listen(process.env.PORT || 3000, (err) => {
     console.log(err)
   }else{
     console.log(`server listening`)
-    configure();
+    // configure();
   }
 });
 
