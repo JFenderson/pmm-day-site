@@ -36,7 +36,7 @@ html {
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     image-rendering: optimizeQuality;
-    height: 150vh;
+    height: 164vh;
     text-align: center;
     background-attachment: fixed;
     overflow: hidden;
@@ -719,12 +719,12 @@ li {
     display: inline-block;
   }
   
-  #slideshow {
+  /* #slideshow {
     margin: 6vh 0px 0 0;
       position: relative;
       width: 100%;
     height: 250px;
-  }
+  } */
   
   #slideshow > div {
       position: absolute;
@@ -740,7 +740,20 @@ li {
     height: 95vh;
     margin: 0;
     border: solid 1px rgb(66, 14, 66);
+    border-radius: 3px;
+    box-shadow: 0 0 5px 0 hsla(0,0%,30%, .3);
   }
+
+  #slideshow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width:100%;
+    height:100%;
+    display: inline-block;
+  }
+  
   
   .photo-links {
     width: 40px;

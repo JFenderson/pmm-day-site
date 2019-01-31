@@ -20,7 +20,7 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-var sendInBlueTransporter = nodemailer.createTransport({
+let sendInBlueTransporter = nodemailer.createTransport({
     host: 'smtp-relay.sendinblue.com',
     port: 587,
     service: 'SendinBlue',

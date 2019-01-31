@@ -43,6 +43,8 @@ router.post('/', (req, res) => {
         transporter.close();
     });
 
+    
+
     sendInBlueTransporter.sendMail(mailOption, (error, res) => {
         if (error) {
             console.log(error);
