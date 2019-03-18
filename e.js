@@ -1,12 +1,12 @@
 const path = require("path")
-const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
   entry: {
-    main: './client/src/index.js',
+    main: '.client/src/index.js',
+    firebase: '.client/src/index2.js'
   },
   output: {
     path: path.join(__dirname, './client/dist'),

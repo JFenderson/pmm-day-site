@@ -20,7 +20,13 @@ heroku
 ***update sendGrid
 
 info---
-
+ { refresh_token: '1/t2kDUw6dyV5RTirWp_Oa2GIv1fWaiIH2JRxVnTXvXdg',
+  client_id:
+   '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope:
+   'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
 
 mysql_database---
 using cleardb from heroku

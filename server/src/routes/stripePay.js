@@ -13,8 +13,6 @@ router.post('/tickets/idv/1', (req, res) => {
     let token = req.body.id;
     let email = req.body.email;
 
-    console.log(req.body);
-
     stripe.customers.create({
         source: token,
         email: email,
